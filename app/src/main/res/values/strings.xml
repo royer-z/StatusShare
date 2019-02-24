@@ -16,4 +16,8 @@
     <string name="registrationPassword">Password</string>
     <string name="registrationConfirmPassword">Confirm password</string>
     <string name="profileHeading">Profile</string>
+    <string name="profileStatus">Status</string>
+    <string name="profileProfileImageContentDescription">Profile picture</string>
+    <string name="profileAvailabilityColor">Availability color</string>
+    <string name="profileUpdateProfileButton">Update profile</string>
 </resources>
