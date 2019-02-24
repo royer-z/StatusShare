@@ -15,4 +15,5 @@
     <string name="registrationEmail">Email</string>
     <string name="registrationPassword">Password</string>
     <string name="registrationConfirmPassword">Confirm password</string>
+    <string name="profileHeading">Profile</string>
 </resources>

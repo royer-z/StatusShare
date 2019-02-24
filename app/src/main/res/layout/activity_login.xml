@@ -3,7 +3,8 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/loginConstraintLayout">
     <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
@@ -15,7 +16,7 @@
                 android:text="@string/loginHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/loginHeading" android:textAlignment="center"
-                android:textSize="36sp"/>
+                android:textSize="36sp" android:layout_marginTop="0dp" android:layout_alignParentTop="true"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
