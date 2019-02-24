@@ -6,9 +6,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/registrationRelativeLayout">
         <TextView
-                android:text="Registration"
+                android:text="@string/registrationHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/registrationHeading" android:textSize="36sp"
                 android:textAlignment="center"/>
@@ -17,61 +18,47 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText" android:layout_marginTop="40dp"
+                android:id="@+id/registrationFirstName" android:layout_marginTop="40dp"
                 android:layout_below="@+id/registrationHeading"
-                android:hint="First name"/>
+                android:hint="@string/registrationFirstName" android:autofillHints=""/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText2" android:layout_marginTop="20dp" android:layout_below="@+id/editText"
-                android:hint="Last name"/>
+                android:id="@+id/registrationLastName" android:layout_marginTop="20dp" android:layout_below="@+id/registrationFirstName"
+                android:hint="@string/registrationLastName" android:autofillHints=""/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText3" android:layout_marginTop="20dp" android:layout_below="@+id/editText2"
-                android:hint="Email"/>
+                android:id="@+id/registrationEmail" android:layout_marginTop="20dp" android:layout_below="@+id/registrationLastName"
+                android:hint="@string/registrationEmail" android:autofillHints=""/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editText6" android:layout_marginTop="20dp" android:layout_below="@+id/editText3"
-                android:hint="Password"/>
+                android:id="@+id/registrationPassword" android:layout_marginTop="20dp" android:layout_below="@+id/registrationEmail"
+                android:hint="@string/registrationPassword" android:autofillHints=""/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editText7" android:layout_marginTop="20dp" android:layout_below="@+id/editText6"
-                android:hint="Confirm password"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="10"
-                android:id="@+id/editText9" android:layout_marginTop="20dp" android:layout_below="@+id/editText7"
-                android:hint="Phone"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/editText10" android:layout_marginTop="20dp" android:layout_below="@+id/editText9"
-                android:hint="Date of birth"/>
+                android:id="@+id/registrationConfirmPassword" android:layout_marginTop="20dp" android:layout_below="@+id/registrationPassword"
+                android:hint="@string/registrationConfirmPassword" android:autofillHints=""/>
         <Button
-                android:text="Register"
+                android:text="@string/registrationRegisterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/registrationRegisterButton"
-                android:layout_marginTop="40dp"
-                android:layout_below="@+id/editText10" android:layout_alignParentEnd="true"
-                android:layout_marginEnd="161dp" android:layout_alignParentStart="true"
-                android:layout_marginStart="162dp"/>
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="164dp" android:layout_alignParentStart="true"
+                android:layout_marginStart="159dp" android:layout_marginTop="40dp"
+                android:layout_below="@+id/registrationConfirmPassword"/>
         <Button
-                android:text="Cancel"
+                android:text="@string/registrationCancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/registrationCancelButton"
                 android:layout_marginTop="30dp"

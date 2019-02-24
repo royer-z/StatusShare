@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Status Share</string>
+    <string name="mainWelcomeHeading">Welcome</string>
+    <string name="mainEnterButton">Enter</string>
+    <string name="loginHeading">Login</string>
+    <string name="loginLoginButton">Log in</string>
+    <string name="loginRegisterButton">Register</string>
+    <string name="registrationHeading">Registration</string>
+    <string name="registrationRegisterButton">Register</string>
+    <string name="registrationCancelButton">Cancel</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginPassword">Password</string>
+    <string name="registrationFirstName">First name</string>
+    <string name="registrationLastName">Last name</string>
+    <string name="registrationEmail">Email</string>
+    <string name="registrationPassword">Password</string>
+    <string name="registrationConfirmPassword">Confirm password</string>
 </resources>
