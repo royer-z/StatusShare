@@ -37,6 +37,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         initialise()
 
+        //val registerButton = findViewById<Button>(R.id.loginRegisterButton)
+
+//        registerButton.setOnClickListener {
+//
+//            val intent = Intent(this, Registration::class.java)
+//            startActivity(intent)
+//        }
+
     }
 
     private fun initialise() {
@@ -58,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnCreateAccount!!
             .setOnClickListener { startActivity(Intent(this@LoginActivity,
-                MainActivity::class.java)) }//TODO: Add in Michael's Registeration Page here
+                Registration::class.java)) }
 
         btnLogin!!.setOnClickListener { loginUser() }    }
 
