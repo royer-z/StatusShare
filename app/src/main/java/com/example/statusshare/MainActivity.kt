@@ -1,5 +1,6 @@
 package com.example.statusshare
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -10,10 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainEnterButton = findViewById(R.id.mainEnterButton) as Button
+        val mainEnterButton = findViewById<Button>(R.id.mainEnterButton)
 
         mainEnterButton.setOnClickListener {
-            setContentView(R.layout.activity_login)
+
+            val intent = Intent(this, LoginPage::class.java)
+            startActivity(intent)
         }
     }
 }
