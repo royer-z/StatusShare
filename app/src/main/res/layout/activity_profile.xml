@@ -9,7 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileScrollView" android:fillViewport="true">
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileScrollView" android:fillViewport="true"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0">
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
@@ -53,6 +54,30 @@
                     android:layout_below="@+id/profileStatus" android:layout_alignParentEnd="true"
                     android:layout_marginEnd="161dp" android:layout_alignParentStart="true"
                     android:layout_marginStart="162dp" android:textAlignment="center" android:textAllCaps="true"/>
+            <TextView
+                    android:text="@string/profileLocationHeading"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
+                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
+                    android:layout_below="@+id/profileUpdateProfileButton"/>
+            <TextView
+                    android:text="@string/profileDestinationHeading"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
+                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
+                    android:layout_below="@+id/profileLocationHeading"/>
+            <TextView
+                    android:text="@string/profileEventsHeading"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="275dp" android:layout_alignParentStart="true"
+                    android:layout_marginStart="30dp" android:textSize="18sp"
+                    android:layout_marginTop="200dp" android:layout_below="@+id/profileDestinationHeading"/>
         </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -20,4 +20,7 @@
     <string name="profileProfileImageContentDescription">Profile picture</string>
     <string name="profileAvailabilityColor">Availability color</string>
     <string name="profileUpdateProfileButton">Update profile</string>
+    <string name="profileLocationHeading">Location</string>
+    <string name="profileDestinationHeading">Destination</string>
+    <string name="profileEventsHeading">Events</string>
 </resources>
