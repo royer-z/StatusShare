@@ -7,4 +7,99 @@
         android:layout_height="match_parent"
         tools:context=".EditProfileActivity" android:id="@+id/editProfileConstraintLayout">
 
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/editProfileScrollView"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:fillViewport="true">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/editProfileRelativeLayout"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                    android:text="@string/editProfileHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileHeading"
+                    android:layout_marginTop="0dp"
+                    android:layout_alignParentTop="true"
+                    android:textAlignment="center" android:textSize="36sp"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
+                    android:id="@+id/editProfileProfileImageButton" android:layout_marginTop="40dp"
+                    android:layout_below="@+id/editProfileHeading" android:layout_alignParentStart="true"
+                    android:layout_marginStart="90dp"
+                    android:contentDescription="@string/editProfileProfileImageButtonContentDescription"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:srcCompat="@android:drawable/presence_online"
+                    android:id="@+id/editProfileAvailabilityColorButton" android:layout_marginTop="80dp"
+                    android:layout_below="@+id/editProfileHeading"
+                    android:contentDescription="@string/editProfileAvailabilityColorButtonContentDescription"
+                    android:layout_toEndOf="@+id/editProfileProfileImageButton" android:layout_marginStart="50dp"
+            />
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editProfileStatus"
+                    android:hint="@string/editProfileStatus" android:autofillHints="" android:inputType="text"
+                    android:layout_marginTop="20dp" android:layout_below="@+id/editProfileProfileImageButton"/>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editProfileLocation" android:layout_marginTop="20dp"
+                    android:layout_below="@+id/editProfileStatus" android:hint="@string/editProfileLocation"
+                    android:inputType="textPostalAddress" android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"/>
+            <Switch
+                    android:text="@string/editProfileLiveSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileLiveSwitch"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/editProfileStatus" android:layout_toEndOf="@+id/editProfileLocation"
+                    android:layout_marginStart="50dp" android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="69dp" android:textAlignment="center"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:ems="10"
+                    android:id="@+id/editProfileDestination" android:layout_marginTop="20dp"
+                    android:layout_below="@+id/editProfileLocation" android:hint="@string/editProfileDestination"/>
+            <Button
+                    android:text="@string/editProfileSaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileSaveButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/editProfileDestination" android:layout_alignParentStart="true"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginEnd="68dp"/>
+            <Button
+                    android:text="@string/editProfileCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileCancelButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/editProfileDestination"
+                    android:layout_alignParentEnd="true" android:layout_marginEnd="80dp"/>
+            <TextView
+                    android:text="@string/editProfileEventsHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileEventsHeading"
+                    android:layout_marginTop="40dp"
+                    android:layout_below="@+id/editProfileSaveButton" android:layout_alignParentStart="true"
+                    android:layout_marginStart="30dp" android:textSize="18sp"/>
+            <Button
+                    android:text="@string/editProfilePlusButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/editProfilePlusButton" android:layout_marginTop="30dp"
+                    android:layout_below="@+id/editProfileCancelButton"
+                    android:layout_toEndOf="@+id/editProfileEventsHeading" android:layout_marginStart="258dp"
+                    android:textSize="12sp" android:layout_alignParentEnd="true" android:layout_marginEnd="30dp"/>
+        </RelativeLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

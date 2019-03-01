@@ -25,12 +25,6 @@
                     android:textAlignment="center" android:textSize="36sp"
                     android:visibility="visible"
             />
-            <TextView
-                    android:text="@string/profileStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/profileStatus"
-                    android:textAlignment="center"
-                    android:layout_marginTop="20dp" android:layout_below="@+id/profileProfileImage"/>
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
@@ -46,6 +40,12 @@
                     android:layout_below="@+id/profileHeading"
                     android:layout_marginStart="50dp" android:layout_toEndOf="@+id/profileProfileImage"
                     android:contentDescription="@string/profileAvailabilityColor"/>
+            <TextView
+                    android:text="@string/profileStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/profileStatus"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp" android:layout_below="@+id/profileProfileImage"/>
             <Button
                     android:text="@string/profileUpdateProfileButton"
                     android:layout_width="wrap_content"

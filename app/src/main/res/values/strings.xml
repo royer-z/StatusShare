@@ -23,4 +23,15 @@
     <string name="profileLocationHeading">Location</string>
     <string name="profileDestinationHeading">Destination</string>
     <string name="profileEventsHeading">Events</string>
+    <string name="editProfileHeading">Edit Profile</string>
+    <string name="editProfileStatus">Status</string>
+    <string name="editProfileLocation">Location</string>
+    <string name="editProfileLiveSwitch">Live</string>
+    <string name="editProfileDestination">Destination</string>
+    <string name="editProfileAvailabilityColorButtonContentDescription">Availability color</string>
+    <string name="editProfileSaveButton">Save</string>
+    <string name="editProfileCancelButton">Cancel</string>
+    <string name="editProfileProfileImageButtonContentDescription">Profile image</string>
+    <string name="editProfileEventsHeading">Events</string>
+    <string name="editProfilePlusButton">+</string>
 </resources>
