@@ -10,7 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/registrationScrollView">
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/registrationScrollView"
+            android:fillViewport="true">
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,6 +112,20 @@
                     android:layout_marginEnd="162dp"
                     android:text="Navigation Bar"
                     android:layout_marginTop="30dp"/>
+            <Button
+                    android:text="Profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/registrationProfileButton"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@+id/buttonNavBar" android:layout_alignParentStart="true"
+                    android:layout_marginStart="161dp" android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="162dp"/>
+            <Button
+                    android:text="Edit profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/registrationEditProfileButton"
+                    android:layout_marginTop="-37dp"
+                    android:layout_below="@+id/registrationProfileButton"/>
 
         </RelativeLayout>
     </ScrollView>
