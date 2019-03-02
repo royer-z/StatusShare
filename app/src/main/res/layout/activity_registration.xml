@@ -43,7 +43,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/registrationLastName"
-                    android:layout_marginTop="83dp"
+                    android:layout_marginTop="20dp"
                     android:layout_below="@+id/registrationFirstName"
                     android:hint="@string/registrationLastName"
                     android:autofillHints=""/>
