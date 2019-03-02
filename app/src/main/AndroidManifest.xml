@@ -9,7 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <meta-data
+                android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+                android:value="true" />
+        <activity android:name=".Registration"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,5 +22,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
