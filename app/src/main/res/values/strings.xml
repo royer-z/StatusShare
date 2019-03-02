@@ -16,4 +16,13 @@
     <string name="registrationPassword">Password</string>
     <string name="registrationConfirmPassword">Confirm password</string>
     <string name="profileHeading">Profile</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_share">Share</string>
+    <string name="nav_add_friend">AddFriend</string>
+    <string name="nav_location">Share Location</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -38,7 +38,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/registrationLastName"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="83dp"
                 android:layout_below="@+id/registrationFirstName"
                 android:hint="@string/registrationLastName"
                 android:autofillHints=""/>
@@ -94,5 +94,18 @@
                 android:layout_marginStart="161dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="162dp"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonNavBar"
+                android:layout_below="@+id/registrationCancelButton"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="161dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="162dp"
+                android:text="Navigation Bar"
+                android:layout_marginTop="30dp"/>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

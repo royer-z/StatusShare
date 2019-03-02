@@ -14,6 +14,7 @@ import com.example.statusshare.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_main.*
 
 class Registration: AppCompatActivity(){
     /*
@@ -54,6 +55,15 @@ class Registration: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
          initialise()
+
+
+        val navButton = findViewById<Button>(R.id.buttonNavBar)
+
+        navButton.setOnClickListener {
+
+            val intent = Intent(this, emptyPageJustButton::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -138,7 +148,7 @@ class Registration: AppCompatActivity(){
     }
 
     private fun verifyEmail() {
-        val mUser = mAuth!!.currentUser;
+        val mUser = mAuth!!.currentUser
         mUser!!.sendEmailVerification()
             .addOnCompleteListener(this) { task ->
 
