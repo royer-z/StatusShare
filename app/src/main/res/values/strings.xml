@@ -42,5 +42,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sharedProfileHeading">Profile</string>
+    <string name="sharedProfileProfileImageContentDescription">Profile image</string>
+    <string name="sharedProfileAvailabilityColorContentDescription">Availability color</string>
+    <string name="sharedProfileStatus">Status</string>
+    <string name="sharedProfileLocationHeading">Location</string>
+    <string name="sharedProfileDestinationHeading">Destination</string>
+    <string name="sharedProfileEventsHeading">Events</string>
 
 </resources>
