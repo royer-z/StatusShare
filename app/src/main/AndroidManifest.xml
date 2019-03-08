@@ -9,13 +9,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".SharedProfileActivity">
+        </activity>
+
         <meta-data
                 android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-                android:value="true" />
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name=".Registration"></activity>
-        <activity android:name=".emptyPageJustButton"></activity>
-        <activity android:name=".ProfileActivity"></activity>
+                android:value="true"/>
+
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".Registration"/>
+        <activity android:name=".emptyPageJustButton"/>
+        <activity android:name=".ProfileActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,4 +28,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
