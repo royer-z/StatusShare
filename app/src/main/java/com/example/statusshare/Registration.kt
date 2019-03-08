@@ -65,6 +65,22 @@ class Registration: AppCompatActivity(){
             startActivity(intent)
         }
 
+        val profileButton = findViewById<Button>(R.id.registrationProfileButton)
+
+        profileButton.setOnClickListener {
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        val editProfileButton = findViewById<Button>(R.id.registrationEditProfileButton)
+
+        editProfileButton.setOnClickListener {
+
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun initialise(){
