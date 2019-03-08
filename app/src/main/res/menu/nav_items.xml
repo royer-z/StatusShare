@@ -3,15 +3,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/nav_share" android:icon="@drawable/outline_home_black_24dp"
+    <item android:title="@string/Setting_nav" android:icon="@drawable/nav_bar_settings"
+          android:id="@+id/nav_setting_button"/>
+    <item android:title="@string/notify_nav" android:icon="@drawable/nav_bar_notify"
+          android:id="@+id/nav_notification_button"/>
+    <item android:title="@string/nav_home" android:icon="@drawable/nav_bar_home"
           android:id="@+id/nav_home_button"/>
-    <item android:title="@string/nav_profile" android:icon="@drawable/baseline_dashboard_black_24dp"
-          android:id="@+id/nav_profile_button"/>
-    <item android:title="@string/nav_home" android:icon="@drawable/outline_share_black_24dp"
-          android:id="@+id/nav_share_button"/>
-    <item android:title="@string/nav_add_friend" android:icon="@drawable/outline_person_add_black_24dp"
-          android:id="@+id/nav_add_friend_button"/>
-    <item android:title="@string/nav_location" android:icon="@drawable/outline_add_location_black_24dp"
-          android:id="@+id/nav_share_location"/>
+    <item android:title="@string/Contacts_nav" android:icon="@drawable/nav_bar_contacts_trimmed"
+          android:id="@+id/nav_contact_button"/>
+    <item android:title="@string/My_profile_nav" android:icon="@drawable/nav_bar_profile"
+          android:id="@+id/nav_profile"/>
 
 </menu>
