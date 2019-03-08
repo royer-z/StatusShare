@@ -9,6 +9,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".SharedProfileActivity">
+        </activity>
+
         <meta-data
                 android:name="com.google.android.gms.ads.AD_MANAGER_APP"
                 android:value="true" />
@@ -29,4 +32,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
