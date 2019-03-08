@@ -23,25 +23,34 @@ class emptyPageJustButton: AppCompatActivity(){
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
 
-            R.id.nav_home_button -> {
+            R.id.nav_setting_button -> {
+
+                val intent = Intent(this, AppSettings::class.java)
+                startActivity(intent)
 
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.nav_profile_button-> {
+            R.id.nav_notification_button-> {
 
+                val intent = Intent(this, NotificationActivity::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.nav_share_button-> {
+            R.id.nav_home_button-> {
 
+                val intent = Intent(this, HomeProfileActivity::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.nav_add_friend_button-> {
-
+            R.id.nav_contact_button-> {
+                val intent = Intent(this, ContactActivity::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.nav_share_location-> {
-
+            R.id.nav_profile-> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
 

@@ -42,5 +42,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_settings">settings</string>
+    <string name="Setting_nav">Settings</string>
+    <string name="notify_nav">Notify</string>
+    <string name="Contacts_nav">Contacts</string>
+    <string name="My_profile_nav">My Profile</string>
+    <string name="home_page">Home PAge</string>
+    <string name="contact_activty">Contact Page</string>
+    <string name="notification_activty">Notification</string>
 
 </resources>

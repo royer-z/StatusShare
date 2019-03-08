@@ -17,9 +17,5 @@
 
     </android.support.design.widget.BottomNavigationView>
 
-    <fragment android:name="com.example.statusshare.HomeFragment"
-              android:id="@+id/homeFragment"
-              android:layout_weight="1"
-              android:layout_width="0dp"
-              android:layout_height="match_parent" />
+
 </RelativeLayout>
