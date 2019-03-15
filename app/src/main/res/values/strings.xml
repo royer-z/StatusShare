@@ -58,5 +58,7 @@
     <string name="sharedProfileEventsHeading">Events</string>
     <string name="settingsHeading">Settings</string>
     <string name="settingsLogoutButton">Log out</string>
+    <string name="notificationsHeading">Scheduled Notifications</string>
+    <string name="notificationsCreateButton">Create</string>
 
 </resources>
