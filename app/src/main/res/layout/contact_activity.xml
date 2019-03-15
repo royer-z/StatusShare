@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/contactsConstraintLayout">
 
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="573dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="139dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="283dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="70dp"
-            tools:text="@string/contact_activty"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/contactsLinearLayout">
+        <TextView
+                android:text="@string/contactsHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/contactsHeading"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="36sp" android:textAlignment="center"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/contactsFamilyLinearLayout"
+                android:layout_marginTop="20dp">
+            <TextView
+                    android:text="@string/contactsFamilyHeading"
+                    android:layout_height="wrap_content" android:id="@+id/contactsFamilyHeading"
+                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"/>
+            <Button
+                    android:text="@string/contactsFamilyAddButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/contactsFamilyAddButton"
+                    android:layout_marginStart="250dp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/contactsFriendsLinearLayout"
+                android:layout_marginTop="20dp">
+            <TextView
+                    android:text="@string/contactsFriendsHeading"
+                    android:layout_height="wrap_content" android:id="@+id/contactsFriendsHeading"
+                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"/>
+            <Button
+                    android:text="@string/contactsFriendsAddButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/contactsFriendsAddButton"
+                    android:layout_marginStart="243dp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/contactsTeamLinearLayout"
+                android:layout_marginTop="20dp">
+            <TextView
+                    android:text="@string/contactsTeamHeading"
+                    android:layout_height="wrap_content" android:id="@+id/contactsTeamHeading"
+                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"/>
+            <Button
+                    android:text="@string/contactsTeamAddButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/contactsTeamAddButton"
+                    android:layout_marginStart="256dp"/>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

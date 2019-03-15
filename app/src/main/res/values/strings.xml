@@ -61,5 +61,12 @@
     <string name="notificationsHeading">Scheduled Notifications</string>
     <string name="notificationsCreateButton">Create</string>
     <string name="homeHeading">Home</string>
+    <string name="contactsHeading">Contacts</string>
+    <string name="contactsFamilyHeading">Family</string>
+    <string name="contactsFamilyAddButton">+</string>
+    <string name="contactsFriendsHeading">Friends</string>
+    <string name="contactsFriendsAddButton">+</string>
+    <string name="contactsTeamHeading">Team</string>
+    <string name="contactsTeamAddButton">+</string>
 
 </resources>
