@@ -60,5 +60,6 @@
     <string name="settingsLogoutButton">Log out</string>
     <string name="notificationsHeading">Scheduled Notifications</string>
     <string name="notificationsCreateButton">Create</string>
+    <string name="homeHeading">Home</string>
 
 </resources>

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/homeConstraintLayout">
 
-    <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" tools:text="@string/home_page" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="28dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="57dp" android:layout_marginBottom="655dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="308dp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/homeLinearLayout">
+        <TextView
+                android:text="@string/homeHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/homeHeading" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:textAlignment="center" android:textSize="36sp"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
