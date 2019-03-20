@@ -93,5 +93,13 @@
     <string name="addContactEmail">Email address</string>
     <string name="addContactRequestButton">Request</string>
     <string name="addContactCancelButton">Cancel</string>
+    <string name="addEventHeading">Add Event</string>
+    <string name="addEventTitle">Title</string>
+    <string name="addEventDescription">Description</string>
+    <string name="addEventAddress">Address</string>
+    <string name="addEventDate">Date</string>
+    <string name="addEventTime">Time</string>
+    <string name="addEventAddButton">Add</string>
+    <string name="addEventCancelButton">Cancel</string>
 
 </resources>

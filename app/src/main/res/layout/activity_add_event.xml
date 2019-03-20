@@ -5,6 +5,59 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddEventActivity">
+        tools:context=".AddEventActivity" android:id="@+id/addEventConstraintLayout">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/addEventLinearLayout"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+                android:text="@string/addEventHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/addEventHeading" android:textSize="36sp"
+                android:textAlignment="center"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/addEventTitle" android:inputType="textShortMessage"
+                android:hint="@string/addEventTitle" android:layout_marginTop="40dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/addEventDescription" android:inputType="textLongMessage"
+                android:hint="@string/addEventDescription" android:layout_marginTop="20dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/addEventAddress" android:hint="@string/addEventAddress"
+                android:layout_marginTop="20dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/addEventDate" android:hint="@string/addEventDate" android:layout_marginTop="20dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/addEventTime" android:hint="@string/addEventTime" android:layout_marginTop="20dp"/>
+        <Button
+                android:text="@string/addEventAddButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/addEventAddButton"
+                android:layout_marginTop="20dp" android:layout_gravity="center_horizontal"/>
+        <Button
+                android:text="@string/addEventCancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/addEventCancelButton"
+                android:layout_marginTop="20dp" android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
