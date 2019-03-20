@@ -68,5 +68,15 @@
     <string name="contactsFriendsAddButton">+</string>
     <string name="contactsTeamHeading">Team</string>
     <string name="contactsTeamAddButton">+</string>
+    <string name="createNotificationHeading">Create Notification</string>
+    <string name="createNotificationMessage">Message</string>
+    <string name="createNotificationDate">Date</string>
+    <string name="createNotificationDailySwitch">Daily</string>
+    <string name="createNotificationCreateButton">Create</string>
+    <string name="createNotificationCancelButton">Cancel</string>
+    <string name="createNotificationTitle">Title</string>
+    <string name="createNotificationLocation">Location</string>
+    <string name="createNotificationDestination">Destination</string>
+    <string name="createNotificationTime">Time</string>
 
 </resources>
