@@ -101,5 +101,13 @@
     <string name="addEventTime">Time</string>
     <string name="addEventAddButton">Add</string>
     <string name="addEventCancelButton">Cancel</string>
+    <string name="editEventHeading">Edit Event</string>
+    <string name="editEventTitle">Title</string>
+    <string name="editEventDescription">Description</string>
+    <string name="editEventAddress">Address</string>
+    <string name="editEventDate">Date</string>
+    <string name="editEventTime">Time</string>
+    <string name="editEventSaveButton">Save</string>
+    <string name="editEventCancelButton">Cancel</string>
 
 </resources>
