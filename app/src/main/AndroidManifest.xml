@@ -27,7 +27,7 @@
         <activity android:name=".HomeProfileActivity"/>
         <activity android:name=".EditProfileActivity"/>
         <activity android:name=".NotificationActivity"/>
-        <activity android:name=".ContactActivity"/>
+        <activity android:name=".ContactsActivity"/>
         <activity android:name=".AppSettings"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
