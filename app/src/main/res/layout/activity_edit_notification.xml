@@ -5,6 +5,82 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EditNotificationActivity">
+        tools:context=".EditNotificationActivity" android:id="@+id/editNotificationConstraintLayout">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/editNotificationLinearLayout">
+        <TextView
+                android:text="@string/editNotificationHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/editNotificationHeading"
+                android:textAlignment="center"
+                android:textSize="36sp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editNotificationTitle" android:inputType="textShortMessage"
+                android:hint="@string/editNotificationTitle"
+                android:layout_marginTop="40dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/editNotificationMessage" android:hint="@string/editNotificationMessage"
+                android:layout_marginTop="20dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/editNotificationLocation" android:hint="@string/editNotificationLocation"
+                android:layout_marginTop="20dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/editNotificationDestination" android:hint="@string/editNotificationDestination"
+                android:layout_marginTop="20dp"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/editNotificationDateLinearLayout">
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/editNotificationDate" android:hint="@string/editNotificationDate"
+                    android:layout_marginTop="20dp"/>
+            <Switch
+                    android:text="@string/editNotificationDaily"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/editNotificationDailySwitch"
+                    android:layout_weight="1" android:layout_marginEnd="69dp" android:layout_marginStart="50dp"
+                    android:textAlignment="center" android:layout_marginTop="20dp"/>
+        </LinearLayout>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/editNotificationTime" android:hint="@string/editNotificationTime"
+                android:layout_marginTop="20dp"/>
+        <Button
+                android:text="@string/editNotificationSaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/editNotificationSaveButton"
+                android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+        <Button
+                android:text="@string/editNotificationCancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/editNotificationCancelButton"
+                android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

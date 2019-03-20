@@ -49,6 +49,7 @@
     <string name="home_page">Home PAge</string>
     <string name="contact_activty">Contact Page</string>
     <string name="notification_activty">Notification</string>
+
     <string name="sharedProfileHeading">Profile</string>
     <string name="sharedProfileProfileImageContentDescription">Profile image</string>
     <string name="sharedProfileAvailabilityColorContentDescription">Availability color</string>
@@ -78,5 +79,15 @@
     <string name="createNotificationLocation">Location</string>
     <string name="createNotificationDestination">Destination</string>
     <string name="createNotificationTime">Time</string>
+    <string name="editNotificationHeading">Edit Notification</string>
+    <string name="editNotificationMessage">Message</string>
+    <string name="editNotificationLocation">Location</string>
+    <string name="editNotificationDestination">Destination</string>
+    <string name="editNotificationDate">Date</string>
+    <string name="editNotificationDaily">Daily</string>
+    <string name="editNotificationTime">Time</string>
+    <string name="editNotificationSaveButton">Save</string>
+    <string name="editNotificationCancelButton">Cancel</string>
+    <string name="editNotificationTitle">Title</string>
 
 </resources>
