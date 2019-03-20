@@ -5,6 +5,35 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddContactActivity">
+        tools:context=".AddContactActivity" android:id="@+id/addContactConstraintLayout">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/addContactLinearLayout"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+                android:text="@string/addContactHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/addContactHeading" android:textSize="36sp"
+                android:textAlignment="center"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/addContactEmail" android:hint="@string/addContactEmail"
+                android:layout_marginTop="40dp"/>
+        <Button
+                android:text="@string/addContactRequestButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/addContactRequestButton"
+                android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+        <Button
+                android:text="@string/addContactCancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/addContactCancelButton"
+                android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
