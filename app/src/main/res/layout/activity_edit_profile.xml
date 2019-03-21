@@ -35,7 +35,7 @@
                         android:id="@+id/editProfileProfileImageButton" android:layout_marginTop="40dp"
                         android:layout_marginStart="90dp"
                         android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
-                        tools:srcCompat="@tools:sample/avatars[0]" android:layout_marginBottom="20dp"/>
+                        tools:srcCompat="@tools:sample/avatars[0]"/>
                 <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,12 +62,12 @@
                         android:id="@+id/editProfileLocation" android:layout_marginTop="20dp"
                         android:hint="@string/editProfileLocation"
                         android:inputType="textPostalAddress"
-                        android:layout_marginStart="0dp"/>
+                />
                 <Switch
                         android:text="@string/editProfileLiveSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/editProfileLiveSwitch"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="50dp"
                         android:layout_marginEnd="69dp" android:textAlignment="center"/>
             </LinearLayout>
