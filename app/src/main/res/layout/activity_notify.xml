@@ -4,27 +4,27 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             android:id="@+id/notificationsConstraintLayout">
+                                             android:id="@+id/notifyConstraintLayout">
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/notificationsLinearLayout">
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/notifyLinearLayout">
         <TextView
-                android:text="@string/notificationsHeading"
+                android:text="@string/notifyHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/notificationsHeading"
+                android:id="@+id/notifyHeading"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" android:textAlignment="center" android:textSize="36sp"/>
         <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="@string/notificationsCreateButton"
-                android:id="@+id/notificationsCreateButton"
+                android:layout_height="wrap_content" android:text="@string/notifyCreateButton"
+                android:id="@+id/notifyCreateButton"
                 android:layout_marginStart="142dp" android:layout_marginTop="20dp"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
