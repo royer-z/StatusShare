@@ -61,7 +61,7 @@ class Registration: AppCompatActivity(){
 
         navButton.setOnClickListener {
 
-            val intent = Intent(this, emptyPageJustButton::class.java)
+            val intent = Intent(this, BottomNavigationActivity::class.java)
             startActivity(intent)
         }
 

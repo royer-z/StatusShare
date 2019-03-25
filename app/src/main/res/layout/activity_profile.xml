@@ -1,83 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:id="@+id/profileConstraintLayout">
-    <ScrollView
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileScrollView" android:fillViewport="true"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0">
-        <RelativeLayout
+            android:layout_height="match_parent"
+            android:id="@+id/profileConstraintLayout">
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileRelativeLayout"
-                android:visibility="visible">
+                app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileScrollView" android:fillViewport="true"
+                app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileRelativeLayout"
+                    android:visibility="visible">
 
-            <TextView
-                    android:text="@string/profileHeading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/profileHeading"
-                    android:textAlignment="center" android:textSize="36sp"
-                    android:visibility="visible"
-            />
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
-                    android:id="@+id/profileProfileImage" android:layout_marginTop="40dp"
-                    android:layout_below="@+id/profileHeading"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="142dp"
-                    android:contentDescription="@string/profileProfileImageContentDescription"/>
-            <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" app:srcCompat="@android:drawable/presence_online"
-                    android:id="@+id/profileAvailabilityColor" android:layout_marginTop="80dp"
-                    android:layout_below="@+id/profileHeading"
-                    android:layout_marginStart="50dp" android:layout_toEndOf="@+id/profileProfileImage"
-                    android:contentDescription="@string/profileAvailabilityColor"/>
-            <TextView
-                    android:text="@string/profileStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/profileStatus"
-                    android:textAlignment="center"
-                    android:layout_marginTop="20dp" android:layout_below="@+id/profileProfileImage"/>
-            <Button
-                    android:text="@string/profileUpdateProfileButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/profileUpdateProfileButton"
-                    android:layout_marginTop="20dp"
-                    android:layout_below="@+id/profileStatus" android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="161dp" android:layout_alignParentStart="true"
-                    android:layout_marginStart="162dp" android:textAlignment="center" android:textAllCaps="true"/>
-            <TextView
-                    android:text="@string/profileLocationHeading"
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
-                    android:layout_below="@+id/profileUpdateProfileButton"/>
-            <TextView
-                    android:text="@string/profileDestinationHeading"
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
-                    android:layout_below="@+id/profileLocationHeading"/>
-            <TextView
-                    android:text="@string/profileEventsHeading"
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="275dp" android:layout_alignParentStart="true"
-                    android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="200dp" android:layout_below="@+id/profileDestinationHeading"/>
-        </RelativeLayout>
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+                <TextView
+                        android:text="@string/profileHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/profileHeading"
+                        android:textAlignment="center" android:textSize="36sp"
+                        android:visibility="visible"
+                />
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[0]"
+                        android:id="@+id/profileProfileImage" android:layout_marginTop="40dp"
+                        android:layout_below="@+id/profileHeading"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="142dp"
+                        android:contentDescription="@string/profileProfileImageContentDescription"/>
+                <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" app:srcCompat="@android:drawable/presence_online"
+                        android:id="@+id/profileAvailabilityColor" android:layout_marginTop="80dp"
+                        android:layout_below="@+id/profileHeading"
+                        android:layout_marginStart="50dp" android:layout_toEndOf="@+id/profileProfileImage"
+                        android:contentDescription="@string/profileAvailabilityColor"/>
+                <TextView
+                        android:text="@string/profileStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/profileStatus"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" android:layout_below="@+id/profileProfileImage"/>
+                <Button
+                        android:text="@string/profileUpdateProfileButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/profileUpdateProfileButton"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/profileStatus" android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="161dp" android:layout_alignParentStart="true"
+                        android:layout_marginStart="162dp" android:textAlignment="center" android:textAllCaps="true"/>
+                <TextView
+                        android:text="@string/profileLocationHeading"
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
+                        android:layout_below="@+id/profileUpdateProfileButton"/>
+                <TextView
+                        android:text="@string/profileDestinationHeading"
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="271dp" android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
+                        android:layout_below="@+id/profileLocationHeading"/>
+                <TextView
+                        android:text="@string/profileEventsHeading"
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="275dp" android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp" android:textSize="18sp"
+                        android:layout_marginTop="200dp" android:layout_below="@+id/profileDestinationHeading"/>
+
+
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+</FrameLayout>
