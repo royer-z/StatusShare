@@ -1,13 +1,12 @@
 package com.example.statusshare
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 
-class ContactActivity : AppCompatActivity() {
+class AddEventActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.contact_activity)
-
+        setContentView(R.layout.activity_add_event)
     }
-
 }

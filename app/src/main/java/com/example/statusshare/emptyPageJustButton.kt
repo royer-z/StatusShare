@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 
 lateinit var toolbar: ActionBar
 
@@ -44,7 +43,7 @@ class emptyPageJustButton: AppCompatActivity(){
             }
 
             R.id.nav_contact_button-> {
-                val intent = Intent(this, ContactActivity::class.java)
+                val intent = Intent(this, ContactsActivity::class.java)
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }

@@ -9,6 +9,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".AddEventActivity">
+        </activity>
+        <activity android:name=".AddContactActivity">
+        </activity>
         <activity android:name=".EditNotificationActivity">
         </activity>
         <activity android:name=".CreateNotificationActivity">
@@ -27,7 +31,7 @@
         <activity android:name=".HomeProfileActivity"/>
         <activity android:name=".EditProfileActivity"/>
         <activity android:name=".NotificationActivity"/>
-        <activity android:name=".ContactActivity"/>
+        <activity android:name=".ContactsActivity"/>
         <activity android:name=".AppSettings"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
