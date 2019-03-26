@@ -3,7 +3,8 @@ package com.example.statusshare
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -11,14 +12,33 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 
-class EditProfileActivity : AppCompatActivity() {
+
+
+class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     var mDatabase: DatabaseReference? = null
     var mCurrentUser: FirebaseUser? = null
 
+    //0 = available, 1 = away, 2 = busy
+    var statuses = arrayOf("Available","Away","Busy")
+    var spinner: Spinner? = null
+    var textView_msg: TextView? = null
+    var statusColorNum = 9999
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+
+
+        spinner = this.spinner_sample
+        spinner!!.setOnItemSelectedListener(this)
+        val aa = ArrayAdapter(this,R.layout.spinner_item,statuses)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner!!.setAdapter(aa)
+
+
+
+
+
 
         if(intent.extras!=null){
             var oldStatus = intent.extras.get("status")
@@ -67,8 +87,16 @@ class EditProfileActivity : AppCompatActivity() {
                 }
             }
 
-
+            mDatabase!!.child("colorStatus").setValue(statusColorNum)
 
         }
+    }
+    override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
+        //textView_msg!!.text = "Selected : "+languages[position]
+        statusColorNum = position
+    }
+
+    override fun onNothingSelected(arg0: AdapterView<*>) {
+
     }
 }
