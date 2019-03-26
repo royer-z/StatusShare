@@ -46,6 +46,7 @@ class whatever: AppCompatActivity(){
     //var mStorageRef:StorageReference?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_profile)
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid

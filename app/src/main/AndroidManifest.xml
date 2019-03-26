@@ -13,6 +13,7 @@
         </activity>
         <activity android:name=".AddEventActivity">
         </activity>
+        <activity android:name=".whatever"></activity>
         <activity android:name=".AddContactActivity">
         </activity>
         <activity android:name=".EditNotificationActivity">

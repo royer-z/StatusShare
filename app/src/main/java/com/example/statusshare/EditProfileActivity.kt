@@ -41,7 +41,7 @@ class EditProfileActivity : AppCompatActivity() {
                 task: Task<Void> ->
                 if (task.isSuccessful){
                     Toast.makeText(this,"Status Updated Successfully!",Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this,ProfileActivity::class.java))
+                    startActivity(Intent(this,whatever::class.java))
                 } else {
                     Toast.makeText(this,"Status Not Updated",Toast.LENGTH_LONG).show()
                 }

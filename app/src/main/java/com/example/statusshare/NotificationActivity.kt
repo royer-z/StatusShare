@@ -24,6 +24,6 @@ class NotificationActivity : Fragment() {
     // TODO: Rename and change types of parameters
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.create_notification, container, false)
+        return inflater!!.inflate(R.layout.activity_notify, container, false)
     }
 }

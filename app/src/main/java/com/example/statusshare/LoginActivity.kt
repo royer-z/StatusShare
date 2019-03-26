@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+        val intent = Intent(this@LoginActivity, whatever::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

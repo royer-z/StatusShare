@@ -16,7 +16,7 @@ class ContactActivity : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.contact_activity, container, false)
+        return inflater!!.inflate(R.layout.activity_contacts, container, false)
     }
 
 }
