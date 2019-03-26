@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         mainEnterButton.setOnClickListener {
 
-            val intent = Intent(this, LoginPage::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

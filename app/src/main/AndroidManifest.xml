@@ -24,17 +24,10 @@
 
         <meta-data
                 android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-                android:value="true"/>
-
-        <activity android:name=".Registration"/>
-        <activity android:name=".emptyPageJustButton"/>
-        <activity android:name=".ProfileActivity"/>
-        <activity android:name=".LoginPage"/>
-        <activity android:name=".HomeProfileActivity"/>
-        <activity android:name=".EditProfileActivity"/>
-        <activity android:name=".NotificationActivity"/>
-        <activity android:name=".ContactsActivity"/>
-        <activity android:name=".AppSettings"/>
+                android:value="true" />
+        <activity android:name=".Registration"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name="BottomNavigationActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
