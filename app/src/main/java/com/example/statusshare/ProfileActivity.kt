@@ -1,23 +1,21 @@
 package com.example.statusshare
 
-import android.content.Context
-import android.net.Uri
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.widget.ImageView
-import android.widget.Toast
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.storage.StorageReference
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_profile.*
-import android.util.Log
+// for ArcGIS Runtime SDK
+import com.esri.arcgisruntime.mapping.ArcGISMap
+import com.esri.arcgisruntime.mapping.Basemap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,10 +48,20 @@ class whatever: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-      
+
+        // create a map with the BasemapType topographic
+        val locationMap = ArcGISMap(Basemap.Type.TOPOGRAPHIC, 40.742330, -74.179384, 16)
+        // set the map to be displayed in the layout's MapView
+        profileLocationMapView.map = locationMap
+
+        // create a map with the BasemapType topographic
+        val destinationMap = ArcGISMap(Basemap.Type.TOPOGRAPHIC, 40.742330, -74.179384, 16)
+        // set the map to be displayed in the layout's MapView
+        profileDestinationMapView.map = destinationMap
+
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
-      
+
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid
@@ -106,5 +114,15 @@ class whatever: AppCompatActivity(){
             intent.putExtra("destination", profileDestinationHeading.text.toString())
             startActivity(intent)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        profileLocationMapView.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profileLocationMapView.resume()
     }
 }

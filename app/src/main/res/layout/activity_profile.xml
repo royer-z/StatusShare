@@ -63,20 +63,34 @@
                     android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
             />
+            <com.esri.arcgisruntime.mapping.view.MapView
+                    android:id="@+id/profileLocationMapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+            </com.esri.arcgisruntime.mapping.view.MapView>
             <TextView
                     android:text="@string/profileDestinationHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
                     android:layout_marginEnd="271dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
-            />
+                    android:layout_marginStart="30dp" android:textSize="18sp"
+                    android:layout_marginTop="20dp"/>
+            <com.esri.arcgisruntime.mapping.view.MapView
+                    android:id="@+id/profileDestinationMapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+            </com.esri.arcgisruntime.mapping.view.MapView>
             <TextView
                     android:text="@string/profileEventsHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="200dp"/>
+                    android:layout_marginTop="20dp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
