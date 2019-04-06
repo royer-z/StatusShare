@@ -75,38 +75,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/registrationRegisterButton"
-                    android:layout_marginStart="159dp"
-                    android:layout_marginTop="40dp"
-            />
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
             <Button
                     android:text="@string/registrationCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/registrationCancelButton"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="161dp"
-            />
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
 
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/buttonNavBar"
-                    android:layout_marginStart="161dp"
                     android:text="Navigation Bar"
-                    android:layout_marginTop="30dp"/>
+                    android:layout_marginTop="20dp" android:layout_gravity="center_horizontal"/>
             <Button
                     android:text="Profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/registrationProfileButton"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="161dp"
-            />
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
             <Button
                     android:text="Edit profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/registrationEditProfileButton"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="161dp"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
     </ScrollView>

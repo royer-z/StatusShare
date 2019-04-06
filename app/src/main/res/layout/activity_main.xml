@@ -23,8 +23,7 @@
         <Button
                 android:text="@string/mainEnterButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/mainEnterButton" android:layout_marginTop="317dp"
-                android:layout_marginStart="164dp"
-                android:layout_marginBottom="317dp"/>
+                android:layout_height="wrap_content" android:id="@+id/mainEnterButton" android:layout_marginTop="300dp"
+                android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

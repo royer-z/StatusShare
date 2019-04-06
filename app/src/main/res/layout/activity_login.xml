@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/loginPassword" android:layout_marginTop="14dp"
+                android:id="@+id/loginPassword" android:layout_marginTop="20dp"
                 android:hint="@string/loginPassword" android:autofillHints=""/>
         <Button
                 android:text="@string/loginLoginButton"
@@ -40,14 +40,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/loginLoginButton"
                 android:layout_marginTop="40dp"
-                android:layout_marginStart="152dp"/>
+                android:layout_gravity="center_horizontal"/>
         <Button
                 android:text="@string/loginRegisterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/loginRegisterButton"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="152dp"
-        />
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

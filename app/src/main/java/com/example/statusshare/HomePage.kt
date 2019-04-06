@@ -9,21 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [NotificationActivity.OnFragmentInteractionListener] interface
+ * [HomePage.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [NotificationActivity.newInstance] factory method to
- * create an instance of this fragment.
  *
  */
-class NotificationActivity : Fragment() {
-    // TODO: Rename and change types of parameters
+class HomePage : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.activity_notify, container, false)
+        return inflater!!.inflate(R.layout.home_page, container, false)
     }
 }
