@@ -41,7 +41,7 @@
                         android:id="@+id/profileAvailabilityColor" android:layout_marginTop="80dp"
                         android:layout_marginStart="50dp"
                         android:contentDescription="@string/profileAvailabilityColor"
-                        tools:srcCompat="@android:drawable/presence_online"/>
+                        android:src="@android:drawable/presence_online"/>
             </LinearLayout>
             <TextView
                     android:text="@string/profileStatus"

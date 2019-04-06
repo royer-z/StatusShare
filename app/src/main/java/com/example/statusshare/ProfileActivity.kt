@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.widget.ImageView
+import android.widget.Toast
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
+import android.util.Log
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +50,10 @@ class whatever: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+      
+        //colorStatus pic
+        val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
+      
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid
@@ -65,6 +72,26 @@ class whatever: AppCompatActivity(){
                 profileLocationHeading.text = user_location.toString()
                 profileDestinationHeading.text = user_destination.toString()
 
+
+                val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
+
+
+                Log.d("STATUS NUM!!", "${statusColorNum}")
+                if(statusColorNum == "0"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_green)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    Log.d("STATUS", " available!")
+                }
+                if(statusColorNum == "1"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    Log.d("STATUS", " awayyy!!!!")
+                }
+                if(statusColorNum=="2"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                    Log.d("STATUS", " busy!!!!")
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
