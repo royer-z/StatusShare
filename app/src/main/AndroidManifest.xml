@@ -9,11 +9,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity
+                android:name=".AllUsers"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".EditEventActivity">
         </activity>
+
         <activity android:name=".AddEventActivity">
         </activity>
-        <activity android:name=".whatever"></activity>
+        <activity android:name=".AllPeopleActivity"></activity>
+        <activity android:name=".whatever"/>
         <activity android:name=".AddContactActivity">
         </activity>
         <activity android:name=".EditNotificationActivity">
@@ -25,10 +31,11 @@
 
         <meta-data
                 android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-                android:value="true" />
-        <activity android:name=".Registration"></activity>
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name="BottomNavigationActivity"></activity>
+                android:value="true"/>
+
+        <activity android:name=".Registration"/>
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".BottomNavigationActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -36,6 +43,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+       
+
     </application>
 
 </manifest>
