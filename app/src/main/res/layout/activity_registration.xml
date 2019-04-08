@@ -98,9 +98,25 @@
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"/>
             <Button
-                    android:text="Edit profile"
+                android:text="Edit profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/registrationEditProfileButton"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                    android:text="All Users"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/registrationEditProfileButton"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/AllUsersButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"/>
+
+            <Button
+                    android:text="searchForFriend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchFriend"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"/>
 

@@ -81,6 +81,22 @@ class Registration: AppCompatActivity(){
             startActivity(intent)
         }
 
+        val allUserButton= findViewById<Button>(R.id.AllUsersButton)
+
+        allUserButton.setOnClickListener {
+
+            val intent = Intent(this, AllUsers::class.java)
+            startActivity(intent)
+        }
+
+        val searchFriend= findViewById<Button>(R.id.searchFriend)
+
+        searchFriend.setOnClickListener {
+
+            val intent = Intent(this, AllPeopleActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun initialise(){
