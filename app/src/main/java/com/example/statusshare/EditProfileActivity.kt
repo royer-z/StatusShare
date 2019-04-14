@@ -11,6 +11,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.internal.i
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 
 
 
@@ -28,17 +33,31 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+        // Initialize the AutocompleteSupportFragment.
+        val autocompleteFragment =
+            supportFragmentManager.findFragmentById(R.id.editProfileLocationAutoComplete) as AutocompleteSupportFragment?
+
+        // Specify the types of place data to return.
+        autocompleteFragment!!.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME))
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                // TODO: Get info about the selected place.
+                Log.i(FragmentActivity.TAG, "Place: " + place.name + ", " + place.id)
+            }
+
+            fun onError(status: Status) {
+                // TODO: Handle the error.
+                Log.i(FragmentActivity.TAG, "An error occurred: $status")
+            }
+        })
 
         spinner = this.spinner_sample
         spinner!!.setOnItemSelectedListener(this)
         val aa = ArrayAdapter(this,R.layout.spinner_item,statuses)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner!!.setAdapter(aa)
-
-
-
-
-
 
         if(intent.extras!=null){
             var oldStatus = intent.extras.get("status")
