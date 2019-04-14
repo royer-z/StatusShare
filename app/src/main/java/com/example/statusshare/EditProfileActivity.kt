@@ -1,8 +1,8 @@
 package com.example.statusshare
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.google.android.gms.tasks.Task
@@ -11,13 +11,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.internal.i
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-
-
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -32,26 +25,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
-
-        // Initialize the AutocompleteSupportFragment.
-        val autocompleteFragment =
-            supportFragmentManager.findFragmentById(R.id.editProfileLocationAutoComplete) as AutocompleteSupportFragment?
-
-        // Specify the types of place data to return.
-        autocompleteFragment!!.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME))
-
-        // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-            override fun onPlaceSelected(place: Place) {
-                // TODO: Get info about the selected place.
-                Log.i(FragmentActivity.TAG, "Place: " + place.name + ", " + place.id)
-            }
-
-            fun onError(status: Status) {
-                // TODO: Handle the error.
-                Log.i(FragmentActivity.TAG, "An error occurred: $status")
-            }
-        })
 
         spinner = this.spinner_sample
         spinner!!.setOnItemSelectedListener(this)
