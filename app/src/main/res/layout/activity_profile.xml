@@ -63,20 +63,30 @@
                     android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
             />
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/profileLocationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    tools:layout="@layout/activity_profile">
+            </fragment>
             <TextView
                     android:text="@string/profileDestinationHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
                     android:layout_marginEnd="271dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
+                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="20dp"
             />
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/profileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    tools:layout="@layout/activity_profile">
+            </fragment>
             <TextView
                     android:text="@string/profileEventsHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="200dp"/>
+                    android:layout_marginTop="20dp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

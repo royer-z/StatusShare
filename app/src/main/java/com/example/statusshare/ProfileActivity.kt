@@ -18,6 +18,12 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
 import android.util.Log
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,9 +43,7 @@ class ProfileActivity : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.activity_profile, container, false)
-
     }
-
 }
 
 
@@ -47,9 +51,37 @@ class whatever: AppCompatActivity(){
     var mDatabase: DatabaseReference? = null
     var mCurrentUser: FirebaseUser? = null
     //var mStorageRef:StorageReference?= null
+
+    lateinit var locationMapFragment : SupportMapFragment
+    lateinit var locationGoogleMap : GoogleMap
+
+    lateinit var destinationMapFragment : SupportMapFragment
+    lateinit var destinationGoogleMap : GoogleMap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        locationMapFragment = supportFragmentManager.findFragmentById(R.id.profileLocationMap) as SupportMapFragment
+        locationMapFragment.getMapAsync(OnMapReadyCallback {
+            locationGoogleMap = it
+            // locationGoogleMap.isMyLocationEnabled = true
+
+            val defaultLocation = LatLng(40.743920, -74.178079)
+            val defaultLocationTitle = "NJIT Library"
+            locationGoogleMap.addMarker(MarkerOptions().position(defaultLocation).title(defaultLocationTitle))
+            locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 15f))
+        })
+
+        destinationMapFragment = supportFragmentManager.findFragmentById(R.id.profileDestinationMap) as SupportMapFragment
+        destinationMapFragment.getMapAsync(OnMapReadyCallback {
+            destinationGoogleMap = it
+
+            val defaultDestination = LatLng(40.743920, -74.178079)
+            val defaultDestinationTitle = "NJIT Library"
+            destinationGoogleMap.addMarker(MarkerOptions().position(defaultDestination).title(defaultDestinationTitle))
+            destinationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultDestination, 15f))
+        })
       
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
