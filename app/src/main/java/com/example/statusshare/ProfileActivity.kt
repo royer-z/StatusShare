@@ -1,11 +1,14 @@
 package com.example.statusshare
 
+import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -14,10 +17,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
+import com.google.android.gms.common.GooglePlayServicesRepairableException
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
+import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -76,7 +80,11 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+
+        // for Location updates
         private const val REQUEST_CHECK_SETTINGS = 2
+
+        private const val PLACE_PICKER_REQUEST = 3
     }
 
     private lateinit var lastLocation: Location
@@ -84,6 +92,23 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        fun loadPlacePicker() {
+            val builder = PlacePicker.IntentBuilder()
+
+            try {
+                startActivityForResult(builder.build(this@whatever), PLACE_PICKER_REQUEST)
+            } catch (e: GooglePlayServicesRepairableException) {
+                e.printStackTrace()
+            } catch (e: GooglePlayServicesNotAvailableException) {
+                e.printStackTrace()
+            }
+        }
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            loadPlacePicker()
+        }
 
         fun getAddress(latLng: LatLng): String {
             // 1
@@ -122,93 +147,103 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
         }
 
         // for Location updates
-//        locationCallback = object : LocationCallback() {
-//            override fun onLocationResult(p0: LocationResult) {
-//                super.onLocationResult(p0)
-//
-//                lastLocation = p0.lastLocation
-//                placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
-//            }
-//        }
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+                super.onLocationResult(p0)
+
+                lastLocation = p0.lastLocation
+                placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
+            }
+        }
 
         // for Location updates
-//        fun startLocationUpdates() {
-//            //1
-//            if (ActivityCompat.checkSelfPermission(this,
-//                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this,
-//                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-//                    LOCATION_PERMISSION_REQUEST_CODE)
-//                return
-//            }
-//            //2
-//            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
-//        }
+        fun startLocationUpdates() {
+            //1
+            if (ActivityCompat.checkSelfPermission(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    LOCATION_PERMISSION_REQUEST_CODE)
+                return
+            }
+            //2
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
+        }
 
         // for Location updates
-//        // 1
-//        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-//            super.onActivityResult(requestCode, resultCode, data)
-//            if (requestCode == REQUEST_CHECK_SETTINGS) {
-//                if (resultCode == Activity.RESULT_OK) {
-//                    locationUpdateState = true
-//                    startLocationUpdates()
-//                }
-//            }
-//        }
-//
-//        // 2
-//        fun onPause() {
-//            super.onPause()
-//            fusedLocationClient.removeLocationUpdates(locationCallback)
-//        }
-//
-//        // 3
-//        fun onResume() {
-//            super.onResume()
-//            if (!locationUpdateState) {
-//                startLocationUpdates()
-//            }
-//        }
+        // 1
+        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+            super.onActivityResult(requestCode, resultCode, data)
+            if (requestCode == REQUEST_CHECK_SETTINGS) {
+                if (resultCode == Activity.RESULT_OK) {
+                    locationUpdateState = true
+                    startLocationUpdates()
+                }
+            }
+
+            if (requestCode == PLACE_PICKER_REQUEST) {
+                if (resultCode == RESULT_OK) {
+                    val place = PlacePicker.getPlace(this, data)
+                    var addressText = place.name.toString()
+                    addressText += "\n" + place.address.toString()
+
+                    placeMarkerOnMap(place.latLng)
+                }
+            }
+        }
+
+        // 2
+        fun onPause() {
+            super.onPause()
+            fusedLocationClient.removeLocationUpdates(locationCallback)
+        }
+
+        // 3
+        fun onResume() {
+            super.onResume()
+            if (!locationUpdateState) {
+                startLocationUpdates()
+            }
+        }
 
         // for Location updates
-//        fun createLocationRequest() {
-//            // 1
-//            locationRequest = LocationRequest()
-//            // 2
-//            locationRequest.interval = 10000
-//            // 3
-//            locationRequest.fastestInterval = 5000
-//            locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-//
-//            val builder = LocationSettingsRequest.Builder()
-//                .addLocationRequest(locationRequest)
-//
-//            // 4
-//            val client = LocationServices.getSettingsClient(this)
-//            val task = client.checkLocationSettings(builder.build())
-//
-//            // 5
-//            task.addOnSuccessListener {
-//                locationUpdateState = true
-//                startLocationUpdates()
-//            }
-//            task.addOnFailureListener { e ->
-//                // 6
-//                if (e is ResolvableApiException) {
-//                    // Location settings are not satisfied, but this can be fixed
-//                    // by showing the user a dialog.
-//                    try {
-//                        // Show the dialog by calling startResolutionForResult(),
-//                        // and check the result in onActivityResult().
-//                        e.startResolutionForResult(this@whatever,
-//                            REQUEST_CHECK_SETTINGS)
-//                    } catch (sendEx: IntentSender.SendIntentException) {
-//                        // Ignore the error.
-//                    }
-//                }
-//            }
-//        }
+        fun createLocationRequest() {
+            // 1
+            locationRequest = LocationRequest()
+            // 2
+            locationRequest.interval = 30000
+            // 3
+            locationRequest.fastestInterval = 25000
+            locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+            val builder = LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest)
+
+            // 4
+            val client = LocationServices.getSettingsClient(this)
+            val task = client.checkLocationSettings(builder.build())
+
+            // 5
+            task.addOnSuccessListener {
+                locationUpdateState = true
+                startLocationUpdates()
+            }
+            task.addOnFailureListener { e ->
+                // 6
+                if (e is ResolvableApiException) {
+                    // Location settings are not satisfied, but this can be fixed
+                    // by showing the user a dialog.
+                    try {
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        e.startResolutionForResult(this@whatever,
+                            REQUEST_CHECK_SETTINGS)
+                    } catch (sendEx: IntentSender.SendIntentException) {
+                        // Ignore the error.
+                    }
+                }
+            }
+        }
 
         fun setUpMap() {
             // Permission request
@@ -320,6 +355,6 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         // for Location updates
-//        createLocationRequest()
+        createLocationRequest()
     }
 }
