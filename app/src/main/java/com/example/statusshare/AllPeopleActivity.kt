@@ -27,8 +27,6 @@ import kotlinx.android.synthetic.main.activity_all_people.*
 import java.lang.StringBuilder
 
 
-
-
 class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
 
     var adapter:FirebaseRecyclerAdapter<User,UserViewHolder>? = null
@@ -84,17 +82,18 @@ class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
 
         recycler_all_people.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(this)
-        //recycler_all_people.layoutManager = LinearLayoutManager(this)
+        recycler_all_people.layoutManager = layoutManager
         recycler_all_people.addItemDecoration(DividerItemDecoration(this,layoutManager.orientation))
 
         iFirebaseLoadDone = this
+
         loadUserList()
         loadSearchDate()
     }
 
     private fun startSearch(search_string:String) {
-        val query = FirebaseDatabase.getInstance().getReference("email")
-            .orderByChild("email")
+        val query = FirebaseDatabase.getInstance().reference.child("Registration q").child("email")
+            .orderByChild("Registration q")
             .startAt(search_string)
 
         val options = FirebaseRecyclerOptions.Builder<User>()
@@ -111,7 +110,7 @@ class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
             override fun onBindViewHolder(holder: UserViewHolder, position: Int, model: User) {
                 if(model.email.equals(Common.loggedUser!!.email))
                 {
-                    holder.txt_user_email.text = StringBuilder(model.email!!).append(" (me) ")
+                    holder.txt_user_email.text = model.email
                     holder.txt_user_email.setTypeface(holder.txt_user_email.typeface,Typeface.ITALIC)
                 }
                 else {
@@ -119,8 +118,8 @@ class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
                 }
                 //Event
                 holder.setClick(object:IRecyclerItemClickListener{
-                    override fun onItemClickListerner(view: View, position: Int) {
-                        //Implemeent here
+                    override fun onItemClickListener(view: View, position: Int) {
+                        //
                     }
                 })
             }
@@ -132,7 +131,7 @@ class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
 
     private fun loadSearchDate() {
         val lstUserEmail = ArrayList<String>()
-        val userList = FirebaseDatabase.getInstance().getReference("email")
+        val userList = FirebaseDatabase.getInstance().reference.child("email")
 
         userList.addListenerForSingleValueEvent(object:ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -175,8 +174,8 @@ class AllPeopleActivity : AppCompatActivity(), IFirebaseLoadDone {
                 }
                 //Event
                 holder.setClick(object:IRecyclerItemClickListener{
-                    override fun onItemClickListerner(view: View, position: Int) {
-                        //Implemeent here
+                    override fun onItemClickListener(view: View, position: Int) {
+                            //later Implementation
                     }
                 })
             }
