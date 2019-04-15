@@ -1,8 +1,8 @@
 package com.example.statusshare
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.google.android.gms.tasks.Task
@@ -11,8 +11,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-
-
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -28,17 +26,11 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-
         spinner = this.spinner_sample
         spinner!!.setOnItemSelectedListener(this)
         val aa = ArrayAdapter(this,R.layout.spinner_item,statuses)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner!!.setAdapter(aa)
-
-
-
-
-
 
         if(intent.extras!=null){
             var oldStatus = intent.extras.get("status")
