@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
 import android.util.Log
+import android.widget.Button
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,10 +36,24 @@ import android.util.Log
 class ProfileActivity : Fragment() {
     // TODO: Rename and change types of parameters
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.activity_profile, container, false)
-
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
+
+
+        btn.setOnClickListener {
+            val intent = Intent(getActivity(), EditProfileActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
+    }
+
 
 }
 
@@ -50,7 +65,7 @@ class whatever: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-      
+
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
       

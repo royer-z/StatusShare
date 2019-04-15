@@ -36,15 +36,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initialise()
-
-        //val registerButton = findViewById<Button>(R.id.loginRegisterButton)
-
-//        registerButton.setOnClickListener {
-//
-//            val intent = Intent(this, Registration::class.java)
-//            startActivity(intent)
-//        }
-
     }
 
     private fun initialise() {
@@ -76,8 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
-            mProgressBar!!.setMessage("Registering User...")
-            mProgressBar!!.show()
+            //mProgressBar!!.setMessage("Logging in")
+            //mProgressBar!!.show()
 
             Log.d(TAG, "Logging in user.")
 
@@ -103,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val intent = Intent(this@LoginActivity, whatever::class.java)
+        val intent = Intent(this@LoginActivity, BottomNavigationActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

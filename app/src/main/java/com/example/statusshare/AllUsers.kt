@@ -40,6 +40,7 @@ class AllUsers : AppCompatActivity() {
         val options = FirebaseRecyclerOptions.Builder<AllUsersHelper>()
             .setQuery(query,AllUsersHelper::class.java)
             .build()
+
         adapter = object:FirebaseRecyclerAdapter<AllUsersHelper,AllViewHolder>(options)
         {
             override fun onCreateViewHolder(parent: ViewGroup, position: Int): AllViewHolder{
@@ -56,9 +57,9 @@ class AllUsers : AppCompatActivity() {
 
         }
 
+
         all_users_list.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         all_users_list.adapter = adapter
-
 
     }
 

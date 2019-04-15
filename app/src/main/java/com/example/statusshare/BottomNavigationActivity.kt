@@ -39,7 +39,7 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bottomnavbar)
 
-        createSettingsFragment()
+        createHomeFragment()
 
         navigation_bar.setOnNavigationItemSelectedListener ( mOnNavigationItemSelectedListener )
     }

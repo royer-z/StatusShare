@@ -56,31 +56,6 @@ class Registration: AppCompatActivity(){
         setContentView(R.layout.activity_registration)
          initialise()
 
-
-        val navButton = findViewById<Button>(R.id.buttonNavBar)
-
-        navButton.setOnClickListener {
-
-            val intent = Intent(this, BottomNavigationActivity::class.java)
-            startActivity(intent)
-        }
-
-        val profileButton = findViewById<Button>(R.id.registrationProfileButton)
-
-        profileButton.setOnClickListener {
-
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        val editProfileButton = findViewById<Button>(R.id.registrationEditProfileButton)
-
-        editProfileButton.setOnClickListener {
-
-            val intent = Intent(this, EditProfileActivity::class.java)
-            startActivity(intent)
-        }
-
         val allUserButton= findViewById<Button>(R.id.AllUsersButton)
 
         allUserButton.setOnClickListener {
