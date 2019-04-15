@@ -21,6 +21,6 @@ class UserViewHolder (itemView:View):RecyclerView.ViewHolder(itemView), View.OnC
     }
 
     override fun onClick(p0: View?) {
-        iRecyclerItemClickListener.onItemClickListerner(p0!!,adapterPosition)
+        iRecyclerItemClickListener.onItemClickListener(p0!!,adapterPosition)
     }
 }

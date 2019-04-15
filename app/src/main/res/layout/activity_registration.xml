@@ -84,25 +84,7 @@
                     android:id="@+id/registrationCancelButton"
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"/>
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/buttonNavBar"
-                    android:text="Navigation Bar"
-                    android:layout_marginTop="20dp" android:layout_gravity="center_horizontal"/>
-            <Button
-                    android:text="Profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/registrationProfileButton"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"/>
-            <Button
-                android:text="Edit profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/registrationEditProfileButton"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"/>
+            
 
             <Button
                     android:text="All Users"

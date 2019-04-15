@@ -34,6 +34,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.IOException
+import android.util.Log
+import android.widget.Button
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,8 +54,22 @@ import java.io.IOException
 class ProfileActivity : Fragment() {
     // TODO: Rename and change types of parameters
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.activity_profile, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
+
+
+        btn.setOnClickListener {
+            val intent = Intent(getActivity(), EditProfileActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
     }
 }
 
@@ -296,6 +313,7 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
             destinationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultDestination, 15f))
         })
       
+
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
       
