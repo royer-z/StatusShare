@@ -36,15 +36,8 @@
                         android:layout_marginStart="90dp"
                         android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
                         tools:srcCompat="@tools:sample/avatars[0]"/>
-                <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editProfileAvailabilityColorButton" android:layout_marginTop="80dp"
-                        android:contentDescription="@string/editProfileAvailabilityColorButtonContentDescription"
-                        android:layout_marginStart="50dp"
-                        tools:srcCompat="@android:drawable/presence_online"/>
                 <Spinner
-                        android:id="@+id/spinner_sample"
+                        android:id="@+id/spinner_statuses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:spinnerMode="dropdown"/>
 

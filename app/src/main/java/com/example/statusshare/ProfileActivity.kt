@@ -35,8 +35,9 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.IOException
 import android.util.Log
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import android.widget.Button
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -346,14 +347,32 @@ class whatever: AppCompatActivity(), GoogleMap.OnMarkerClickListener {
                     Log.d("STATUS", " available!")
                 }
                 if(statusColorNum == "1"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_green)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    Log.d("STATUS", " ywllow!")
+                }
+                if(statusColorNum == "2"){
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
                     colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
-                    Log.d("STATUS", " awayyy!!!!")
+                    Log.d("STATUS", " orange!!!!")
                 }
-                if(statusColorNum=="2"){
+                if(statusColorNum=="3"){
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
                     Log.d("STATUS", " busy!!!!")
+                }
+
+                var image = dataSnapshot!!.child("image").value.toString()
+                var thumbnail = dataSnapshot!!.child("thumb_image").value
+
+                if (!image!!.equals("null")) {
+                    Picasso.with(applicationContext)
+                        .load(image)
+                        .placeholder(R.drawable.default_profile_image)
+                        .into(profileProfileImage)
+
+
+
                 }
             }
 
