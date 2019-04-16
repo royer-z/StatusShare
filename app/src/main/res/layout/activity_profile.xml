@@ -10,7 +10,7 @@
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:id="@+id/profileScrollView" android:fillViewport="true"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,12 +29,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/profileImageLinearLayout">
                 <ImageView
-                        android:layout_width="135dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/profileProfileImage" android:layout_marginTop="40dp"
                         android:layout_marginStart="142dp"
                         android:contentDescription="@string/profileProfileImageContentDescription"
-                        android:src="@drawable/default_profile_image"/>
+                        tools:srcCompat="@tools:sample/avatars[0]"/>
                 <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
