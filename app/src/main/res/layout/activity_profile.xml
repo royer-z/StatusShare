@@ -63,20 +63,42 @@
                     android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
             />
+            <android.support.design.widget.CoordinatorLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/profileCoordinatorLayout">
+                <fragment
+                        android:layout_width="match_parent" android:layout_height="250dp"
+                        android:id="@+id/profileLocationMap" class="com.google.android.gms.maps.SupportMapFragment">
+                </fragment>
+                <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="112dp"
+                        android:src="@android:drawable/ic_menu_search"/>
+            </android.support.design.widget.CoordinatorLayout>
             <TextView
                     android:text="@string/profileDestinationHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
                     android:layout_marginEnd="271dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="198dp"
+                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="20dp"
             />
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/profileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment">
+            </fragment>
             <TextView
                     android:text="@string/profileEventsHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="200dp"/>
+                    android:layout_marginTop="20dp"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.google.android.gms.tasks.Task
@@ -22,8 +22,6 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.view.*
 import java.io.ByteArrayOutputStream
 import java.io.File
-
-
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -74,9 +72,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 }
 
 
-
-
-
             }
 
             override fun onCancelled(databaseErrorSnapshot: DatabaseError?) {
@@ -98,7 +93,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         statusSpinner.setSelection(1)
 
         status_name_code = countryPickerData.get(0).statusWord!!
-
 
         if(intent.extras!=null){
             var oldStatus = intent.extras.get("status")
