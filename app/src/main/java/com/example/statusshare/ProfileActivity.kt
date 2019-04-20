@@ -1,13 +1,12 @@
 package com.example.statusshare
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -20,7 +19,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,10 +26,11 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.libraries.places.internal.it
 import java.io.IOException
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,25 +87,23 @@ class whatever: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        fun Context.toast(message: String) =
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
         fun getAddress(latLng: LatLng): String {
-            // 1
-            val geocoder = Geocoder(this)
+            val geocoder = Geocoder(this, Locale.US)
             val addresses: List<Address>?
-            val address: Address?
             var addressText = ""
 
             try {
-                // 2
                 addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-                // 3
-                if (null != addresses && !addresses.isEmpty()) {
-                    address = addresses[0]
-                    for (i in 0 until address.maxAddressLineIndex) {
-                        addressText += if (i == 0) address.getAddressLine(i) else "\n" + address.getAddressLine(i)
-                    }
+
+                if (addresses.isNotEmpty()) {
+                    val address = addresses[0]
+                    addressText = address.getAddressLine(0).toString()
                 }
             } catch (e: IOException) {
-                Log.e("MapsActivity", e.localizedMessage)
+                toast("Could not get address")
             }
 
             return addressText
@@ -122,7 +119,6 @@ class whatever: AppCompatActivity() {
             locationGoogleMap.isMyLocationEnabled = true
 
             fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-
                 if (location != null) {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
                     val titleStr = getAddress(currentLatLng)
@@ -143,7 +139,6 @@ class whatever: AppCompatActivity() {
             destinationGoogleMap.isMyLocationEnabled = true
 
             fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-
                 if (location != null) {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
                     val titleStr = getAddress(currentLatLng)
@@ -157,8 +152,6 @@ class whatever: AppCompatActivity() {
         locationMapFragment.getMapAsync(OnMapReadyCallback {
             locationGoogleMap = it
             locationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-            val defaultLocation = LatLng(40.743920, -74.178079)
-            locationGoogleMap.addMarker(MarkerOptions().position(defaultLocation).title("Default location"))
             setUpLocationMap()
         })
 
@@ -166,8 +159,6 @@ class whatever: AppCompatActivity() {
         destinationMapFragment.getMapAsync(OnMapReadyCallback () {
             destinationGoogleMap = it
             destinationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-            val defaultDestination = LatLng(40.782948, -73.974701)
-            locationGoogleMap.addMarker(MarkerOptions().position(defaultDestination).title("Default destination"))
             setUpDestinationMap()
         })
       
