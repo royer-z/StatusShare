@@ -1,15 +1,15 @@
 package com.example.statusshare
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import kotlinx.android.synthetic.main.bottomnavbar.*
 
 class BottomNavigationActivity : AppCompatActivity() {
     val manager = supportFragmentManager
 
-    private val mOnNavigationItemSelectedListener  = BottomNavigationView.OnNavigationItemSelectedListener {item->
+    private val mOnNavigationItemSelectedListener  = BottomNavigationView.OnNavigationItemSelectedListener { item->
             when (item.itemId) {
                 R.id.nav_home_button-> {
                     createHomeFragment()

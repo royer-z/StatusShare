@@ -1,9 +1,8 @@
 package com.example.statusshare
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
-import com.example.statusshare.R
+import androidx.recyclerview.widget.RecyclerView
 
 class AllViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
     lateinit var user_name:TextView

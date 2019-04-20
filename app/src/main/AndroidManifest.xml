@@ -60,7 +60,7 @@
                 android:label="@string/leku_title_activity_location_picker"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"
                 android:windowSoftInputMode="adjustPan"
-                android:parentActivityName=".EditProfileActivity">
+                android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -68,7 +68,7 @@
                        android:resource="@xml/leku_searchable" />
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".EditProfileActivity" />
+                    android:value=".MainActivity" />
         </activity>
 
     </application>

@@ -1,13 +1,12 @@
 package com.example.statusshare.ViewHolder
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.statusshare.Interface.IRecyclerItemClickListener
 import com.example.statusshare.R
-import kotlinx.android.synthetic.main.layout_user.view.*
 
-class UserViewHolder (itemView:View):RecyclerView.ViewHolder(itemView), View.OnClickListener{
+class UserViewHolder (itemView:View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
     var txt_user_email:TextView
     lateinit var iRecyclerItemClickListener:IRecyclerItemClickListener
 
