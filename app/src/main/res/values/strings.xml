@@ -118,6 +118,9 @@
     <string name="user_name">user name</string>
     <string name="user_status">user status</string>
     <string name="my_email_address">My Email Address</string>
+    <string name="email_holder">email</string>
+    <string name="EmailHint">Enter Email</string>
+    <string name="no_data_available">nothing</string>
 
 
 </resources>

@@ -35,6 +35,12 @@
                     android:text="@string/user_status"
                     android:id="@+id/user_status_field"
                     android:textSize="15sp"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/email_holder"
+                    android:text="@string/email_holder"
+                    android:textSize="15sp"/>
         </LinearLayout>
 
     </LinearLayout>
