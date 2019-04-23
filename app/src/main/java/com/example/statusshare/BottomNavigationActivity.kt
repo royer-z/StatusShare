@@ -16,7 +16,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_setting_button->{
-                    createSettingsFragment()
+                    //createSettingsFragment()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_notification_button->{
@@ -44,6 +44,7 @@ class BottomNavigationActivity : AppCompatActivity() {
         navigation_bar.setOnNavigationItemSelectedListener ( mOnNavigationItemSelectedListener )
     }
 
+
     fun createSettingsFragment(){
         val transaction = manager.beginTransaction()
         val fragment = AppSettings()
@@ -51,6 +52,7 @@ class BottomNavigationActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
+
     fun createNotifyFragment(){
         val transaction = manager.beginTransaction()
         val fragment = NotificationActivity()

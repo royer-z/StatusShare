@@ -10,6 +10,9 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +34,11 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
 import java.util.*
+import android.widget.*
+import com.example.statusshare.Model.Event
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Picasso.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,7 +55,14 @@ import java.util.*
  */
 class ProfileActivity : Fragment() {
     // TODO: Rename and change types of parameters
+    var mDatabase: DatabaseReference? = null
+    var mCurrentUser: FirebaseUser? = null
 
+
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+        }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.activity_profile, container, false)
     }
@@ -55,10 +70,100 @@ class ProfileActivity : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val events = ArrayList<Event>()
+        events.add(Event("Kitty Party", "Home","today","2:00","zxcz"))
+        events.add(Event("LOLI Party", "Home","today","6:00","dixzcsc"))
+        events.add(Event("Zoo Party", "Work Office","today","12:00","zxc"))
+        events.add(Event("Sleep Over", "NJIT","today","9:00","disc"))
+
+        recyclerView1.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = eventAdapter(events)
+
+        }
+
+        val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
+
+        mCurrentUser = FirebaseAuth.getInstance().currentUser
+
+        var userID = mCurrentUser!!.uid
+
+        mDatabase = FirebaseDatabase.getInstance().reference
+            .child("Registration q")
+            .child(userID)
+
+        mDatabase!!.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_status = dataSnapshot!!.child("status").value
+                var user_location = dataSnapshot!!.child("location").value
+                var user_destination = dataSnapshot!!.child("destination").value
+
+                profileStatus.text = user_status.toString()
+                profileLocationHeading.text = user_location.toString()
+                profileDestinationHeading.text = user_destination.toString()
+
+
+                val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
+
+
+                Log.d("STATUS NUM!!", "${statusColorNum}")
+                if(statusColorNum == "0"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_green)
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    //Log.d("STATUS", " available!")
+                }
+                if(statusColorNum == "1"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    //Log.d("STATUS", " awayyy!!!!")
+                }
+                if(statusColorNum=="2"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    //Log.d("STATUS", " busy!!!!")
+                }
+
+                if(statusColorNum=="3"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                    Log.d("STATUS", " busy!!!!")
+                }
+
+                var image = dataSnapshot!!.child("image").value.toString()
+                var thumbnail = dataSnapshot!!.child("thumb_image").value
+
+                if (!image!!.equals("null")) {
+                    //with(applicationContext)
+                        with(getActivity()?.getApplicationContext())
+                        .load(image)
+                        .placeholder(R.drawable.default_profile_image)
+                        .into(profileProfileImage)
+
+
+
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+
+//        profileUpdateProfileButton.setOnClickListener {
+//            var intent = Intent(this, EditProfileActivity::class.java)
+//            intent.putExtra("status", profileStatus.text.toString())
+//            intent.putExtra("location", profileLocationHeading.text.toString())
+//            intent.putExtra("destination", profileDestinationHeading.text.toString())
+//            startActivity(intent)
+//        }
+
+
         val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
+
 
         btn.setOnClickListener {
             val intent = Intent(getActivity(), EditProfileActivity::class.java)
+            intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)
         }
     }
@@ -192,17 +297,36 @@ class whatever: AppCompatActivity() {
                 if(statusColorNum == "0"){
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
                     colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
-                    Log.d("STATUS", " available!")
+                    //Log.d("STATUS", " available!")
                 }
                 if(statusColorNum == "1"){
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
-                    Log.d("STATUS", " awayyy!!!!")
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    //Log.d("STATUS", " awayyy!!!!")
                 }
                 if(statusColorNum=="2"){
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    //Log.d("STATUS", " busy!!!!")
+                }
+
+                if(statusColorNum=="3"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
                     Log.d("STATUS", " busy!!!!")
+                }
+
+                var image = dataSnapshot!!.child("image").value.toString()
+                var thumbnail = dataSnapshot!!.child("thumb_image").value
+
+                if (!image!!.equals("null")) {
+                    with(applicationContext)
+                        .load(image)
+                        .placeholder(R.drawable.default_profile_image)
+                        .into(profileProfileImage)
+
+
+
                 }
             }
 
