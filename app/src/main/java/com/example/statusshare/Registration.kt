@@ -68,7 +68,7 @@ class Registration: AppCompatActivity(){
 
         searchFriend.setOnClickListener {
 
-            val intent = Intent(this, AllPeopleActivity::class.java)
+            val intent = Intent(this, ActivityAllPeopleDriver::class.java)
             startActivity(intent)
         }
 

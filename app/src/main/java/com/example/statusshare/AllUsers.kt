@@ -17,7 +17,7 @@ class AllUsers : AppCompatActivity() {
 
 
     internal var items:MutableList<AllUsersHelper> = ArrayList()
-    internal lateinit  var adapter : FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>
+    private  lateinit  var adapter : FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,11 +52,10 @@ class AllUsers : AppCompatActivity() {
             override fun onBindViewHolder(holder: AllViewHolder, position: Int, model: AllUsersHelper) {
                 holder.user_name.text = model.firstName
                 holder.user_status.text = model.lastName
-
+                holder.email_field.text = model.email
             }
 
         }
-
 
         all_users_list.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         all_users_list.adapter = adapter

@@ -21,7 +21,7 @@
 
         <activity android:name=".AddEventActivity">
         </activity>
-        <activity android:name=".AllPeopleActivity"></activity>
+        <activity android:name=".ActivityAllPeopleDriver"></activity>
         <activity android:name=".whatever"/>
         <activity android:name=".AddContactActivity">
         </activity>
