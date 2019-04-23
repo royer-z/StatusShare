@@ -100,12 +100,6 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
 
     }
 
-   /*override fun onStart() {
-        if(adapter != null)
-            adapter.startListening()
-        super.onStart()
-    }
-    */
     override fun onStop() {
         if(adapter != null)
             adapter.startListening()
