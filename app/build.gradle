@@ -60,6 +60,11 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
     implementation 'id.zelory:compressor:2.1.0'
 
+    //RetroFit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
 googleServices { disableVersionCheck = true }
