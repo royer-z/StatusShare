@@ -65,7 +65,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
 
-
 }
 apply plugin: 'com.google.gms.google-services'
 googleServices { disableVersionCheck = true }

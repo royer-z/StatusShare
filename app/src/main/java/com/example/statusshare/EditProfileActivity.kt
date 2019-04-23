@@ -22,6 +22,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var spinner: Spinner? = null
     var textView_msg: TextView? = null
     var statusColorNum = 9999
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
@@ -38,7 +39,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             var oldDestination = intent.extras.get("destination")
 
             editProfileStatus.setText(oldStatus.toString())
-            editProfileLocation.setText(oldLocation.toString())
+//            editProfileLocation.setText(oldLocation.toString())
             editProfileDestination.setText(oldDestination.toString())
         }
 
@@ -59,15 +60,15 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 }
             }
 
-            var location = editProfileLocation.text.toString()
-            mDatabase!!.child("location").setValue(location).addOnCompleteListener{
-                    task: Task<Void> ->
-                if (task.isSuccessful){
-                    Toast.makeText(this,"Location Updated Successfully!",Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this,"Location Not Updated",Toast.LENGTH_LONG).show()
-                }
-            }
+//            var location = editProfileLocation.text.toString()
+//            mDatabase!!.child("location").setValue(location).addOnCompleteListener{
+//                    task: Task<Void> ->
+//                if (task.isSuccessful){
+//                    Toast.makeText(this,"Location Updated Successfully!",Toast.LENGTH_LONG).show()
+//                } else {
+//                    Toast.makeText(this,"Location Not Updated",Toast.LENGTH_LONG).show()
+//                }
+//            }
 
             var destination = editProfileDestination.text.toString()
             mDatabase!!.child("destination").setValue(destination).addOnCompleteListener{
