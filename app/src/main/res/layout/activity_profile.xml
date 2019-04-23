@@ -99,6 +99,10 @@
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
                     android:layout_marginTop="20dp"/>
+            <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerView1"></android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
