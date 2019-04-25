@@ -162,11 +162,8 @@ class ProfileActivity : Fragment() {
 
 
         btn.setOnClickListener {
-            val intent = Intent(getActivity(), EditProfileActivity::class.java)
-            intent.putExtra("status", profileStatus.text.toString())
-            getActivity()?.startActivity(intent)
-        }
-    }
+
+            
 }
 
 
