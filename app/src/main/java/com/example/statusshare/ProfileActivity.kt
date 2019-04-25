@@ -1,5 +1,6 @@
 package com.example.statusshare
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -62,7 +63,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
     }
 
     private fun toast(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
     private fun getAddress(latLng: LatLng): String {
         val geocoder = Geocoder(context, Locale.US)
@@ -83,13 +84,24 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         return addressText
     }
 
-    private fun setUpLocationMap() {
-        // Permission request
-        if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-            return
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permission IS granted
+                    toast("Location permission granted.")
+                    setUpLocationMap()
+                } else {
+                    // Permission NOT granted
+                    toast("Location permission denied.")
+                }
+                return
+            }
         }
+    }
 
+    @SuppressLint("MissingPermission")
+    private fun setUpLocationMap() {
         locationMap.isMyLocationEnabled = true
 
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
@@ -101,7 +113,29 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
                 locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
             }
         }
+    }
 
+    private fun checkPermission() {
+        // Permissions check
+        if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            // Permission NOT granted
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Need to show explanation
+                toast("Location permission is needed to show your current location on a map.")
+                // Request permission again
+                requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            }
+            else {
+                // Request permission
+                toast("Requesting permission.")
+                requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            }
+        }
+        else if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Permission IS granted
+            toast("Setting up map.")
+            setUpLocationMap()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +150,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
     override fun onMapReady(map : GoogleMap) {
         MapsInitializer.initialize(context)
         locationMap = map
-        setUpLocationMap()
+        checkPermission()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
