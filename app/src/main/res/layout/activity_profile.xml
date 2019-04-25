@@ -65,12 +65,12 @@
             />
             <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/profileLocationFrameLayout"
+                    android:layout_height="250dp" android:id="@+id/profileLocationFrameLayout"
                     tools:context=".ProfileActivity">
 
                 <com.google.android.gms.maps.MapView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/profileLocationMapView"
+                        android:layout_height="match_parent" android:id="@+id/profileLocationMapView"
                 />
             </FrameLayout>
             <TextView
@@ -86,11 +86,12 @@
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="20dp"
+            />
             <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerView1"></android.support.v7.widget.RecyclerView>
-
+            android:id="@+id/recyclerView1">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
