@@ -28,19 +28,22 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileImageLinearLayout">
+                    android:layout_height="150dp" android:id="@+id/editProfileImageLinearLayout">
                 <ImageButton
-                        android:layout_width="131dp"
-                        android:layout_height="130dp"
-                        android:id="@+id/editProfileProfileImageButton" android:layout_marginTop="40dp"
-                        android:layout_marginStart="90dp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editProfileProfileImageButton"
                         android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
-                        tools:srcCompat="@tools:sample/avatars[0]"/>
-
+                        android:background="#17A42F"
+                        android:padding="5dp"
+                        android:cropToPadding="true"
+                        tools:srcCompat="@tools:sample/avatars[0]"
+                />
                 <Spinner
                         android:id="@+id/spinner_statuses"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:spinnerMode="dropdown"/>
+                        android:layout_height="wrap_content" android:spinnerMode="dropdown"
+                />
 
             </LinearLayout>
             <EditText
