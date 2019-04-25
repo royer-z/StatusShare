@@ -53,6 +53,16 @@
                     android:id="@+id/editProfileStatus"
                     android:hint="@string/editProfileStatus" android:autofillHints="" android:inputType="text"
                     android:layout_marginTop="20dp"/>
+            <TextView
+                    android:text="Location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileLocationHeading"
+                    android:textSize="18sp" android:layout_marginStart="30dp" android:layout_marginTop="40dp"
+            />
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/editProfileLocationMap" class="com.google.android.gms.maps.SupportMapFragment">
+            </fragment>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
