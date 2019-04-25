@@ -1,7 +1,5 @@
 package com.example.statusshare
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -11,18 +9,11 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -30,15 +21,15 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import java.util.*
+import com.example.statusshare.Model.Event
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import java.io.IOException
-import java.util.*
-import android.widget.*
-import com.example.statusshare.Model.Event
-import com.squareup.picasso.Picasso
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso.*
-
+import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,22 +44,90 @@ import com.squareup.picasso.Picasso.*
  * create an instance of this fragment.
  *
  */
-class ProfileActivity : Fragment() {
+class ProfileActivity : Fragment(), OnMapReadyCallback {
+
+    lateinit var profileView : View
+
     // TODO: Rename and change types of parameters
     var mDatabase: DatabaseReference? = null
     var mCurrentUser: FirebaseUser? = null
 
+    lateinit var locationMap : GoogleMap
+    lateinit var locationMapView : MapView
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
+    private fun toast(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
+    private fun getAddress(latLng: LatLng): String {
+        val geocoder = Geocoder(context, Locale.US)
+        val addresses: List<Address>?
+        var addressText = ""
+
+        try {
+            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+
+            if (addresses.isNotEmpty()) {
+                val address = addresses[0]
+                addressText = address.getAddressLine(0).toString()
+            }
+        } catch (e: IOException) {
+            toast("Could not get address")
         }
+
+        return addressText
+    }
+
+    private fun setUpLocationMap() {
+        // Permission request
+        if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            return
+        }
+
+        locationMap.isMyLocationEnabled = true
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                val titleStr = getAddress(currentLatLng)
+                locationMap.uiSettings.isZoomControlsEnabled = true
+                locationMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
+                locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+            }
+        }
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.activity_profile, container, false)
+        profileView = inflater!!.inflate(R.layout.activity_profile, container, false)
+        return profileView
+    }
+
+    override fun onMapReady(map : GoogleMap) {
+        MapsInitializer.initialize(context)
+        locationMap = map
+        setUpLocationMap()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        locationMapView = profileView.findViewById(R.id.profileLocationMapView)
+        if (locationMapView != null) {
+            locationMapView.onCreate(null)
+            locationMapView.onResume()
+            locationMapView.getMapAsync(this)
+        }
 
         val events = ArrayList<Event>()
         events.add(Event("Kitty Party", "Home","today","2:00","zxcz"))
@@ -79,7 +138,6 @@ class ProfileActivity : Fragment() {
         recyclerView1.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = eventAdapter(events)
-
         }
 
         val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
@@ -102,9 +160,7 @@ class ProfileActivity : Fragment() {
                 profileLocationHeading.text = user_location.toString()
                 profileDestinationHeading.text = user_destination.toString()
 
-
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
-
 
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if(statusColorNum == "0"){
@@ -138,14 +194,10 @@ class ProfileActivity : Fragment() {
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(profileProfileImage)
-
-
-
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-
             }
         })
 
@@ -157,15 +209,15 @@ class ProfileActivity : Fragment() {
 //            startActivity(intent)
 //        }
 
-
         val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
-
 
         btn.setOnClickListener {
             val intent = Intent(getActivity(), EditProfileActivity::class.java)
             intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)
         }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
     }
 }
 
@@ -176,101 +228,13 @@ class whatever: AppCompatActivity() {
     var mCurrentUser: FirebaseUser? = null
     //var mStorageRef:StorageReference?= null
 
-    private lateinit var locationMapFragment : SupportMapFragment
-    private lateinit var locationGoogleMap : GoogleMap
-
-    private lateinit var destinationMapFragment : SupportMapFragment
-    private lateinit var destinationGoogleMap : GoogleMap
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        fun Context.toast(message: String) =
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
-        fun getAddress(latLng: LatLng): String {
-            val geocoder = Geocoder(this, Locale.US)
-            val addresses: List<Address>?
-            var addressText = ""
-
-            try {
-                addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-
-                if (addresses.isNotEmpty()) {
-                    val address = addresses[0]
-                    addressText = address.getAddressLine(0).toString()
-                }
-            } catch (e: IOException) {
-                toast("Could not get address")
-            }
-
-            return addressText
-        }
-
-        fun setUpLocationMap() {
-            // Permission request
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-                return
-            }
-
-            locationGoogleMap.isMyLocationEnabled = true
-
-            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-                if (location != null) {
-                    val currentLatLng = LatLng(location.latitude, location.longitude)
-                    val titleStr = getAddress(currentLatLng)
-                    locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
-                    locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                }
-            }
-
-        }
-
-        fun setUpDestinationMap() {
-            // Permission request
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-                return
-            }
-
-            destinationGoogleMap.isMyLocationEnabled = true
-
-            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-                if (location != null) {
-                    val currentLatLng = LatLng(location.latitude, location.longitude)
-                    val titleStr = getAddress(currentLatLng)
-                    destinationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
-                    destinationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                }
-            }
-        }
-
-        locationMapFragment = supportFragmentManager.findFragmentById(R.id.profileLocationMap) as SupportMapFragment
-        locationMapFragment.getMapAsync(OnMapReadyCallback {
-            locationGoogleMap = it
-            locationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-            setUpLocationMap()
-        })
-
-        destinationMapFragment = supportFragmentManager.findFragmentById(R.id.profileDestinationMap) as SupportMapFragment
-        destinationMapFragment.getMapAsync(OnMapReadyCallback () {
-            destinationGoogleMap = it
-            destinationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-            setUpDestinationMap()
-        })
-      
-
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
-      
+
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid
@@ -289,9 +253,7 @@ class whatever: AppCompatActivity() {
                 profileLocationHeading.text = user_location.toString()
                 profileDestinationHeading.text = user_destination.toString()
 
-
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
-
 
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if(statusColorNum == "0"){
@@ -324,14 +286,10 @@ class whatever: AppCompatActivity() {
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(profileProfileImage)
-
-
-
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-
             }
         })
 
@@ -342,7 +300,5 @@ class whatever: AppCompatActivity() {
             intent.putExtra("destination", profileDestinationHeading.text.toString())
             startActivity(intent)
         }
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 }
