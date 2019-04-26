@@ -10,11 +10,9 @@ class AllUsersHelper{
 
     constructor()
 
-    constructor(firstName: String, lastName:String, email:String, uid:String){
+    constructor(firstName: String, lastName:String){
         this.firstName = firstName
         this.lastName = lastName
-        this.email = email
-        this.uid = uid
         acceptList = HashMap()
 
     }
