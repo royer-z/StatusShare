@@ -8,12 +8,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.example.statusshare.R
+import com.example.statusshare.Utils.Common
+import com.google.android.libraries.places.internal.e
+
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 
 class Registration: AppCompatActivity(){
@@ -50,6 +54,8 @@ class Registration: AppCompatActivity(){
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
+    private val firebaseUser = FirebaseAuth.getInstance().currentUser
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +78,8 @@ class Registration: AppCompatActivity(){
             startActivity(intent)
         }
 
+
+
     }
 
     private fun initialise(){
@@ -90,6 +98,7 @@ class Registration: AppCompatActivity(){
 
         registrationButton.setOnClickListener { addRegistrationToTable() }
         cancelButton.setOnClickListener { clearButton() }
+
     }
 
     private fun addRegistrationToTable() {
@@ -132,7 +141,9 @@ class Registration: AppCompatActivity(){
                         currentUserDb.child("lastName").setValue(lastName)
                         currentUserDb.child("email").setValue(email)
                         currentUserDb.child("password").setValue(password)
+                        currentUserDb.child("uid").setValue(userId)
 
+                        updateToken(firebaseUser)
                         updateUserInfoAndUI()
 
                     } else {
@@ -175,6 +186,18 @@ class Registration: AppCompatActivity(){
         emailView.setText("")
         passwordView.setText("")
         confirmPasswordView.setText("")
+    }
+
+    private fun updateToken(firebaseUser: FirebaseUser?){
+        val tokens = FirebaseDatabase.getInstance().getReference(Common.TOKENS);
+
+        //GET TOKEN
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnSuccessListener { instanceIdResult ->
+                tokens.child(firebaseUser!!.uid)
+                    .setValue(instanceIdResult.token)
+            }.addOnFailureListener{e -> Toast.makeText(this@Registration,e.message,Toast.LENGTH_SHORT).show()}
+
     }
 
 }

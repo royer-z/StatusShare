@@ -141,7 +141,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+  
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileView = inflater!!.inflate(R.layout.activity_profile, container, false)
         return profileView
@@ -164,10 +164,10 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         }
 
         val events = ArrayList<Event>()
-        events.add(Event("Kitty Party", "Home","today","2:00","zxcz"))
-        events.add(Event("LOLI Party", "Home","today","6:00","dixzcsc"))
-        events.add(Event("Zoo Party", "Work Office","today","12:00","zxc"))
-        events.add(Event("Sleep Over", "NJIT","today","9:00","disc"))
+        events.add(Event("Kitty Party", "Home", "today", "2:00", "zxcz"))
+        events.add(Event("LOLI Party", "Home", "today", "6:00", "dixzcsc"))
+        events.add(Event("Zoo Party", "Work Office", "today", "12:00", "zxc"))
+        events.add(Event("Sleep Over", "NJIT", "today", "9:00", "disc"))
 
         recyclerView1.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -197,23 +197,23 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
 
                 Log.d("STATUS NUM!!", "${statusColorNum}")
-                if(statusColorNum == "0"){
+                if (statusColorNum == "0") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
                     //Log.d("STATUS", " available!")
                 }
-                if(statusColorNum == "1"){
+                if (statusColorNum == "1") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
                     //Log.d("STATUS", " awayyy!!!!")
                 }
-                if(statusColorNum=="2"){
+                if (statusColorNum == "2") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
                     //Log.d("STATUS", " busy!!!!")
                 }
 
-                if(statusColorNum=="3"){
+                if (statusColorNum == "3") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
                     Log.d("STATUS", " busy!!!!")
@@ -224,7 +224,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
 
                 if (!image!!.equals("null")) {
                     //with(applicationContext)
-                        with(getActivity()?.getApplicationContext())
+                    with(getActivity()?.getApplicationContext())
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(profileProfileImage)
@@ -246,9 +246,8 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
 
         btn.setOnClickListener {
-            val intent = Intent(getActivity(), EditProfileActivity::class.java)
-            intent.putExtra("status", profileStatus.text.toString())
-            getActivity()?.startActivity(intent)
+
+
         }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
@@ -256,12 +255,12 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
 }
 
 
-class whatever: AppCompatActivity() {
+    class whatever : AppCompatActivity() {
 
-    var mDatabase: DatabaseReference? = null
-    var mCurrentUser: FirebaseUser? = null
-    //var mStorageRef:StorageReference?= null
-
+        var mDatabase: DatabaseReference? = null
+        var mCurrentUser: FirebaseUser? = null
+        //var mStorageRef:StorageReference?= null
+      
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -305,11 +304,65 @@ class whatever: AppCompatActivity() {
                     colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
                     //Log.d("STATUS", " busy!!!!")
                 }
+            }
 
-                if(statusColorNum=="3"){
-                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
-                    Log.d("STATUS", " busy!!!!")
+            //colorStatus pic
+            val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
+
+            mCurrentUser = FirebaseAuth.getInstance().currentUser
+
+            var userID = mCurrentUser!!.uid
+
+            mDatabase = FirebaseDatabase.getInstance().reference
+                .child("Registration q")
+                .child(userID)
+
+            mDatabase!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var user_status = dataSnapshot!!.child("status").value
+                    var user_location = dataSnapshot!!.child("location").value
+                    var user_destination = dataSnapshot!!.child("destination").value
+
+                    profileStatus.text = user_status.toString()
+                    profileLocationHeading.text = user_location.toString()
+                    profileDestinationHeading.text = user_destination.toString()
+
+
+                    val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
+
+
+                    Log.d("STATUS NUM!!", "${statusColorNum}")
+                    if (statusColorNum == "0") {
+                        //colorStatusPic.setImageResource(R.drawable.availability_color_green)
+                        colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                        //Log.d("STATUS", " available!")
+                    }
+                    if (statusColorNum == "1") {
+                        //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
+                        colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                        //Log.d("STATUS", " awayyy!!!!")
+                    }
+                    if (statusColorNum == "2") {
+                        //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                        colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                        //Log.d("STATUS", " busy!!!!")
+                    }
+
+                    if (statusColorNum == "3") {
+                        //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                        colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                        Log.d("STATUS", " busy!!!!")
+                    }
+
+                    var image = dataSnapshot!!.child("image").value.toString()
+                    var thumbnail = dataSnapshot!!.child("thumb_image").value
+
+                    if (!image!!.equals("null")) {
+                        with(applicationContext)
+                            .load(image)
+                            .placeholder(R.drawable.default_profile_image)
+                            .into(profileProfileImage)
+                    }
                 }
 
                 var image = dataSnapshot!!.child("image").value.toString()
@@ -320,19 +373,17 @@ class whatever: AppCompatActivity() {
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(profileProfileImage)
+                override fun onCancelled(p0: DatabaseError) {
+                  
                 }
-            }
+            })
 
-            override fun onCancelled(p0: DatabaseError) {
+            profileUpdateProfileButton.setOnClickListener {
+                var intent = Intent(this, EditProfileActivity::class.java)
+                intent.putExtra("status", profileStatus.text.toString())
+                intent.putExtra("location", profileLocationHeading.text.toString())
+                intent.putExtra("destination", profileDestinationHeading.text.toString())
+                startActivity(intent)
             }
-        })
-
-        profileUpdateProfileButton.setOnClickListener {
-            var intent = Intent(this, EditProfileActivity::class.java)
-            intent.putExtra("status", profileStatus.text.toString())
-            intent.putExtra("location", profileLocationHeading.text.toString())
-            intent.putExtra("destination", profileDestinationHeading.text.toString())
-            startActivity(intent)
         }
     }
-}
