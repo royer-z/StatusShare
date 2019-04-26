@@ -192,6 +192,22 @@ class whatever: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        val rv = findViewById<RecyclerView>(R.id.recyclerView1)
+        rv.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+
+        val events = ArrayList<Event>()
+        events.add(Event("Kitty Party", "Home","today","2:00","zxcz"))
+        events.add(Event("LOLI Party", "Home","today","6:00","dixzcsc"))
+        events.add(Event("Zoo Party", "Work Office","today","12:00","zxc"))
+        events.add(Event("Sleep Over", "NJIT","today","9:00","disc"))
+
+        var adapter = eventAdapter(events)
+        rv.adapter = adapter
+
+
+
+
         fun Context.toast(message: String) =
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
@@ -217,6 +233,7 @@ class whatever: AppCompatActivity() {
         fun setUpLocationMap() {
             // Permission request
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
                 ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
                 return
             }
@@ -266,11 +283,11 @@ class whatever: AppCompatActivity() {
             destinationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
             setUpDestinationMap()
         })
-      
+
 
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
-      
+
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid

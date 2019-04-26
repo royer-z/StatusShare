@@ -118,7 +118,13 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginStart="258dp"
                         android:textSize="12sp" android:layout_marginEnd="30dp"/>
+
+
             </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recyclerView2"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
