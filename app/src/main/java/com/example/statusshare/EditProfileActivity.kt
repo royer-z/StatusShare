@@ -1,13 +1,27 @@
 package com.example.statusshare
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.location.Address
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 //import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -24,19 +38,92 @@ import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.view.*
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.IOException
+import java.util.*
 
-class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
-    var mDatabase: DatabaseReference? = null
-    var mCurrentUser: FirebaseUser? = null
+    private lateinit var locationSwitch : Switch
+    private lateinit var switchState: String
+
+    private lateinit var locationMapFragment : SupportMapFragment
+    private lateinit var locationGoogleMap : GoogleMap
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
+    private fun toast(message: String) =
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    private fun getAddress(latLng: LatLng): String {
+        val gCoder = Geocoder(this, Locale.US)
+        val addresses: List<Address>?
+        var addressText = ""
+
+        try {
+            addresses = gCoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+
+            if (addresses.isNotEmpty()) {
+                val address = addresses[0]
+                addressText = address.getAddressLine(0).toString()
+            }
+        } catch (e: IOException) {
+            toast("Could not get address.")
+        }
+
+        return addressText
+    }
+
+    @SuppressLint("MissingPermission")
+    fun setUpLocationMap(switchState : String) {
+
+        if (switchState == "on") {
+            locationGoogleMap.isMyLocationEnabled = true
+
+            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+                if (location != null) {
+                    val currentLatLng = LatLng(location.latitude, location.longitude)
+                    val titleStr = getAddress(currentLatLng)
+                    locationGoogleMap.uiSettings.isZoomControlsEnabled = true
+                    locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
+                    locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                }
+            }
+        }
+        else {
+            // TODO:  Retrieve custom location latitude and longitude
+
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permission IS granted
+                    toast("Location permission granted.")
+                    setUpLocationMap(switchState)
+                } else {
+                    // Permission NOT granted
+                    toast("Location permission denied.")
+                }
+                return
+            }
+        }
+    }
+
+    private var mDatabase: DatabaseReference? = null
+    private var mCurrentUser: FirebaseUser? = null
     var GALLERY_ID: Int = 1
-    var mStorageRef: StorageReference? = null
+    private var mStorageRef: StorageReference? = null
     lateinit var statusSpinner: Spinner
     lateinit var status_name_code: String
 
-
     var statusColorNum = 9999
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +131,63 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val mainLayout = layoutInflater.inflate(R.layout.activity_edit_profile, null)
         setContentView(mainLayout)
 
+        fun checkPermission() {
+            // Permissions check
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                // Permission NOT granted
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    // Need to show explanation
+                    toast("Location permission is needed to show your current location on a map.")
+                    // Request permission again
+                    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), EditProfileActivity.LOCATION_PERMISSION_REQUEST_CODE
+                    )
+                }
+                else {
+                    // Request permission
+                    toast("Requesting permission.")
+                    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), EditProfileActivity.LOCATION_PERMISSION_REQUEST_CODE
+                    )
+                }
+            }
+            else if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                // Permission IS granted
+                toast("Setting up map.")
+                setUpLocationMap(switchState)
+            }
+        }
+
+        // TODO: Retrieve switch state from FireBase
+
+        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
+
+        // TODO: Set switch state
+        //switchState =
+
+        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
+            if (isChecked) {
+                // Show current live location on map
+                toast("Show current live location.")
+                switchState = "on"
+                setUpLocationMap(switchState)
+            }
+            else {
+                // Show custom location on map
+                toast("Show custom location.")
+                switchState = "off"
+                setUpLocationMap(switchState)
+            }
+        }
+
+        locationMapFragment = supportFragmentManager.findFragmentById(R.id.editProfileLocationMap) as SupportMapFragment
+        locationMapFragment.onCreate(null)
+        locationMapFragment.onResume()
+        locationMapFragment.getMapAsync(OnMapReadyCallback {
+            locationGoogleMap = it
+            checkPermission()
+        })
 
         mCurrentUser = FirebaseAuth.getInstance().currentUser
         mStorageRef = FirebaseStorage.getInstance().reference
-
 
         var userId = mCurrentUser!!.uid
 
@@ -67,22 +207,12 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(editProfileProfileImageButton)
-
-
                 }
-
-
             }
 
             override fun onCancelled(databaseErrorSnapshot: DatabaseError) {
-
             }
-
         })
-
-
-
-
 
         statusSpinner = mainLayout.spinner_statuses
 
@@ -161,22 +291,20 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {
                 //handle when no item selected
-
             }
         }
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
 
     override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
         //textView_msg!!.text = "Selected : "+languages[position]
 
-
         //statusColorNum = position
     }
 
     override fun onNothingSelected(arg0: AdapterView<*>) {
-
     }
 
 
@@ -205,7 +333,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     .setQuality(65)
                     .compressToBitmap(thumbFile)
 
-
                 //Upload images to Firebase
 
                 var byteArray = ByteArrayOutputStream()
@@ -221,7 +348,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 var thumbFilePath = mStorageRef!!.child("profile_image")
                     .child("thumb")
                     .child(userID + ".jpg")
-
 
                 //filePath.putFile(resultUri)
                 //var uploadTask: UploadTask = thumbFilePath.putBytes(thumbByteArray)
@@ -287,8 +413,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
         }
     }
-
-
 }
 
 

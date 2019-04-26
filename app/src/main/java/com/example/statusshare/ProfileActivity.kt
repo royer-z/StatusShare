@@ -1,7 +1,6 @@
 package com.example.statusshare
 
-import android.Manifest
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -11,18 +10,11 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -30,15 +22,15 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import java.util.*
+import com.example.statusshare.Model.Event
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import java.io.IOException
-import java.util.*
-import android.widget.*
-import com.example.statusshare.Model.Event
-import com.squareup.picasso.Picasso
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso.*
-
+import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,22 +45,123 @@ import com.squareup.picasso.Picasso.*
  * create an instance of this fragment.
  *
  */
-class ProfileActivity : Fragment() {
+class ProfileActivity : Fragment(), OnMapReadyCallback {
+
+    lateinit var profileView : View
+
     // TODO: Rename and change types of parameters
     var mDatabase: DatabaseReference? = null
     var mCurrentUser: FirebaseUser? = null
 
+    lateinit var locationMap : GoogleMap
+    lateinit var locationMapView : MapView
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    companion object {
+        const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
+    private fun toast(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+    private fun getAddress(latLng: LatLng): String {
+        val geocoder = Geocoder(context, Locale.US)
+        val addresses: List<Address>?
+        var addressText = ""
+
+        try {
+            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+
+            if (addresses.isNotEmpty()) {
+                val address = addresses[0]
+                addressText = address.getAddressLine(0).toString()
+            }
+        } catch (e: IOException) {
+            toast("Could not get address")
+        }
+
+        return addressText
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permission IS granted
+                    toast("Location permission granted.")
+                    setUpLocationMap()
+                } else {
+                    // Permission NOT granted
+                    toast("Location permission denied.")
+                }
+                return
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun setUpLocationMap() {
+        locationMap.isMyLocationEnabled = true
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                val titleStr = getAddress(currentLatLng)
+                locationMap.uiSettings.isZoomControlsEnabled = true
+                locationMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
+                locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+            }
+        }
+    }
+
+    private fun checkPermission() {
+        // Permissions check
+        if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            // Permission NOT granted
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity!!, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Need to show explanation
+                toast("Location permission is needed to show your current location on a map.")
+                // Request permission again
+                requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            }
+            else {
+                // Request permission
+                toast("Requesting permission.")
+                requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            }
+        }
+        else if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Permission IS granted
+            toast("Setting up map.")
+            setUpLocationMap()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+  
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.activity_profile, container, false)
+        profileView = inflater!!.inflate(R.layout.activity_profile, container, false)
+        return profileView
+    }
+
+    override fun onMapReady(map : GoogleMap) {
+        MapsInitializer.initialize(context)
+        locationMap = map
+        checkPermission()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        locationMapView = profileView.findViewById(R.id.profileLocationMapView)
+        if (locationMapView != null) {
+            locationMapView.onCreate(null)
+            locationMapView.onResume()
+            locationMapView.getMapAsync(this)
+        }
 
         val events = ArrayList<Event>()
         events.add(Event("Kitty Party", "Home", "today", "2:00", "zxcz"))
@@ -79,7 +172,6 @@ class ProfileActivity : Fragment() {
         recyclerView1.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = eventAdapter(events)
-
         }
 
         val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
@@ -102,9 +194,7 @@ class ProfileActivity : Fragment() {
                 profileLocationHeading.text = user_location.toString()
                 profileDestinationHeading.text = user_destination.toString()
 
-
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
-
 
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if (statusColorNum == "0") {
@@ -138,13 +228,10 @@ class ProfileActivity : Fragment() {
                         .load(image)
                         .placeholder(R.drawable.default_profile_image)
                         .into(profileProfileImage)
-
-
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-
             }
         })
 
@@ -156,14 +243,14 @@ class ProfileActivity : Fragment() {
 //            startActivity(intent)
 //        }
 
-
         val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
-
 
         btn.setOnClickListener {
 
 
         }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
     }
 }
 
@@ -173,115 +260,51 @@ class ProfileActivity : Fragment() {
         var mDatabase: DatabaseReference? = null
         var mCurrentUser: FirebaseUser? = null
         //var mStorageRef:StorageReference?= null
+      
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_profile)
 
-        private lateinit var locationMapFragment: SupportMapFragment
-        private lateinit var locationGoogleMap: GoogleMap
+        //colorStatus pic
+        val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
 
-        private lateinit var destinationMapFragment: SupportMapFragment
-        private lateinit var destinationGoogleMap: GoogleMap
+        mCurrentUser = FirebaseAuth.getInstance().currentUser
 
-        private lateinit var fusedLocationClient: FusedLocationProviderClient
+        var userID = mCurrentUser!!.uid
 
-        companion object {
-            private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-        }
+        mDatabase = FirebaseDatabase.getInstance().reference
+            .child("Registration q")
+            .child(userID)
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_profile)
+        mDatabase!!.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_status = dataSnapshot!!.child("status").value
+                var user_location = dataSnapshot!!.child("location").value
+                var user_destination = dataSnapshot!!.child("destination").value
 
-            fun Context.toast(message: String) =
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                profileStatus.text = user_status.toString()
+                profileLocationHeading.text = user_location.toString()
+                profileDestinationHeading.text = user_destination.toString()
 
-            fun getAddress(latLng: LatLng): String {
-                val geocoder = Geocoder(this, Locale.US)
-                val addresses: List<Address>?
-                var addressText = ""
+                val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
 
-                try {
-                    addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-
-                    if (addresses.isNotEmpty()) {
-                        val address = addresses[0]
-                        addressText = address.getAddressLine(0).toString()
-                    }
-                } catch (e: IOException) {
-                    toast("Could not get address")
+                Log.d("STATUS NUM!!", "${statusColorNum}")
+                if(statusColorNum == "0"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_green)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    //Log.d("STATUS", " available!")
                 }
-
-                return addressText
-            }
-
-            fun setUpLocationMap() {
-                // Permission request
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                        LOCATION_PERMISSION_REQUEST_CODE
-                    )
-                    return
+                if(statusColorNum == "1"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    //Log.d("STATUS", " awayyy!!!!")
                 }
-
-                locationGoogleMap.isMyLocationEnabled = true
-
-                fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-                    if (location != null) {
-                        val currentLatLng = LatLng(location.latitude, location.longitude)
-                        val titleStr = getAddress(currentLatLng)
-                        locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
-                        locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                    }
-                }
-
-            }
-
-            fun setUpDestinationMap() {
-                // Permission request
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        LOCATION_PERMISSION_REQUEST_CODE
-                    )
-                    return
-                }
-
-                destinationGoogleMap.isMyLocationEnabled = true
-
-                fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-                    if (location != null) {
-                        val currentLatLng = LatLng(location.latitude, location.longitude)
-                        val titleStr = getAddress(currentLatLng)
-                        destinationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
-                        destinationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                    }
+                if(statusColorNum=="2"){
+                    //colorStatusPic.setImageResource(R.drawable.availability_color_red)
+                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    //Log.d("STATUS", " busy!!!!")
                 }
             }
-
-            locationMapFragment = supportFragmentManager.findFragmentById(R.id.profileLocationMap) as SupportMapFragment
-            locationMapFragment.getMapAsync(OnMapReadyCallback {
-                locationGoogleMap = it
-                locationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-                setUpLocationMap()
-            })
-
-            destinationMapFragment =
-                supportFragmentManager.findFragmentById(R.id.profileDestinationMap) as SupportMapFragment
-            destinationMapFragment.getMapAsync(OnMapReadyCallback() {
-                destinationGoogleMap = it
-                destinationGoogleMap.getUiSettings().setZoomControlsEnabled(true)
-                setUpDestinationMap()
-            })
-
 
             //colorStatus pic
             val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
@@ -339,13 +362,19 @@ class ProfileActivity : Fragment() {
                             .load(image)
                             .placeholder(R.drawable.default_profile_image)
                             .into(profileProfileImage)
-
-
                     }
                 }
 
-                override fun onCancelled(p0: DatabaseError) {
+                var image = dataSnapshot!!.child("image").value.toString()
+                var thumbnail = dataSnapshot!!.child("thumb_image").value
 
+                if (!image!!.equals("null")) {
+                    with(applicationContext)
+                        .load(image)
+                        .placeholder(R.drawable.default_profile_image)
+                        .into(profileProfileImage)
+                override fun onCancelled(p0: DatabaseError) {
+                  
                 }
             })
 
@@ -356,7 +385,5 @@ class ProfileActivity : Fragment() {
                 intent.putExtra("destination", profileDestinationHeading.text.toString())
                 startActivity(intent)
             }
-
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         }
     }

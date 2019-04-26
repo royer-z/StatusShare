@@ -27,21 +27,24 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/profileImageLinearLayout">
+                    android:layout_height="150dp" android:id="@+id/profileImageLinearLayout">
+                <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/profileProfileImage"
+                        android:contentDescription="@string/profileProfileImageContentDescription"
+                        android:background="#17A42F"
+                        android:padding="5dp"
+                        android:cropToPadding="true"
+                        tools:srcCompat="@tools:sample/avatars[0]"
+                />
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/profileProfileImage" android:layout_marginTop="40dp"
-                        android:layout_marginStart="142dp"
-                        android:contentDescription="@string/profileProfileImageContentDescription"
-                        tools:srcCompat="@tools:sample/avatars[0]"/>
-                <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/profileAvailabilityColor" android:layout_marginTop="80dp"
-                        android:layout_marginStart="50dp"
+                        android:id="@+id/profileAvailabilityColor"
                         android:contentDescription="@string/profileAvailabilityColor"
-                        android:src="@android:drawable/presence_online"/>
+                        android:src="@android:drawable/presence_online"
+                />
             </LinearLayout>
             <TextView
                     android:text="@string/profileStatus"
@@ -58,15 +61,19 @@
                     android:layout_gravity="center_horizontal"/>
             <TextView
                     android:text="@string/profileLocationHeading"
-                    android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
-                    android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
-            />
-            <fragment
-                    android:layout_width="match_parent" android:layout_height="250dp"
-                    android:id="@+id/profileLocationMap" class="com.google.android.gms.maps.SupportMapFragment">
-            </fragment>
+                    android:layout_width="match_parent"/>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" android:id="@+id/profileLocationFrameLayout"
+                    tools:context=".ProfileActivity">
+
+                <com.google.android.gms.maps.MapView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/profileLocationMapView"
+                />
+            </FrameLayout>
             <TextView
                     android:text="@string/profileDestinationHeading"
                     android:layout_width="109dp"
@@ -74,21 +81,18 @@
                     android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="20dp"
             />
-            <fragment
-                    android:layout_width="match_parent" android:layout_height="250dp"
-                    android:id="@+id/profileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment">
-            </fragment>
             <TextView
                     android:text="@string/profileEventsHeading"
                     android:layout_width="109dp"
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
                     android:layout_marginEnd="275dp"
                     android:layout_marginStart="30dp" android:textSize="18sp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="20dp"
+            />
             <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerView1"></android.support.v7.widget.RecyclerView>
-
+            android:id="@+id/recyclerView1">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
