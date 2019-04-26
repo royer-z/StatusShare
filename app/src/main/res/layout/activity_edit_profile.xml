@@ -79,7 +79,7 @@
                         android:text="Share current location"
                         android:switchPadding="5dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationLiveSwitch"
+                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationSwitch"
                         android:textAlignment="center"
                 />
             </LinearLayout>

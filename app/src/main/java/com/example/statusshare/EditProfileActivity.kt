@@ -43,12 +43,10 @@ import java.util.*
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
-//    editProfileLocationLiveSwitch.setOnclickListener() {
-//
-//    }
+    private lateinit var locationSwitch : Switch
 
-    lateinit var locationMapFragment : SupportMapFragment
-    lateinit var locationGoogleMap : GoogleMap
+    private lateinit var locationMapFragment : SupportMapFragment
+    private lateinit var locationGoogleMap : GoogleMap
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -56,16 +54,16 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
-    fun toast(message: String) =
+    private fun toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-    fun getAddress(latLng: LatLng): String {
-        val geocoder = Geocoder(this, Locale.US)
+    private fun getAddress(latLng: LatLng): String {
+        val gCoder = Geocoder(this, Locale.US)
         val addresses: List<Address>?
         var addressText = ""
 
         try {
-            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+            addresses = gCoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
 
             if (addresses.isNotEmpty()) {
                 val address = addresses[0]
@@ -110,10 +108,10 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
     }
 
-    var mDatabase: DatabaseReference? = null
-    var mCurrentUser: FirebaseUser? = null
+    private var mDatabase: DatabaseReference? = null
+    private var mCurrentUser: FirebaseUser? = null
     var GALLERY_ID: Int = 1
-    var mStorageRef: StorageReference? = null
+    private var mStorageRef: StorageReference? = null
     lateinit var statusSpinner: Spinner
     lateinit var status_name_code: String
 
@@ -124,6 +122,20 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         //setContentView(R.layout.activity_edit_profile)
         val mainLayout = layoutInflater.inflate(R.layout.activity_edit_profile, null)
         setContentView(mainLayout)
+
+        // Retrieve switch state from Firebase
+
+        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
+        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
+            if (isChecked) {
+                // Show current live location on map
+                toast("Show current live location.")
+            }
+            else {
+                // Show custom location on map
+                toast("Show custom location.")
+            }
+        }
 
         fun checkPermission() {
             // Permissions check
