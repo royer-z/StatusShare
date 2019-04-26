@@ -161,7 +161,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         locationSwitch = findViewById(R.id.editProfileLocationSwitch)
 
         // TODO: Set switch state
-        //switchState =
+        switchState = "off"
 
         locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
             if (isChecked) {

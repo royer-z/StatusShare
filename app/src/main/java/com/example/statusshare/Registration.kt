@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.statusshare.R
 import com.example.statusshare.Utils.Common
-import com.google.android.libraries.places.internal.e
+//import com.google.android.libraries.places.internal.e
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
