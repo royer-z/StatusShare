@@ -43,6 +43,10 @@ import java.util.*
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
+//    editProfileLocationLiveSwitch.setOnclickListener() {
+//
+//    }
+
     lateinit var locationMapFragment : SupportMapFragment
     lateinit var locationGoogleMap : GoogleMap
 
