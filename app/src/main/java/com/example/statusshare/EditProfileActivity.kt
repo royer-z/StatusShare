@@ -44,6 +44,7 @@ import java.util.*
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     private lateinit var locationSwitch : Switch
+    private lateinit var switchState: String
 
     private lateinit var locationMapFragment : SupportMapFragment
     private lateinit var locationGoogleMap : GoogleMap
@@ -70,24 +71,31 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
-            toast("Could not get address")
+            toast("Could not get address.")
         }
 
         return addressText
     }
 
     @SuppressLint("MissingPermission")
-    fun setUpLocationMap() {
-        locationGoogleMap.isMyLocationEnabled = true
+    fun setUpLocationMap(switchState : String) {
 
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-            if (location != null) {
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                val titleStr = getAddress(currentLatLng)
-                locationGoogleMap.uiSettings.isZoomControlsEnabled = true
-                locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
-                locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+        if (switchState == "on") {
+            locationGoogleMap.isMyLocationEnabled = true
+
+            fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+                if (location != null) {
+                    val currentLatLng = LatLng(location.latitude, location.longitude)
+                    val titleStr = getAddress(currentLatLng)
+                    locationGoogleMap.uiSettings.isZoomControlsEnabled = true
+                    locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
+                    locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                }
             }
+        }
+        else {
+            // TODO:  Retrieve custom location latitude and longitude
+
         }
     }
 
@@ -98,7 +106,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permission IS granted
                     toast("Location permission granted.")
-                    setUpLocationMap()
+                    setUpLocationMap(switchState)
                 } else {
                     // Permission NOT granted
                     toast("Location permission denied.")
@@ -123,20 +131,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val mainLayout = layoutInflater.inflate(R.layout.activity_edit_profile, null)
         setContentView(mainLayout)
 
-        // Retrieve switch state from Firebase
-
-        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
-        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
-            if (isChecked) {
-                // Show current live location on map
-                toast("Show current live location.")
-            }
-            else {
-                // Show custom location on map
-                toast("Show custom location.")
-            }
-        }
-
         fun checkPermission() {
             // Permissions check
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
@@ -158,7 +152,29 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             else if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // Permission IS granted
                 toast("Setting up map.")
-                setUpLocationMap()
+                setUpLocationMap(switchState)
+            }
+        }
+
+        // TODO: Retrieve switch state from FireBase
+
+        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
+
+        // TODO: Set switch state
+        //switchState =
+
+        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
+            if (isChecked) {
+                // Show current live location on map
+                toast("Show current live location.")
+                switchState = "on"
+                setUpLocationMap(switchState)
+            }
+            else {
+                // Show custom location on map
+                toast("Show custom location.")
+                switchState = "off"
+                setUpLocationMap(switchState)
             }
         }
 
