@@ -57,7 +57,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private lateinit var locationMapFragment : SupportMapFragment
     private lateinit var locationGoogleMap : GoogleMap
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var fusedLocationClient : FusedLocationProviderClient
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -88,8 +88,10 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     @SuppressLint("MissingPermission")
     fun setUpLocationMap(switchState : String) {
 
-        if (switchState == "on") {
+        if (switchState == "on" || switchState == "off") {
             locationGoogleMap.isMyLocationEnabled = true
+
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
             fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
                 if (location != null) {
@@ -427,8 +429,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 createEventItem(eventName.text.toString(),eventAddress.text.toString(),eventTime.text.toString(),eventDate.text.toString(),eventDescription.text.toString())
             }
         })
-      
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
 
