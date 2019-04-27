@@ -28,19 +28,22 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileImageLinearLayout">
+                    android:layout_height="150dp" android:id="@+id/editProfileImageLinearLayout">
                 <ImageButton
-                        android:layout_width="131dp"
-                        android:layout_height="130dp"
-                        android:id="@+id/editProfileProfileImageButton" android:layout_marginTop="40dp"
-                        android:layout_marginStart="90dp"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editProfileProfileImageButton"
                         android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
-                        tools:srcCompat="@tools:sample/avatars[0]"/>
-
+                        android:background="#17A42F"
+                        android:padding="5dp"
+                        android:cropToPadding="true"
+                        tools:srcCompat="@tools:sample/avatars[0]"
+                />
                 <Spinner
                         android:id="@+id/spinner_statuses"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:spinnerMode="dropdown"/>
+                        android:layout_height="wrap_content" android:spinnerMode="dropdown"
+                />
 
             </LinearLayout>
             <EditText
@@ -50,6 +53,16 @@
                     android:id="@+id/editProfileStatus"
                     android:hint="@string/editProfileStatus" android:autofillHints="" android:inputType="text"
                     android:layout_marginTop="20dp"/>
+            <TextView
+                    android:text="Location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileLocationHeading"
+                    android:textSize="18sp" android:layout_marginStart="30dp" android:layout_marginTop="40dp"
+            />
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/editProfileLocationMap" class="com.google.android.gms.maps.SupportMapFragment">
+            </fragment>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -63,17 +76,11 @@
                         android:inputType="textPostalAddress"
                 />
                 <Switch
-                        android:text="@string/editProfileLiveSwitch"
+                        android:text="Share current location"
+                        android:switchPadding="5dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationLiveSwitch"
-                        android:layout_marginTop="20dp"
-                        android:textAlignment="center" android:layout_weight="1"
-                />
-                <fragment android:id="@+id/editProfileLocationAutoComplete"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                          android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationSwitch"
+                        android:textAlignment="center"
                 />
             </LinearLayout>
             <EditText
