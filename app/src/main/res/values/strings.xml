@@ -121,6 +121,13 @@
     <string name="email_holder">email</string>
     <string name="EmailHint">Enter Email</string>
     <string name="no_data_available">nothing</string>
+    <string name="event_name">Event Name</string>
+    <string name="event_address">Event Address</string>
+    <string name="event_date">Event Date</string>
+    <string name="event_time">Event Time</string>
+    <string name="event_description">Event Description</string>
 
+    <string name="dialog_new_entry_title">New Event</string>
+    <string name="dialog_edit_entry_title">Edit Event</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.statusshare
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -12,8 +13,15 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -122,6 +130,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private var mStorageRef: StorageReference? = null
     lateinit var statusSpinner: Spinner
     lateinit var status_name_code: String
+
+    private var mAdapter: FirebaseRecyclerAdapter<EventItemModel, EventViewHolder>? = null
 
     var statusColorNum = 9999
 
@@ -271,6 +281,9 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
             mDatabase!!.child("colorStatus").setValue(statusColorNum)
 
+
+
+
         }
 
         editProfileProfileImageButton.setOnClickListener {
@@ -294,6 +307,127 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         }
 
+        mDatabase = FirebaseDatabase.getInstance().reference.child("Registration q").child(userId).child("events")
+
+        mDatabase!!.keepSynced(true)
+
+        val recyclerView = findViewById(R.id.recyclerView2) as RecyclerView
+        recyclerView.setNestedScrollingEnabled(false)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val mQuery = mDatabase!!.orderByKey()
+        val mOptions = FirebaseRecyclerOptions.Builder<EventItemModel>()
+            .setQuery(mQuery, EventItemModel::class.java)
+            .setLifecycleOwner(this)
+            .build()
+        mAdapter = object : FirebaseRecyclerAdapter<EventItemModel, EventViewHolder>(mOptions) {
+            override fun getItem(position: Int): EventItemModel {
+                return super.getItem(position)
+            }
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
+                val view = LayoutInflater.from(parent!!.context)
+                    .inflate(R.layout.event_row_list, parent, false)
+                return EventViewHolder(view)
+            }
+            override fun onBindViewHolder(viewHolder: EventViewHolder, position: Int, model: EventItemModel) {
+                viewHolder.setModel(model)
+            }
+        }
+        recyclerView.adapter = mAdapter
+        recyclerView.addOnItemTouchListener(EventLongPressListener(this,
+            recyclerView!!, object : EventLongPressListener.ClickListener {
+                override fun onClick(view: View, position: Int) {}
+                override fun onLongClick(view: View?, position: Int) {
+                    showActionsDialog(position)
+                }
+            }))
+        //val fab = findViewById<View>(R.id.fab) as FloatingActionButton
+        val fab = findViewById<View>(R.id.editProfilePlusButton)
+        fab.setOnClickListener { showEntryDialog(false, null, -1) }
+
+    }
+
+    private fun createEventItem(eventTitle: String,eventAddress: String,eventDate: String,eventTime: String,eventDesciption: String) {
+        val pushId = mDatabase!!.push().key
+        val eventItem = EventItemModel(pushId!!, eventTitle, eventAddress,eventDate,eventTime,eventDesciption)//Root and child id will be same
+        mDatabase!!.child(pushId).setValue(eventItem)
+    }
+    private fun updateToDoItem(eventTitle: String,eventAddress: String,eventDate: String,eventTime: String,eventDesciption: String,eventId: String) {
+        mDatabase!!.child(eventId).child("eventTitle").setValue(eventTitle)
+        mDatabase!!.child(eventId).child("eventAddress").setValue(eventAddress)
+        mDatabase!!.child(eventId).child("eventDate").setValue(eventDate)
+        mDatabase!!.child(eventId).child("eventTime").setValue(eventTime)
+        mDatabase!!.child(eventId).child("eventDesciption").setValue(eventDesciption)
+    }
+    private fun deleteToDoItem(eventId: String) {
+        mDatabase!!.child(eventId).setValue(null)
+    }
+    private fun deleteAllToDoItems() {
+        //Caution - This is considered as a bad practice
+        mDatabase!!.removeValue()
+    }
+
+    private fun showActionsDialog(position: Int) {
+        val options = arrayOf<CharSequence>("Edit This Event", "Delete This Event", "Delete All Events")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Action")
+        builder.setItems(options) { dialog, itemIndex ->
+            // add more options check index
+            when (itemIndex) {
+                0 -> showEntryDialog(true, mAdapter!!.getItem(position), position)
+                1 -> deleteToDoItem(mAdapter!!.getItem(position).eventId.toString())
+                2 -> deleteAllToDoItems()
+                else -> Toast.makeText(applicationContext, "never gonna load", Toast.LENGTH_SHORT).show()
+            }
+        }
+        builder.show()
+    }
+    private fun showEntryDialog(shouldUpdate: Boolean, EventItemModel: EventItemModel?, position: Int) {
+        val layoutInflaterAndroid = LayoutInflater.from(applicationContext)
+        val view = layoutInflaterAndroid.inflate(R.layout.event_entry_dialog, null)
+        val alertDialogBuilderUserInput = AlertDialog.Builder(this@EditProfileActivity)
+        alertDialogBuilderUserInput.setView(view)
+
+        val eventName = view.findViewById<EditText>(R.id.event_name)
+        val eventAddress = view.findViewById<EditText>(R.id.event_address)
+        val eventDate = view.findViewById<EditText>(R.id.event_date)
+        val eventTime = view.findViewById<EditText>(R.id.event_time)
+        val eventDescription = view.findViewById<EditText>(R.id.event_description)
+
+
+
+        val dialogTitle = view.findViewById<TextView>(R.id.dialog_header)
+        dialogTitle.text = if (!shouldUpdate) getString(R.string.dialog_new_entry_title) else getString(R.string.dialog_edit_entry_title)
+        if (shouldUpdate && EventItemModel != null) {
+            eventName.setText(EventItemModel!!.eventTitle)
+            eventAddress.setText(EventItemModel!!.eventAddress)
+            eventDate.setText(EventItemModel!!.eventDate)
+            eventTime.setText(EventItemModel!!.eventTime)
+            eventDescription.setText(EventItemModel!!.eventDesciption)
+        }
+        alertDialogBuilderUserInput
+            .setCancelable(false)
+            .setPositiveButton(if (shouldUpdate) "update" else "save") { dialogBox, id -> }
+            .setNegativeButton("cancel"
+            ) { dialogBox, id -> dialogBox.cancel() }
+        val alertDialog = alertDialogBuilderUserInput.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(View.OnClickListener {
+            // Show toast message when no text is entered
+            if (TextUtils.isEmpty(eventName.text.toString())) {
+
+                Toast.makeText(this@EditProfileActivity, "Enter dialog_entry!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            } else {
+                alertDialog.dismiss()
+            }
+            if (shouldUpdate && EventItemModel != null) {
+                updateToDoItem(eventName.text.toString(),eventAddress.text.toString(),eventDate.text.toString(),eventTime.text.toString(),eventDescription.text.toString(), EventItemModel.eventId!!)
+            } else {
+                createEventItem(eventName.text.toString(),eventAddress.text.toString(),eventTime.text.toString(),eventDate.text.toString(),eventDescription.text.toString())
+            }
+        })
+      
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
