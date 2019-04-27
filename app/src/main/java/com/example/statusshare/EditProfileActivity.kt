@@ -51,8 +51,12 @@ import java.util.*
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
+    private lateinit var currentUserId : String
+    private lateinit var currentUserData: DatabaseReference
+    private var userSwitchState : Any? =  null
+    private var initialSwitchState : String? = ""
+
     private lateinit var locationSwitch : Switch
-    private lateinit var switchState: String
 
     private lateinit var locationMapFragment : SupportMapFragment
     private lateinit var locationGoogleMap : GoogleMap
@@ -86,9 +90,9 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     }
 
     @SuppressLint("MissingPermission")
-    fun setUpLocationMap(switchState : String) {
-
-        if (switchState == "on" || switchState == "off") {
+    fun setUpLocationMap() {
+        if (userSwitchState == "on") {
+            toast("*Shows LIVE location on map.*")
             locationGoogleMap.isMyLocationEnabled = true
 
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -105,7 +109,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
         else {
             // TODO:  Retrieve custom location latitude and longitude
-
+            toast("*Shows CUSTOM location on map.*")
         }
     }
 
@@ -116,8 +120,9 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permission IS granted
                     toast("Location permission granted.")
-                    setUpLocationMap(switchState)
-                } else {
+                    setUpLocationMap()
+                }
+                else {
                     // Permission NOT granted
                     toast("Location permission denied.")
                 }
@@ -143,6 +148,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val mainLayout = layoutInflater.inflate(R.layout.activity_edit_profile, null)
         setContentView(mainLayout)
 
+        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
+
         fun checkPermission() {
             // Permissions check
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
@@ -164,29 +171,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             else if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // Permission IS granted
                 toast("Setting up map.")
-                setUpLocationMap(switchState)
-            }
-        }
-
-        // TODO: Retrieve switch state from FireBase
-
-        locationSwitch = findViewById(R.id.editProfileLocationSwitch)
-
-        // TODO: Set switch state
-        switchState = "off"
-
-        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
-            if (isChecked) {
-                // Show current live location on map
-                toast("Show current live location.")
-                switchState = "on"
-                setUpLocationMap(switchState)
-            }
-            else {
-                // Show custom location on map
-                toast("Show custom location.")
-                switchState = "off"
-                setUpLocationMap(switchState)
+                setUpLocationMap()
             }
         }
 
@@ -197,6 +182,39 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             locationGoogleMap = it
             checkPermission()
         })
+
+        currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
+        currentUserData.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                userSwitchState = p0.child("switchState").value
+                toast("Retrieved switch state.")
+
+                if (userSwitchState == null) {
+                    currentUserData.child("switchState").setValue("off")
+                }
+                if (initialSwitchState != null && userSwitchState == "on") {
+                    locationSwitch.isChecked = true
+                    initialSwitchState = null
+                }
+                setUpLocationMap()
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                toast("Could not retrieve switch state.")
+            }
+        })
+
+        locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
+            if (isChecked) {
+                // Switched to live location
+                currentUserData.child("switchState").setValue("on")
+            }
+            else {
+                // Switched to custom location
+                currentUserData.child("switchState").setValue("off")
+            }
+        }
 
         mCurrentUser = FirebaseAuth.getInstance().currentUser
         mStorageRef = FirebaseStorage.getInstance().reference
@@ -282,10 +300,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
 
             mDatabase!!.child("colorStatus").setValue(statusColorNum)
-
-
-
-
         }
 
         editProfileProfileImageButton.setOnClickListener {
