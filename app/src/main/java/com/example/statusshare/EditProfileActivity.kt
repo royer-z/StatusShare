@@ -249,6 +249,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             checkPermission()
         })
 
+        // TODO: Implement destination map
+
         currentUserData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 userSwitchState = p0.child("switchState").value
