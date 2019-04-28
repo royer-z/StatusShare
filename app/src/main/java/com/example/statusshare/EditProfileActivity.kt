@@ -51,11 +51,13 @@ import java.util.*
 
 class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
-    private lateinit var currentUserId : String
-    private lateinit var currentUserData: DatabaseReference
+    private var currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+    private var currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
+
+    private var customLocation : Any? = null
+
     private var userSwitchState : Any? =  null
     private var initialSwitchState : String? = ""
-
     private lateinit var locationSwitch : Switch
     private var locationPermission : Boolean = false
 
@@ -128,11 +130,11 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
         else {
             toast("*Shows CUSTOM location on map.*")
-            // TODO:  Retrieve custom location latitude and longitude
-            val customLocationText = findViewById<EditText>(R.id.editProfileLocation)
-            val customLocationLL = getLLFromText(customLocationText.text.toString())
+            // Retrieve custom location latitude and longitude
+            val customLocationText = findViewById<EditText>(R.id.editProfileLocation).text.toString()
+            val customLocationLL = getLLFromText(customLocationText)
             locationGoogleMap.uiSettings.isZoomControlsEnabled = true
-            locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText.text.toString()))
+            locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText))
             locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLocationLL, 15f))
         }
     }
@@ -204,6 +206,25 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         }
 
+        // Pre-fill custom location editTextView
+        currentUserData.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                customLocation = p0.child("customLocation").value
+                toast("Retrieved custom location.")
+
+                if (customLocation == null) {
+                    currentUserData.child("customLocation").setValue("Newark, New Jersey")
+                }
+                else {
+                    findViewById<EditText>(R.id.editProfileLocation).setText(customLocation.toString())
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                toast("Could not retrieve custom location.")
+            }
+        })
+
         locationMapFragment = supportFragmentManager.findFragmentById(R.id.editProfileLocationMap) as SupportMapFragment
         locationMapFragment.onCreate(null)
         locationMapFragment.onResume()
@@ -212,8 +233,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             checkPermission()
         })
 
-        currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-        currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
         currentUserData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 userSwitchState = p0.child("switchState").value
@@ -239,6 +258,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 // Switched to live location
                 if (locationPermission) {
                     currentUserData.child("switchState").setValue("on")
+                    // TODO: Save live location to Firebase
                 }
                 else {
                     toast("Location permission was denied. Please allow location permission.")
@@ -249,6 +269,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             else {
                 // Switched to custom location
                 currentUserData.child("switchState").setValue("off")
+                // Save custom location to Firebase
+                currentUserData.child("customLocation").setValue(findViewById<EditText>(R.id.editProfileLocation).text.toString())
             }
         }
 

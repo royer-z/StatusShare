@@ -142,6 +142,7 @@ class Registration: AppCompatActivity(){
                         currentUserDb.child("email").setValue(email)
                         currentUserDb.child("password").setValue(password)
                         currentUserDb.child("switchState").setValue("off")
+                        currentUserDb.child("customLocation").setValue("Newark, New Jersey")
                         currentUserDb.child("uid").setValue(userId)
 
                         updateToken(firebaseUser)

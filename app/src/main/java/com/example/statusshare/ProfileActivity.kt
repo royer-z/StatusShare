@@ -155,7 +155,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         MapsInitializer.initialize(context)
         locationMap = map
 
-        // retrieve switch state from DB
+        // Retrieve switch state from DB
         currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
         currentUserData.addValueEventListener(object : ValueEventListener {
