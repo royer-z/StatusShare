@@ -378,7 +378,12 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             mDatabase!!.child("status").setValue(status).addOnCompleteListener { task: Task<Void> ->
                 if (task.isSuccessful) {
                     //Toast.makeText(this,"Status Updated Successfully!",Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, whatever::class.java))
+                    startActivity(Intent(this, BottomNavigationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    /*
+                    val intent = Intent(this@LoginActivity, BottomNavigationActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    */
                 } else {
                     //Toast.makeText(this,"Status Not Updated",Toast.LENGTH_LONG).show()
                 }

@@ -16,7 +16,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_setting_button->{
-                    //createSettingsFragment()
+                    createSettingsFragment()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_notification_button->{
