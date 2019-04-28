@@ -29,6 +29,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 //import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
@@ -53,6 +54,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     private var currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
     private var currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
+
+    private var customLocationMarker : Marker? = null
 
     private var customLocation : Any? = null
     private var liveLocation : LatLng? = null
@@ -125,7 +128,10 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     liveLocation = currentLatLng
                     val titleStr = getAddressFromLL(currentLatLng)
                     locationGoogleMap.uiSettings.isZoomControlsEnabled = true
-                    locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
+                    if (customLocationMarker != null) {
+                        customLocationMarker?.remove()
+                    }
+                    customLocationMarker = locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
                     locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
                     // Save live location to Firebase
                     currentUserData.child("liveLocation").setValue(liveLocation)
@@ -138,8 +144,13 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             val customLocationText = findViewById<EditText>(R.id.editProfileLocation).text.toString()
             val customLocationLL = getLLFromText(customLocationText)
             locationGoogleMap.uiSettings.isZoomControlsEnabled = true
-            locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText))
+            if (customLocationMarker != null) {
+                customLocationMarker?.remove()
+            }
+            customLocationMarker = locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText))
             locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLocationLL, 15f))
+            // Save custom location to Firebase
+            currentUserData.child("customLocation").setValue(customLocationText)
         }
     }
 
@@ -159,6 +170,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     toast("Location permission denied.")
                     locationPermission = false
                     currentUserData.child("switchState").setValue("off")
+                    setUpLocationMap()
                 }
                 return
             }
@@ -345,7 +357,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
 
             var location = editProfileLocation.text.toString()
-            mDatabase!!.child("location").setValue(location).addOnCompleteListener { task: Task<Void> ->
+            mDatabase!!.child("customLocation").setValue(location).addOnCompleteListener { task: Task<Void> ->
                 if (task.isSuccessful) {
                     //Toast.makeText(this,"Location Updated Successfully!",Toast.LENGTH_LONG).show()
                 } else {
