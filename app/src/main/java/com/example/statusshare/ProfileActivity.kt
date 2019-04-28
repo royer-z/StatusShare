@@ -47,6 +47,10 @@ import java.io.IOException
  */
 class ProfileActivity : Fragment(), OnMapReadyCallback {
 
+    private lateinit var currentUserId : String
+    private lateinit var currentUserData: DatabaseReference
+    private var userSwitchState : Any? =  null
+
     lateinit var profileView : View
 
     // TODO: Rename and change types of parameters
@@ -150,7 +154,27 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
     override fun onMapReady(map : GoogleMap) {
         MapsInitializer.initialize(context)
         locationMap = map
-        checkPermission()
+
+        // retrieve switch state from DB
+        currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
+        currentUserData.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                userSwitchState = p0.child("switchState").value
+                toast("Retrieved switch state.")
+
+                if (userSwitchState == "off") {
+
+                }
+                else {
+                    checkPermission()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                toast("Could not retrieve switch state.")
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

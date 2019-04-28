@@ -57,6 +57,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private var initialSwitchState : String? = ""
 
     private lateinit var locationSwitch : Switch
+    private var locationPermission : Boolean = false
 
     private lateinit var locationMapFragment : SupportMapFragment
     private lateinit var locationGoogleMap : GoogleMap
@@ -120,11 +121,15 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permission IS granted
                     toast("Location permission granted.")
+                    locationPermission = true
+                    currentUserData.child("switchState").setValue("on")
                     setUpLocationMap()
                 }
                 else {
                     // Permission NOT granted
                     toast("Location permission denied.")
+                    locationPermission = false
+                    currentUserData.child("switchState").setValue("off")
                 }
                 return
             }
@@ -171,6 +176,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             else if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // Permission IS granted
                 toast("Setting up map.")
+                locationPermission = true
                 setUpLocationMap()
             }
         }
@@ -197,7 +203,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     locationSwitch.isChecked = true
                     initialSwitchState = null
                 }
-                setUpLocationMap()
+                checkPermission()
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -208,7 +214,14 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         locationSwitch.setOnCheckedChangeListener { _, isChecked: Boolean ->
             if (isChecked) {
                 // Switched to live location
-                currentUserData.child("switchState").setValue("on")
+                if (locationPermission) {
+                    currentUserData.child("switchState").setValue("on")
+                }
+                else {
+                    toast("Location permission was denied. Please allow location permission.")
+                    locationSwitch.isChecked = false
+                    checkPermission()
+                }
             }
             else {
                 // Switched to custom location
