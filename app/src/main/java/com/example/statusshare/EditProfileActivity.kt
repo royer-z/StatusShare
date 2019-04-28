@@ -55,6 +55,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private var currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
 
     private var customLocation : Any? = null
+    private var liveLocation : LatLng? = null
 
     private var userSwitchState : Any? =  null
     private var initialSwitchState : String? = ""
@@ -121,10 +122,13 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
                 if (location != null) {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
+                    liveLocation = currentLatLng
                     val titleStr = getAddressFromLL(currentLatLng)
                     locationGoogleMap.uiSettings.isZoomControlsEnabled = true
                     locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
                     locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                    // Save live location to Firebase
+                    currentUserData.child("liveLocation").setValue(liveLocation)
                 }
             }
         }
@@ -258,7 +262,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 // Switched to live location
                 if (locationPermission) {
                     currentUserData.child("switchState").setValue("on")
-                    // TODO: Save live location to Firebase
+                    // Save live location to Firebase
+                    currentUserData.child("liveLocation").setValue(liveLocation)
                 }
                 else {
                     toast("Location permission was denied. Please allow location permission.")
