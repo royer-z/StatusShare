@@ -94,6 +94,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
+            toast("Could not get text from $latLng")
         }
 
         return addressText
@@ -107,6 +108,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         try {
             addresses = gCoder.getFromLocationName(text, 1)
         } catch (e: IOException) {
+            toast("Could not get LatLng from $text")
         }
 
         if (addresses != null && addresses.isNotEmpty()) {
@@ -149,8 +151,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
             customLocationMarker = locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText))
             locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLocationLL, 15f))
-            // Save custom location to Firebase
-            currentUserData.child("customLocation").setValue(customLocationText)
         }
     }
 
@@ -378,12 +378,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             mDatabase!!.child("status").setValue(status).addOnCompleteListener { task: Task<Void> ->
                 if (task.isSuccessful) {
                     //Toast.makeText(this,"Status Updated Successfully!",Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, BottomNavigationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                    /*
-                    val intent = Intent(this@LoginActivity, BottomNavigationActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                    */
+                    startActivity(Intent(this, whatever::class.java))
                 } else {
                     //Toast.makeText(this,"Status Not Updated",Toast.LENGTH_LONG).show()
                 }
