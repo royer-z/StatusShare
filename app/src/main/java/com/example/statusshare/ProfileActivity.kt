@@ -3,6 +3,7 @@ package com.example.statusshare
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -175,6 +176,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         }
 
         val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
+        val profileImage = getView()?.findViewById<ImageView>(R.id.profileProfileImage)
 
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
@@ -200,22 +202,29 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
                 if (statusColorNum == "0") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    profileImage?.setBackgroundColor(Color.parseColor("#17A42F"))
                     //Log.d("STATUS", " available!")
                 }
                 if (statusColorNum == "1") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    profileImage?.setBackgroundColor(Color.parseColor("#FFFF00"))
+
                     //Log.d("STATUS", " awayyy!!!!")
                 }
                 if (statusColorNum == "2") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    //profileImage?.setBackgroundColor(Color.parseColor("#FF9800"))
+                    profileImage?.setBackgroundColor(Color.parseColor("#FFA500"))
                     //Log.d("STATUS", " busy!!!!")
                 }
 
                 if (statusColorNum == "3") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
                     colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                    //profileImage?.setBackgroundColor(Color.parseColor("#FF0000"))
+                    profileImage?.setBackgroundColor(Color.RED)
                     Log.d("STATUS", " busy!!!!")
                 }
 
@@ -268,7 +277,7 @@ class whatever : AppCompatActivity() {
       
         //colorStatus pic
         val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
-
+        val profileImage = findViewById<ImageView>(R.id.profileProfileImage)
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
         var userID = mCurrentUser!!.uid
@@ -294,26 +303,32 @@ class whatever : AppCompatActivity() {
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if (statusColorNum == "0") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
+                    profileImage?.setBackgroundColor(Color.parseColor("#17A42F"))
                     //Log.d("STATUS", " available!")
                 }
                 if (statusColorNum == "1") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
+                    profileImage?.setBackgroundColor(Color.YELLOW)
+
                     //Log.d("STATUS", " awayyy!!!!")
                 }
                 if (statusColorNum == "2") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
+                    //profileImage?.setBackgroundColor(Color.parseColor("#FF9800"))
+                    profileImage?.setBackgroundColor(Color.parseColor("#FFA500"))
                     //Log.d("STATUS", " busy!!!!")
                 }
 
                 if (statusColorNum == "3") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
+                    //profileImage?.setBackgroundColor(Color.parseColor("#FF0000"))
+                    profileImage?.setBackgroundColor(Color.RED)
                     Log.d("STATUS", " busy!!!!")
                 }
-
                 var image = dataSnapshot!!.child("image").value.toString()
                 var thumbnail = dataSnapshot!!.child("thumb_image").value
 
