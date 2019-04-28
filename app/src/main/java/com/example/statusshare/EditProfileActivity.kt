@@ -71,7 +71,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private fun toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-    private fun getAddress(latLng: LatLng): String {
+    private fun getAddressFromLL(latLng: LatLng): String {
         val gCoder = Geocoder(this, Locale.US)
         val addresses: List<Address>?
         var addressText = ""
@@ -84,10 +84,28 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
-            toast("Could not get address.")
+            toast("Could not get address from LatLng.")
         }
 
         return addressText
+    }
+
+    private fun getLLFromText(text: String): LatLng {
+        val gCoder = Geocoder(this, Locale.US)
+        var addresses: List<Address>? = null
+        var addressLL = LatLng(0.0, 0.0)
+
+        try {
+            addresses = gCoder.getFromLocationName(text, 1)
+        } catch (e: IOException) {
+            toast("Could not get address from text.")
+        }
+
+        if (addresses != null && addresses.isNotEmpty()) {
+            addressLL = LatLng(addresses[0].latitude, addresses[0].longitude)
+        }
+
+        return addressLL
     }
 
     @SuppressLint("MissingPermission")
@@ -101,7 +119,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
                 if (location != null) {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
-                    val titleStr = getAddress(currentLatLng)
+                    val titleStr = getAddressFromLL(currentLatLng)
                     locationGoogleMap.uiSettings.isZoomControlsEnabled = true
                     locationGoogleMap.addMarker(MarkerOptions().position(currentLatLng).title(titleStr))
                     locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
@@ -109,8 +127,13 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         }
         else {
-            // TODO:  Retrieve custom location latitude and longitude
             toast("*Shows CUSTOM location on map.*")
+            // TODO:  Retrieve custom location latitude and longitude
+            val customLocationText = findViewById<EditText>(R.id.editProfileLocation)
+            val customLocationLL = getLLFromText(customLocationText.text.toString())
+            locationGoogleMap.uiSettings.isZoomControlsEnabled = true
+            locationGoogleMap.addMarker(MarkerOptions().position(customLocationLL).title(customLocationText.text.toString()))
+            locationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLocationLL, 15f))
         }
     }
 

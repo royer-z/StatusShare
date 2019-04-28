@@ -76,7 +76,7 @@
                         android:inputType="textPostalAddress"
                 />
                 <Switch
-                        android:text="Share current location"
+                        android:text="Use current location"
                         android:switchPadding="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/editProfileLocationSwitch"
