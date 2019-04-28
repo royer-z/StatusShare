@@ -94,7 +94,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
-            toast("Could not get address from $latLng}")
         }
 
         return addressText
@@ -108,7 +107,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         try {
             addresses = gCoder.getFromLocationName(text, 1)
         } catch (e: IOException) {
-            toast("Could not get address from $text")
         }
 
         if (addresses != null && addresses.isNotEmpty()) {
@@ -259,6 +257,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 }
                 else {
                     findViewById<EditText>(R.id.editProfileDestination).setText(customDestination.toString())
+                    setUpDestinationMap()
                 }
             }
 
