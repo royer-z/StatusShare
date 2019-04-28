@@ -17,7 +17,8 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/build/generated/res/google-services/debug;file://$MODULE_DIR$/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
@@ -26,7 +27,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-image-cropper-2.7.0.aar/65c6c69e1c30b86232b5379dd80791f1/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.21/d207ce2c9bcf17dc8e51bab4dbfdac4d013e7138/kotlin-stdlib-jdk7-1.3.21.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/94660174f9d5706dd4e53f9caeefb006/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/MaterialSearchBar-0.8.2.aar/e4b9a6fa678a5cc55ad5d5bd9ff6a8f9/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/places-1.1.0.aar/4431e0959e08b3001c41c960beea5918/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9241446207c33a7023d342c1d1929b29/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/5cd5fbe822bf1d9f566453a2c75a8ed7/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-4.3.2.aar/3c420a7c468226354eb514aad2f6f9db/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-places-16.0.0.aar/5e2748bba2816065bd2e9987a47ef370/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-maps-16.1.0.aar/f0467ef2671c88b7387634602a729535/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/68c7a238c467b84acbec63ab64bd25e0/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-auth-16.2.1.aar/0171196a2c1b59301a6fb1db064c753e/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-database-16.1.0.aar/b18c9ff51e31a1827c2a2e2495732471/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-messaging-17.6.0.aar/e82752374834703994da899553041cf2/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-storage-16.1.0.aar/60a0bede7f7222fdd2dd074509264a5d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-clearcut-16.0.0.aar/e5d7656a8352556642c996e1593f6169/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-flags-16.0.1.aar/ed9a5c5bd8becfe5223df30305617f44/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-auth-interop-16.0.1.aar/de78b05a14e655a7fd1aedb5ab560c0b/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-phenotype-16.0.0.aar/e90ec265f2b63c800430918e85c4f5fb/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-ads-17.2.0.aar/f058955d50f9fcd56abac8d33ad17803/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.8.aar/ec5df931fda9d8d511383536deb15250/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.4.0.aar/c25b3ac529f921a9ab33ce664c2101c3/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-api-16.4.0.aar/701d641a7429e85bf99472a94312467d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-iid-17.1.2.aar/3df334bba0d9d1bb3458714924f67936/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.1.aar/e9461a9a5874da2661b96a86b9c62479/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/d74e9219b02c7c8efc0208367e5fa803/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-common-16.1.0.aar/eeb083435a8b907a5040b8e4be0a4fd8/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/03742181660af0762b256035f4de907b/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/2d95a27ab9c90e5feb0c2c0282ef2b17/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-17.0.1.aar/a2b53b0a74936bb62ab444aa2c73b537/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-ads-17.2.0.aar/2e3ae65655030e450e321e13311cad69/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-16.4.0.aar/726675e5ae9be0afde12ef1da7e0deb5/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-sdk-16.4.0.aar/ef630a6737dc0359805a54edb59eab5a/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-impl-16.4.0.aar/7f1663ec216afe52f60a6ad35367db76/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-stats-16.0.1.aar/cc90c6ccb4672dc82b659048c9f009e1/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-16.0.0.aar/792fd95c71e56abbb7379e55e0d1e2ae/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-ads-lite-17.2.0.aar/d85595a42051e15aa46ab4c8ce8f4125/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-gass-17.2.0.aar/7a0fba31f2a19b349cf2ab45cc67408b/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-sdk-api-16.4.0.aar/55254c8c5da629b6217fcf19087dd62a/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.4.0.aar/5158dee7709c96a891399ad65e1a3a86/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.2.0.aar/86522016ec8c7d6b517cf61843845f2d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/e48e9432691854e8c69c4eebc435dae8/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.0.aar/e75b17ec1f5b41f0c83765272aceee56/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/compressor-2.1.0.aar/1c86c582c64ef1a7f3e38bc00561b6a0/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/978df8c4fbb22118ab0593d4cb3c8b6c/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava2/2.3.0/f436637f9500ab5b8bc32afe556373180894b4a5/adapter-rxjava2-2.3.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.5.0/713ce36037bf24a76a3974c05cb85c3f754b1cc3/retrofit-2.5.0.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.1.aar/5d2c24b1a475f1960025f104060a9ef2/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.21/4bcc2012b84840e19e1e28074284cac908be0295/kotlin-stdlib-1.3.21.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/5086645c7b433d72bb69783d1b7cd5c4/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/02c2038ec52b0d08c4eeb31368be0c31/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/41ba20f6660a39c24ee1053b76faec3d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/0f1517e88cb2095933a027ee99b8be7b/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/d377d0b25b41c2557c1aebac7865e424/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/507033675f9ebee3b714e5732c055909/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/f10efb3d45060a323ecf72cb0cc7327e/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/8ffbc525ea85f4e9f346f56c13f07c0e/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/b0f6e819f91772cd128b2f9df5ac5686/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/65d77869444d5d9c9fc0da62601c1800/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/310e0513d86b9be3b742e30c71257f33/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/8399656a397e129d89328bacbfc48bc9/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/c530b79dd54a6a9437461203faf03367/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/10e288a49fcba486098ae9b449207f3f/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/97f8c309f39e49a98045c19ca5a1837a/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/296b4c55a07df07fa94adf2f7c35dd19/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/customtabs-26.1.0.aar/689431a4c6dac987a1c813708be0489d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/234d60574578505c6a5f5db208fd3c47/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/bbe3f95caa5027c99d66f0681306f588/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/c49a7ddfbd49d3ccc6dd96cc8cd423c7/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-ui-common-4.3.2.aar/9c3b503890d76d52186d0583ca29db93/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/d0ae70aa2f8bba1ba5d63c3f243cf6f9/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/cfac1fb1a07a6824ad2719bf3ed2161b/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/8255f36ab113ffb876eb9b06b5facf56/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/f5528083793dd06f09c59f03ec239b55/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/4e692ef1b170563f20c2835185a7b1c6/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/ee7b78a386490f7e6638bcb15367b72d/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/glide-4.3.1.aar/95a687295feb440d071da2d2eb501966/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.3.1/dc06b7679496073ef4505005b4c5995f522503cd/gifdecoder-4.3.1.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/2e3b8065ad8e9fd4700917733417f1de/jars/classes.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/9bce60ec0870eaca4d143194dcbd38fb/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/92fd1b007e74de9d6cb15a05f218623e/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.3/bde0667d7414c16ed62d3cfe993cff7f9d732373/constraint-layout-solver-1.1.3.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/919d65c44932a8f0e0c326ea4a10f726/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.google.auto.value/auto-value-annotations/1.6.2/ed193d86e0af90cc2342aedbe73c5d86b03fa09b/auto-value-annotations-1.6.2.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/f645ed69d595b24d4cf8b3fbb64cc505bede8829/gson-2.8.5.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/firebase-database-collection-16.0.1.aar/869946ff6b3078307939b70d158c08e9/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/b36f4a04584c0fb0d9af2d3401cdff8dacb1ea54/okhttp-3.12.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.21/f30e4a9897913e53d778f564110bafa1fef46643/kotlin-stdlib-common-1.3.21.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.3.1/9eaeaefa25c6ff18d7008f06208d41a261d8b29b/disklrucache-4.3.1.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.3.1/a786169ed0f768a589503844726f2380bb2139c/annotations-4.3.1.jar;C:/Users/micha/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-17.2.0.aar/01a888bb90cd248d8b51a8e53a6963d5/jars/classes.jar;C:/Users/micha/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.15.0/bc28b5a964c8f5721eb58ee3f3c47a9bcbf4f4d8/okio-1.15.0.jar;C:/Users/micha/AppData/Local/Android/Sdk/platforms/android-28/android.jar" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/transforms-2/files-2.1/34d40aeca61397d2d46a201722a9bb16/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.21/d207ce2c9bcf17dc8e51bab4dbfdac4d013e7138/kotlin-stdlib-jdk7-1.3.21.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.21/4bcc2012b84840e19e1e28074284cac908be0295/kotlin-stdlib-1.3.21.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.21/f30e4a9897913e53d778f564110bafa1fef46643/kotlin-stdlib-common-1.3.21.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/4a1f6a04d951eb32f3421e335958c9e7/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/889f401ba031370325735214ef19c205/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/629d8346ddd8cc3be5d9c1adc224b080/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/207400ceca86ec33b855354fbb2cca9d/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/dd4423888881fef3e729d6da2690afbd/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/f006f3accaf2a5520f4bb4e79c6adebe/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/e4f7199f7866e401e6bb62c6259160c5/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/8695b4c3a200b2ea0e045d3b11061363/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/d77d7c951d8dcd854077ffbb2b3d1b98/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/f6694e1e1e090b97e507ff0e429dd599/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/0ada5a59f20f883caba42522079f881a/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/fcbf0b08a3f7c07e174ef38db4512dcb/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/879504d60d231fedca06c5f14e484ad4/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/dbf3de32ccf44a1243f5dd2162c4b569/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/cfc67507dfbe4de651e6f043d4976694/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/dc8b5a59533952e66824ae766de7f675/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/39773b1c2f811b336537b832d4086ade/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/a6b26c773359b2cf5433861de9d6bc39/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/3d89a7d32429354f9cf3bbff950d89b2/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/d9a913245ec1138d2ca9480a5ac8e11a/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/2476961d880ae222f6dedd710383923d/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/917cb6810cf22f61f15260f1e0932fb5/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/80f31a188d112a073fd6e51020d2b7fe/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/801635d99a8cfc3f5a35ac60e959cbef/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/dbba15a5ba2d3f58e10d0243cae4399c/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/24179fa75cdd7c172b4be1f80504b0b4/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/72423a3186d8c31e7991f17de20877b2/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/fb2181b6468fbf1c8c34f24bdfc8ff95/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/60285b964d99e1fd09a97ccd0a6746cd/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/629edef44bb14f5bdb6753033e38be2a/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/a70646b0316585dd70a2ea038e3e72b6/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/957a2c736d66101d6816ede7bc6badeb/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/553d2d3b5aa1df6eadf5273b785a544b/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/d28ee09a288e31e45bf36b3d6bbe8ee2/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/550d515c11ca4d4721e0d72d69935f5e/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/1dbe17b07aa38501a01fbc9249563557/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/7991b09a8bf78c52ed19cc98036dc154/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/03ba1f499ea41f07156dd46c1dd84654/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/7d22251f74a4db7ebe29c6538a7630aa/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/c9aa013a455ccf1b2ad6becc2ba15dc1/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/a1224498b37b85fcb0dd09520002d65a/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/b2b3882c518a81b01b1bfa74b25af6c7/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/12e81bcc3605797d803f839a3ee390d0/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/b953b6ee434eaf5a39b0f1e26514b9f8/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/baaf4df3240bb83b946c20a5697f1434/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/c651be747e6ff0f6a462d96019ede392/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/a1c87d6a51f99a4d8ce1818ceb2c48cf/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/4f82005ca5e0677c12812c001bceb8a4/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/97fd84e72d03063184ff1162b841b304/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/2dc61cc1f9f0edecd3cdae8c2afab3b6/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/3abcadb46d6072282a78b4c86881bf15/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/5f6e18d80002553769744fcd66eafdb9/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/9ea8cdc3e7a44b2d78bf6b7ca6cb2456/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/f0279a70ab42f39ea50a1c098fcd0eaa/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/4c8558c7b3918427b8e2c8ffeaf1194b/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/beb44876d6081732023ad7a309f11710/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/529ad7a3b18e1130c421dcc328c60f11/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/394e0e9a5c20cdce4173270441d26830/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/e430738c00b4ee567faa05214b1b8318/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/2b021305d569206decb5ca0cf62cc59a/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/3f08845642bd9ae0880f67cdd36b9b62/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/d2b5a3172959d9d83e2cd705f30d55bc/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/349793531526610c754b36c561ff4fde/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/8883a778cd2cb06d8a1edd01f7e75b52/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/8b06fc6b8c3a8dde16287266c63928cf/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/93137ad322e5a6f8c749efedc5020869/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/a563294d5cc9ba7f483496a318207d46/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.3/bde0667d7414c16ed62d3cfe993cff7f9d732373/constraint-layout-solver-1.1.3.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/33331c19ad4fb919352da65839e29f6e/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.google.auto.value/auto-value-annotations/1.6/da725083ee79fdcd86d9f3d8a76e38174a01892a/auto-value-annotations-1.6.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/9da9528d40be8d3b5ea6f4535afc3a57/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/d0cdca3333f29487668efe82e8935e25/jars/classes.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/6702e549326a952e5e60d11f3bb824e3/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/e75357e3e3c504e7ebb9500a75907a28/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava2/2.3.0/f436637f9500ab5b8bc32afe556373180894b4a5/adapter-rxjava2-2.3.0.jar;C:/Users/humbl/.gradle/caches/transforms-2/files-2.1/852a324a14331bc9cc68f0fac6988d84/jars/classes.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.5.0/713ce36037bf24a76a3974c05cb85c3f754b1cc3/retrofit-2.5.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/b36f4a04584c0fb0d9af2d3401cdff8dacb1ea54/okhttp-3.12.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.15.0/bc28b5a964c8f5721eb58ee3f3c47a9bcbf4f4d8/okio-1.15.0.jar;C:/Users/humbl/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar;C:/Users/humbl/AppData/Local/Android/Sdk/platforms/android-28/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="app_debug" />
@@ -79,13 +80,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/debug/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/assets" type="java-test-resource" />
@@ -93,6 +87,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
@@ -100,13 +101,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -114,6 +108,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/not_namespaced_r_class_sources" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/source/r" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
@@ -124,21 +125,22 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundle_manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check_manifest_result" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/compatible_screen_manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/duplicate_classes_check" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-apk" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_app_manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_app_info_output_file" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_main_apk_resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_split_apk_resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/metadata_application_id" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/metadata_feature_manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
@@ -146,9 +148,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shader_assets" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
@@ -163,114 +163,107 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-identifier:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:localbroadcastmanager:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: de.hdodenhof:circleimageview:3.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-sdk:16.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:loader:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base:16.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-sdk-api:16.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata-core:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:16.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:cursoradapter:28.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test.espresso:espresso-core:3.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-compat:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth:16.2.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-api:16.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-base:16.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-maps:16.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-phenotype:16.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-ads:17.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: id.zelory:compressor:2.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxjava:2.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:4.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.21@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-ads:17.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.21@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.12.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.1.3@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database:16.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement:16.4.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.3.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-base:16.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-places:16.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:asynclayoutinflater:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout:1.1.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.4.7@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:retrofit:2.5.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:viewpager:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common:16.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-gass:17.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-clearcut:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:adapter-rxjava2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.1.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads:17.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:customview:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector:17.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:17.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value-annotations:1.6@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:design:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-base:17.1.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite:17.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.21@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-base:17.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:viewmodel:1.1.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test.espresso:espresso-idling-resource:3.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:runtime:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.7@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test:runner:1.0.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-core:16.0.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javawriter:2.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.mancj:MaterialSearchBar:0.8.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-sdk-api:16.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:converter-gson:2.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:cardview-v7:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite:17.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.libraries.places:places:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:17.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:exifinterface:25.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:16.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.3.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-api:16.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database-collection:16.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics-impl:16.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-flags:16.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:16.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-core:16.0.8@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:customtabs:26.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils:28.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test:monitor:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-places-placereport:16.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:17.1.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:17.3.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:interpolator:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:transition:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata:1.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:16.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-storage:16.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:drawerlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth-interop:16.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector-impl:16.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:documentfile:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:slidingpanelayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database:16.0.6@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.support:multidex-instrumentation:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid-interop:16.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.3.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:collections:28.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:exifinterface:27.1.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-impl:16.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:print:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.volley:volley:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-stats:16.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:versionedparcelable:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base:16.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.firebaseui:firebase-ui-database:4.3.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.2@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth:16.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads:17.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.picasso:picasso:2.5.2@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:16.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.firebaseui:firebase-ui-common:4.3.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-gass:17.1.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:coordinatorlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:swiperefreshlayout:28.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.7.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:multidex:1.0.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:16.0.1@aar" level="project" />
   </component>

@@ -56,8 +56,10 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     private var currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
 
     private var customLocationMarker : Marker? = null
+    private var customDestinationMarker : Marker? = null
 
     private var customLocation : Any? = null
+    private var customDestination : Any? = null
     private var liveLocation : LatLng? = null
 
     private var userSwitchState : Any? =  null
@@ -67,6 +69,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     private lateinit var locationMapFragment : SupportMapFragment
     private lateinit var locationGoogleMap : GoogleMap
+    private lateinit var destinationMapFragment : SupportMapFragment
+    private lateinit var destinationGoogleMap : GoogleMap
 
     private lateinit var fusedLocationClient : FusedLocationProviderClient
 
@@ -90,7 +94,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
-            toast("Could not get address from LatLng.")
+            toast("Could not get address from $latLng}")
         }
 
         return addressText
@@ -104,7 +108,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         try {
             addresses = gCoder.getFromLocationName(text, 1)
         } catch (e: IOException) {
-            toast("Could not get address from text.")
+            toast("Could not get address from $text")
         }
 
         if (addresses != null && addresses.isNotEmpty()) {
@@ -117,7 +121,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     @SuppressLint("MissingPermission")
     fun setUpLocationMap() {
         if (userSwitchState == "on") {
-            toast("*Shows LIVE location on map.*")
             locationGoogleMap.isMyLocationEnabled = true
 
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -139,7 +142,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         }
         else {
-            toast("*Shows CUSTOM location on map.*")
             // Retrieve custom location latitude and longitude
             val customLocationText = findViewById<EditText>(R.id.editProfileLocation).text.toString()
             val customLocationLL = getLLFromText(customLocationText)
@@ -154,20 +156,29 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
     }
 
+    private fun setUpDestinationMap() {
+        val customDestinationText = findViewById<EditText>(R.id.editProfileDestination).text.toString()
+        val customDestinationLL = getLLFromText(customDestinationText)
+        destinationGoogleMap.uiSettings.isZoomControlsEnabled = true
+        if (customDestinationMarker != null) {
+            customDestinationMarker?.remove()
+        }
+        customDestinationMarker = destinationGoogleMap.addMarker(MarkerOptions().position(customDestinationLL).title(customDestinationText))
+        destinationGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customDestinationLL, 15f))
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             LOCATION_PERMISSION_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permission IS granted
-                    toast("Location permission granted.")
                     locationPermission = true
                     currentUserData.child("switchState").setValue("on")
                     setUpLocationMap()
                 }
                 else {
                     // Permission NOT granted
-                    toast("Location permission denied.")
                     locationPermission = false
                     currentUserData.child("switchState").setValue("off")
                     setUpLocationMap()
@@ -209,14 +220,12 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 }
                 else {
                     // Request permission
-                    toast("Requesting permission.")
                     ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), EditProfileActivity.LOCATION_PERMISSION_REQUEST_CODE
                     )
                 }
             }
             else if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // Permission IS granted
-                toast("Setting up map.")
                 locationPermission = true
                 setUpLocationMap()
             }
@@ -226,9 +235,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         currentUserData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 customLocation = p0.child("customLocation").value
-                toast("Retrieved custom location.")
 
-                if (customLocation == null) {
+                if (customLocation == null || customLocation == "") {
                     currentUserData.child("customLocation").setValue("Newark, New Jersey")
                 }
                 else {
@@ -241,20 +249,39 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         })
 
+        // Pre-fill custom destination editTextView
+        currentUserData.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                customDestination = p0.child("customDestination").value
+
+                if (customDestination == null || customDestination == "") {
+                    currentUserData.child("customDestination").setValue("Newark, New Jersey")
+                }
+                else {
+                    findViewById<EditText>(R.id.editProfileDestination).setText(customDestination.toString())
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                toast("Could not retrieve custom destination.")
+            }
+        })
+
         locationMapFragment = supportFragmentManager.findFragmentById(R.id.editProfileLocationMap) as SupportMapFragment
-        locationMapFragment.onCreate(null)
-        locationMapFragment.onResume()
         locationMapFragment.getMapAsync(OnMapReadyCallback {
             locationGoogleMap = it
             checkPermission()
         })
 
-        // TODO: Implement destination map
+        destinationMapFragment = supportFragmentManager.findFragmentById(R.id.editProfileDestinationMap) as SupportMapFragment
+        destinationMapFragment.getMapAsync(OnMapReadyCallback {
+            destinationGoogleMap = it
+            setUpDestinationMap()
+        })
 
         currentUserData.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 userSwitchState = p0.child("switchState").value
-                toast("Retrieved switch state.")
 
                 if (userSwitchState == null) {
                     currentUserData.child("switchState").setValue("off")
@@ -368,7 +395,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
 
             var destination = editProfileDestination.text.toString()
-            mDatabase!!.child("destination").setValue(destination).addOnCompleteListener { task: Task<Void> ->
+            mDatabase!!.child("customDestination").setValue(destination).addOnCompleteListener { task: Task<Void> ->
                 if (task.isSuccessful) {
                     //Toast.makeText(this,"Destination Updated Successfully!",Toast.LENGTH_LONG).show()
                 } else {

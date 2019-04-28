@@ -57,8 +57,8 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
     var mDatabase: DatabaseReference? = null
     var mCurrentUser: FirebaseUser? = null
 
-    lateinit var locationMap : GoogleMap
-    lateinit var locationMapView : MapView
+    private lateinit var locationMap : GoogleMap
+    private lateinit var locationMapView : MapView
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -82,7 +82,7 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
                 addressText = address.getAddressLine(0).toString()
             }
         } catch (e: IOException) {
-            toast("Could not get address")
+            toast("Could not get address from $latLng")
         }
 
         return addressText
@@ -93,11 +93,9 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
             LOCATION_PERMISSION_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // Permission IS granted
-                    toast("Location permission granted.")
                     setUpLocationMap()
                 } else {
                     // Permission NOT granted
-                    toast("Location permission denied.")
                 }
                 return
             }
@@ -131,13 +129,11 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
             }
             else {
                 // Request permission
-                toast("Requesting permission.")
                 requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
             }
         }
         else if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Permission IS granted
-            toast("Setting up map.")
             setUpLocationMap()
         }
     }
@@ -151,41 +147,13 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         return profileView
     }
 
-    override fun onMapReady(map : GoogleMap) {
-        MapsInitializer.initialize(context)
-        locationMap = map
-
-        // Retrieve switch state from DB
-        currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-        currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
-        currentUserData.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                userSwitchState = p0.child("switchState").value
-                toast("Retrieved switch state.")
-
-                if (userSwitchState == "off") {
-
-                }
-                else {
-                    checkPermission()
-                }
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                toast("Could not retrieve switch state.")
-            }
-        })
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         locationMapView = profileView.findViewById(R.id.profileLocationMapView)
-        if (locationMapView != null) {
-            locationMapView.onCreate(null)
-            locationMapView.onResume()
-            locationMapView.getMapAsync(this)
-        }
+        locationMapView.onCreate(null)
+        locationMapView.onResume()
+        locationMapView.getMapAsync(this)
 
         val events = ArrayList<Event>()
         events.add(Event("Kitty Party", "Home", "today", "2:00", "zxcz"))
@@ -211,12 +179,8 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
         mDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var user_status = dataSnapshot!!.child("status").value
-                var user_location = dataSnapshot!!.child("location").value
-                var user_destination = dataSnapshot!!.child("destination").value
 
                 profileStatus.text = user_status.toString()
-                profileLocationHeading.text = user_location.toString()
-                profileDestinationHeading.text = user_destination.toString()
 
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
 
@@ -277,6 +241,61 @@ class ProfileActivity : Fragment(), OnMapReadyCallback {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
     }
+
+    override fun onMapReady(map : GoogleMap) {
+        MapsInitializer.initialize(context)
+        locationMap = map
+
+        // Retrieve switch state from DB
+        currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        currentUserData = FirebaseDatabase.getInstance().reference.child("Registration q").child(currentUserId)
+        currentUserData.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                userSwitchState = p0.child("switchState").value
+
+                if (userSwitchState == "off") {
+
+                }
+                else {
+                    checkPermission()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                toast("Could not retrieve switch state.")
+            }
+        })
+    }
+
+    /*override fun onStart () {
+        super.onStart()
+        locationMapView?.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        locationMapView?.onResume()
+    }
+    override fun onPause() {
+        super.onPause()
+        locationMapView?.onPause()
+    }
+    override fun onStop() {
+        super.onStop()
+        locationMapView?.onStop()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        locationMapView?.onDestroy()
+    }
+    override fun onSaveInstanceState(outState : Bundle) {
+        super.onSaveInstanceState(outState)
+        locationMapView?.onSaveInstanceState(outState)
+    }
+    override fun onLowMemory() {
+        super.onLowMemory()
+        locationMapView?.onLowMemory()
+    }*/
 }
 
 
@@ -304,12 +323,8 @@ class whatever : AppCompatActivity() {
         mDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var user_status = dataSnapshot!!.child("status").value
-                var user_location = dataSnapshot!!.child("location").value
-                var user_destination = dataSnapshot!!.child("destination").value
 
                 profileStatus.text = user_status.toString()
-                profileLocationHeading.text = user_location.toString()
-                profileDestinationHeading.text = user_destination.toString()
 
 
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
@@ -357,8 +372,6 @@ class whatever : AppCompatActivity() {
         profileUpdateProfileButton.setOnClickListener {
             var intent = Intent(this, EditProfileActivity::class.java)
             intent.putExtra("status", profileStatus.text.toString())
-            intent.putExtra("location", profileLocationHeading.text.toString())
-            intent.putExtra("destination", profileDestinationHeading.text.toString())
             startActivity(intent)
         }
     }

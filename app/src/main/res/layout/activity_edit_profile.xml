@@ -99,7 +99,8 @@
                     android:inputType="textPostalAddress"
                     android:ems="10"
                     android:id="@+id/editProfileDestination" android:layout_marginTop="20dp"
-                    android:hint="@string/editProfileDestination"/>
+                    android:hint="@string/editProfileDestination"
+            />
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
