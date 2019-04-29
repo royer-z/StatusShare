@@ -1,9 +1,10 @@
-package com.example.statusshare
+package com.example.statusshare.Service.ViewHolders
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import com.example.statusshare.Interface.IRecyclerItemClickListener
+import com.example.statusshare.R
 
 
 class AllViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{

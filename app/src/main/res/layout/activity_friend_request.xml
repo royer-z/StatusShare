@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context="com.example.statusshare.ActivityAllPeopleDriver"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+    
+    
+  <!--  <com.mancj.materialsearchbar.MaterialSearchBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/material_search_bar"
+            app:mt_hint="@string/EmailHint"
+            app:mt_maxSuggestionsCount="50">
+
+    </com.mancj.materialsearchbar.MaterialSearchBar>-->
+    
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_friend_request"
+            android:layout_marginTop="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

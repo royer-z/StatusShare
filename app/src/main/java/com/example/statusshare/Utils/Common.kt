@@ -17,9 +17,11 @@ object Common {
     val FRIEND_REQUEST: String = "FriendRequest"
 
 
-    val fcmService:IFCMService
-    get() = RetroFitClient.getClient("https://fcm.googleapis.com/")
-        .create(IFCMService::class.java)
+
+    val fcmService: IFCMService
+        get() = RetroFitClient.getClient("https://fcm.googleapis.com/")
+            .create(IFCMService::class.java)
+
 
 
 

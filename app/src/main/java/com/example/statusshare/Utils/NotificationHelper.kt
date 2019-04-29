@@ -10,6 +10,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.support.annotation.RequiresApi
+import com.example.statusshare.R
 
 class NotificationHelper (base:Context):ContextWrapper(base){
 
@@ -43,11 +44,18 @@ class NotificationHelper (base:Context):ContextWrapper(base){
 
     }
 
-    private fun getManager(): NotificationManager {
+    public fun getManager(): NotificationManager {
         if(manager == null)
             manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         return manager!!
     }
 
+    fun getRealtimeTrackingNotification(title:String, content:String):Notification.Builder{
+        return Notification.Builder(applicationContext, FRIEND_CHANNEL_ID)
+            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setAutoCancel(false)
+    }
 
 }
