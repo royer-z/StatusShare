@@ -234,7 +234,7 @@ class ProfileActivity : Fragment() {
             }
         })
 
-//        profileUpdateProfileButton.setOnClickListener {
+//        profileUpdateProfileTextView.setOnClickListener {
 //            var intent = Intent(this, EditProfileActivity::class.java)
 //            intent.putExtra("status", profileStatus.text.toString())
 //            intent.putExtra("location", profileLocationHeading.text.toString())
@@ -242,9 +242,9 @@ class ProfileActivity : Fragment() {
 //            startActivity(intent)
 //        }
 
-        val btn: Button = view.findViewById(R.id.profileUpdateProfileButton)
+        val updateProfileTextView: View = view.findViewById(R.id.profileUpdateProfileTextView)
 
-        btn.setOnClickListener {
+        updateProfileTextView.setOnClickListener {
             val intent = Intent(getActivity(), EditProfileActivity::class.java)
             intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)
@@ -377,7 +377,7 @@ class whatever : AppCompatActivity() {
             }
         })
 
-        profileUpdateProfileButton.setOnClickListener {
+        profileUpdateProfileTextView.setOnClickListener {
             var intent = Intent(this, EditProfileActivity::class.java)
             intent.putExtra("status", profileStatus.text.toString())
             startActivity(intent)
