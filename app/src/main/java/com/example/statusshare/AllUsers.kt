@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.statusshare.Service.ViewHolders.AllViewHolder
 //import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -42,9 +43,9 @@ class AllUsers : AppCompatActivity() {
             .setQuery(query,AllUsersHelper::class.java)
             .build()
 
-        adapter = object:FirebaseRecyclerAdapter<AllUsersHelper,AllViewHolder>(options)
+        adapter = object:FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>(options)
         {
-            override fun onCreateViewHolder(parent: ViewGroup, position: Int): AllViewHolder{
+            override fun onCreateViewHolder(parent: ViewGroup, position: Int): AllViewHolder {
                 val itemView = LayoutInflater.from(parent.context)
                     .inflate(R.layout.all_users_display_layout,parent,false)
                 return AllViewHolder(itemView)

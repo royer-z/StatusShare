@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              android:id="@+id/contactsConstraintLayout">
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <LinearLayout
             android:orientation="vertical"
@@ -38,11 +43,30 @@
                     android:layout_height="40dp" android:id="@+id/contactsFamilyAddButton"
                     android:layout_marginStart="250dp"/>
         </LinearLayout>
+
+        <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/all_users_display_layout"
+                        android:id="@+id/recycler_family_list">
+                </android.support.v7.widget.RecyclerView>
+            </ScrollView>
+
+        </LinearLayout>
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/contactsFriendsLinearLayout"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
             <TextView
                     android:text="@string/contactsFriendsHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsFriendsHeading"
@@ -54,6 +78,25 @@
                     android:layout_height="40dp" android:id="@+id/contactsFriendsAddButton"
                     android:layout_marginStart="243dp"/>
         </LinearLayout>
+
+        <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/all_users_display_layout"
+                        android:id="@+id/recycler_friend_list">
+                </android.support.v7.widget.RecyclerView>
+            </ScrollView>
+
+        </LinearLayout>
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -70,5 +113,24 @@
                     android:layout_height="40dp" android:id="@+id/contactsTeamAddButton"
                     android:layout_marginStart="256dp"/>
         </LinearLayout>
+
+        <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/all_users_display_layout"
+                        android:id="@+id/recycler_team_list">
+                </android.support.v7.widget.RecyclerView>
+            </ScrollView>
+
+        </LinearLayout>
     </LinearLayout>
+</ScrollView>
 </android.support.constraint.ConstraintLayout>
