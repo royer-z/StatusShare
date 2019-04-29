@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_contacts.*
 
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -36,16 +35,16 @@ class ContactActivity : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btn: Button = view.findViewById(R.id.contactsFamilyAddButton)
+        val familyAddTextView: View = view.findViewById(R.id.contactsFamilyAddTextView)
 
-        btn.setOnClickListener(){
+        familyAddTextView.setOnClickListener(){
             val intent = Intent(getActivity(), ActivityAllPeopleDriver::class.java)
             //intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)
         }
 
-        val btnFriends: Button = view.findViewById(R.id.contactsFriendsAddButton)
-        btnFriends.setOnClickListener(){
+        val friendsAddTextView: View = view.findViewById(R.id.contactFriendsAddTextView)
+        friendsAddTextView.setOnClickListener(){
             val intent = Intent(getActivity(), FriendRequest::class.java)
             //intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)

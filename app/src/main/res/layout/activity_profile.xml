@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/profileProfileImage"
                         android:contentDescription="@string/profileProfileImageContentDescription"
-                        android:background="#17A42F"
+                        android:background="#C7BB14"
                         android:padding="5dp"
                         android:cropToPadding="true"
                         tools:srcCompat="@tools:sample/avatars[0]"
@@ -52,13 +52,12 @@
                     android:layout_height="wrap_content" android:id="@+id/profileStatus"
                     android:textAlignment="center"
                     android:layout_marginTop="20dp"/>
-            <Button
-                    android:text="@string/profileUpdateProfileButton"
+            <TextView
+                    android:text="Update Profile"
+                    android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/profileUpdateProfileButton"
-                    android:layout_marginTop="20dp"
-                    android:textAlignment="center" android:textAllCaps="true"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_height="wrap_content" android:id="@+id/profileUpdateProfileTextView"
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="20dp" android:textSize="18sp"/>
             <TextView
                     android:text="@string/profileLocationHeading"
                     android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
@@ -81,6 +80,16 @@
                     android:layout_marginEnd="271dp"
                     android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="20dp"
             />
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" android:id="@+id/profileDestinationFrameLayout"
+                    tools:context=".ProfileActivity">
+
+                <com.google.android.gms.maps.MapView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/profileDestinationMapView"
+                />
+            </FrameLayout>
             <TextView
                     android:text="@string/profileEventsHeading"
                     android:layout_width="109dp"
