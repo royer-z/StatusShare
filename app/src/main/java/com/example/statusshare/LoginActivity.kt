@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private var etEmail: EditText? = null
     private var etPassword: EditText? = null
     private var btnLogin: Button? = null
-    private var btnCreateAccount: Button? = null
+    private var registerTextView: TextView? = null
     private var mProgressBar: ProgressDialog? = null
 
     //Firebase references
@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         etEmail = findViewById<View>(R.id.loginEmail) as EditText
         etPassword = findViewById<View>(R.id.loginPassword) as EditText
         btnLogin = findViewById<View>(R.id.loginLoginButton) as Button
-        btnCreateAccount = findViewById<View>(R.id.loginRegisterButton) as Button
+        registerTextView = findViewById<View>(R.id.loginRegisterTextView) as TextView
         mProgressBar = ProgressDialog(this)
 
         mAuth = FirebaseAuth.getInstance()
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
 //                    ForgotPasswordActivity::class.java)
 //            ) }
 
-        btnCreateAccount!!
+        registerTextView!!
             .setOnClickListener { startActivity(Intent(this@LoginActivity,
                 Registration::class.java)) }
 
