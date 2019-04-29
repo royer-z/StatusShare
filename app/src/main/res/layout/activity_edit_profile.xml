@@ -104,38 +104,20 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileSaveLinearLayout">
-                <Button
-                        android:text="@string/editProfileSaveButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/editProfileSaveButton"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="80dp"
-                        android:layout_marginEnd="68dp"/>
-                <Button
-                        android:text="@string/editProfileCancelButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/editProfileCancelButton"
-                        android:layout_marginTop="20dp"
-                />
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/editProfileEventsLinearLayout">
                 <TextView
                         android:text="@string/editProfileEventsHeading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/editProfileEventsHeading"
                         android:layout_marginTop="40dp"
-                        android:layout_marginStart="30dp" android:textSize="18sp"/>
-                <Button
-                        android:text="@string/editProfilePlusButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp" android:id="@+id/editProfilePlusButton"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginStart="258dp"
-                        android:textSize="12sp" android:layout_marginEnd="30dp"/>
+                        android:layout_marginStart="30dp" android:textSize="18sp" android:ems="10"/>
+                <TextView
+                        android:text="Add Event"
+                        android:textColor="#38A1F3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editProfileAddEventTextView" android:textSize="18sp"
+                        android:layout_marginTop="40dp"/>
 
 
             </LinearLayout>
@@ -145,4 +127,15 @@
                     android:id="@+id/recyclerView2"/>
         </LinearLayout>
     </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/editProfileFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            app:srcCompat="@android:drawable/ic_menu_save"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editProfileScrollView"
+            app:layout_constraintTop_toBottomOf="@+id/editProfileScrollView"
+            app:layout_constraintVertical_bias="1.0" app:layout_constraintHorizontal_bias="1.0"
+    />
 </android.support.constraint.ConstraintLayout>

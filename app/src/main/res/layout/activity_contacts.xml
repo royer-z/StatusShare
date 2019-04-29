@@ -31,12 +31,13 @@
                     android:text="@string/contactsFamilyHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsFamilyHeading"
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp"/>
-            <Button
-                    android:text="@string/contactsFamilyAddButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" android:id="@+id/contactsFamilyAddButton"
-                    android:layout_marginStart="250dp"/>
+                    android:layout_marginStart="30dp" android:ems="12"/>
+            <TextView
+                    android:text="Add"
+                    android:textColor="#38A1F3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/contactsFamilyAddTextView"
+                    android:textSize="18sp"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
@@ -47,12 +48,13 @@
                     android:text="@string/contactsFriendsHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsFriendsHeading"
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp"/>
-            <Button
-                    android:text="@string/contactsFriendsAddButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" android:id="@+id/contactsFriendsAddButton"
-                    android:layout_marginStart="243dp"/>
+                    android:layout_marginStart="30dp" android:ems="12"/>
+            <TextView
+                    android:text="Add"
+                    android:textColor="#38A1F3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/contactsFriendsAddTextView"
+                    android:textSize="18sp"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
@@ -63,12 +65,13 @@
                     android:text="@string/contactsTeamHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsTeamHeading"
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp"/>
-            <Button
-                    android:text="@string/contactsTeamAddButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" android:id="@+id/contactsTeamAddButton"
-                    android:layout_marginStart="256dp"/>
+                    android:layout_marginStart="30dp" android:ems="12"/>
+            <TextView
+                    android:text="Add"
+                    android:textColor="#38A1F3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/contactsTeamAddTextView"
+                    android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

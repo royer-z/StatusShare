@@ -368,7 +368,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 //            editProfileDestination.setText(oldDestination.toString())
         }
 
-        editProfileSaveButton.setOnClickListener {
+        editProfileFAB.setOnClickListener {
             mCurrentUser = FirebaseAuth.getInstance().currentUser
             var userId = mCurrentUser!!.uid
 
@@ -461,7 +461,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 }
             }))
         //val fab = findViewById<View>(R.id.fab) as FloatingActionButton
-        val fab = findViewById<View>(R.id.editProfilePlusButton)
+        val fab = findViewById<View>(R.id.editProfileAddEventTextView)
         fab.setOnClickListener { showEntryDialog(false, null, -1) }
 
     }

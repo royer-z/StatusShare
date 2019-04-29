@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,9 +22,9 @@ class ContactActivity : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btn: Button = view.findViewById(R.id.contactsFamilyAddButton)
+        val familyAddTextView: View = view.findViewById(R.id.contactsFamilyAddTextView)
 
-        btn.setOnClickListener(){
+        familyAddTextView.setOnClickListener(){
             val intent = Intent(getActivity(), ActivityAllPeopleDriver::class.java)
             //intent.putExtra("status", profileStatus.text.toString())
             getActivity()?.startActivity(intent)
