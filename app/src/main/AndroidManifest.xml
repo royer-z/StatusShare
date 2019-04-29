@@ -18,11 +18,8 @@
                 android:name=".AllUsers"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".EditEventActivity">
-        </activity>
-
-        <activity android:name=".AddEventActivity">
-        </activity>
+        <activity android:name=".EditEventActivity"></activity>
+        <activity android:name=".AddEventActivity"></activity>
         <activity android:name=".ActivityAllPeopleDriver"></activity>
         <activity android:name=".whatever"></activity>
         <activity android:name=".AddContactActivity"></activity>
@@ -35,6 +32,7 @@
         <activity android:name=".Registration"/>
         <activity android:name=".EditProfileActivity"/>
         <activity android:name=".BottomNavigationActivity"/>
+        <activity android:name=".BottomNavActivityToMyProfile"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
