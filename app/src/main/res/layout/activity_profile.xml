@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/profileProfileImage"
                         android:contentDescription="@string/profileProfileImageContentDescription"
-                        android:background="#17A42F"
+                        android:background="#C7BB14"
                         android:padding="5dp"
                         android:cropToPadding="true"
                         tools:srcCompat="@tools:sample/avatars[0]"
