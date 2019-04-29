@@ -43,7 +43,7 @@ class ContactActivity : Fragment() {
             getActivity()?.startActivity(intent)
         }
 
-        val friendsAddTextView: View = view.findViewById(R.id.contactFriendsAddTextView)
+        val friendsAddTextView: View = view.findViewById(R.id.contactsFriendsAddTextView)
         friendsAddTextView.setOnClickListener(){
             val intent = Intent(getActivity(), FriendRequest::class.java)
             //intent.putExtra("status", profileStatus.text.toString())

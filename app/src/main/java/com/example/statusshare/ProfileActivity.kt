@@ -49,8 +49,8 @@ class ProfileActivity : Fragment() {
 
     private var userSwitchState : Any? =  null
     private lateinit var userLiveLocation : LatLng
-    private lateinit var userCustomLocation : String
-    private lateinit var userCustomDestination : String
+    private var userCustomLocation : Any? = null
+    private var userCustomDestination : Any? = null
 
     lateinit var profileView : View
 
@@ -112,17 +112,17 @@ class ProfileActivity : Fragment() {
             locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
         }
         else {
-            val customLatLng = getLLFromText(userCustomLocation!!)
+            val customLatLng = getLLFromText(userCustomLocation.toString())
             locationMap.uiSettings.isZoomControlsEnabled = true
-            locationMap.addMarker(MarkerOptions().position(customLatLng).title(userCustomLocation))
+            locationMap.addMarker(MarkerOptions().position(customLatLng).title(userCustomLocation.toString()))
             locationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLatLng, 15f))
         }
     }
 
     private fun setUpDestinationMap() {
-        val customLatLng = getLLFromText(userCustomDestination!!)
+        val customLatLng = getLLFromText(userCustomDestination.toString())
         destinationMap.uiSettings.isZoomControlsEnabled = true
-        destinationMap.addMarker(MarkerOptions().position(customLatLng).title(userCustomDestination))
+        destinationMap.addMarker(MarkerOptions().position(customLatLng).title(userCustomDestination.toString()))
         destinationMap.animateCamera(CameraUpdateFactory.newLatLngZoom(customLatLng, 15f))
     }
 
@@ -149,8 +149,14 @@ class ProfileActivity : Fragment() {
                 else {
                     userLiveLocation = LatLng(0.0, 0.0)
                 }
-                userCustomLocation = p0.child("customLocation").value as String
-                userCustomDestination = p0.child("customDestination").value as String
+                userCustomLocation = p0.child("customLocation").value
+                if (userCustomLocation == null) {
+                    currentUserData.child("customLocation").setValue("Newark, New Jersey")
+                }
+                userCustomDestination = p0.child("customDestination").value
+                if (userCustomDestination == null) {
+                    currentUserData.child("customDestination").setValue("Newark, New Jersey")
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
