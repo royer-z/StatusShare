@@ -356,7 +356,32 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
         statusSpinner.setSelection(1)
 
-        status_name_code = countryPickerData.get(0).statusWord!!
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
+                if (statusColorNum == "0") {
+                    statusSpinner.setSelection(0)
+                    status_name_code = countryPickerData.get(0).statusWord!!
+                }
+                if (statusColorNum == "1") {
+                    statusSpinner.setSelection(1)
+                    status_name_code = countryPickerData.get(1).statusWord!!
+
+                }
+                if (statusColorNum == "2") {
+                    statusSpinner.setSelection(2)
+                    status_name_code = countryPickerData.get(2).statusWord!!
+                }
+
+                if (statusColorNum == "3") {
+                    statusSpinner.setSelection(3)
+                    status_name_code = countryPickerData.get(3).statusWord!!
+                }
+            }
+
+            override fun onCancelled(databaseErrorSnapshot: DatabaseError) {
+            }
+        })
 
         if (intent.extras != null) {
             var oldStatus = intent.extras.get("status")

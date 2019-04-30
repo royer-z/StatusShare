@@ -166,16 +166,6 @@ class ProfileActivity : Fragment() {
             }
         })
 
-        val events = ArrayList<Event>()
-        events.add(Event("Kitty Party", "Home", "today", "2:00", "zxcz"))
-        events.add(Event("LOLI Party", "Home", "today", "6:00", "dixzcsc"))
-        events.add(Event("Zoo Party", "Work Office", "today", "12:00", "zxc"))
-        events.add(Event("Sleep Over", "NJIT", "today", "9:00", "disc"))
-
-        recyclerView1.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = eventAdapter(events)
-        }
 
         val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
         val profileImage = getView()?.findViewById<ImageView>(R.id.profileProfileImage)
@@ -192,7 +182,7 @@ class ProfileActivity : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var user_status = dataSnapshot!!.child("status").value
 
-                profileStatus.text = user_status.toString()
+                profileStatus?.text = user_status.toString()
 
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
 
@@ -301,9 +291,6 @@ class ProfileActivity : Fragment() {
                 return EventViewHolder(itemView)
             }
             override fun onBindViewHolder(holder: EventViewHolder, position: Int, model: EventItemModel) {
-//                holder.user_name.text = model.firstName
-//                holder.user_status.text = model.lastName
-//                holder.email_field.text = model.email
                 holder.setModel(model)
             }
         }
