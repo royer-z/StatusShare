@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-            android:id="@+id/dialog_header"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/dialog_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="sans-serif-light"
 
-            android:background="@color/colorPrimaryDark"
-            android:fontFamily="sans-serif-light"
+                android:textStyle="bold"/>
+        <EditText
+                android:id="@+id/event_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:textStyle="bold" />
-    <EditText
-            android:id="@+id/event_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/event_name"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:textSize="24sp" android:layout_marginTop="20dp"/>
+        <EditText
+                android:id="@+id/event_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:fontFamily="sans-serif-light"
-            android:gravity="top"
-            android:hint="@string/event_name"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            />
-    <EditText
-            android:id="@+id/event_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/event_address"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:textSize="24sp" android:layout_marginTop="10dp"/>
+        <EditText
+                android:id="@+id/event_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:fontFamily="sans-serif-light"
-            android:gravity="top"
-            android:hint="@string/event_address"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            />
-    <EditText
-            android:id="@+id/event_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/event_date"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:textSize="24sp" android:layout_marginTop="10dp"/>
+        <EditText
+                android:id="@+id/event_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:fontFamily="sans-serif-light"
-            android:gravity="top"
-            android:hint="@string/event_date"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            />
-    <EditText
-            android:id="@+id/event_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/event_time"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:textSize="24sp" android:layout_marginTop="10dp"/>
+        <EditText
+                android:id="@+id/event_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:fontFamily="sans-serif-light"
-            android:gravity="top"
-            android:hint="@string/event_time"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            />
-    <EditText
-            android:id="@+id/event_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/event_description"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:textSize="24sp" android:layout_marginTop="10dp"/>
 
-            android:fontFamily="sans-serif-light"
-            android:gravity="top"
-            android:hint="@string/event_description"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            />
-
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>

@@ -166,8 +166,6 @@ class ProfileActivity : Fragment() {
             }
         })
 
-
-        val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
         val profileImage = getView()?.findViewById<ImageView>(R.id.profileProfileImage)
 
         mCurrentUser = FirebaseAuth.getInstance().currentUser
@@ -189,20 +187,17 @@ class ProfileActivity : Fragment() {
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if (statusColorNum == "0") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
                     profileImage?.setBackgroundColor(Color.parseColor("#17A42F"))
                     //Log.d("STATUS", " available!")
                 }
                 if (statusColorNum == "1") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
                     profileImage?.setBackgroundColor(Color.parseColor("#FFFF00"))
 
                     //Log.d("STATUS", " awayyy!!!!")
                 }
                 if (statusColorNum == "2") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
                     //profileImage?.setBackgroundColor(Color.parseColor("#FF9800"))
                     profileImage?.setBackgroundColor(Color.parseColor("#FFA500"))
                     //Log.d("STATUS", " busy!!!!")
@@ -210,7 +205,6 @@ class ProfileActivity : Fragment() {
 
                 if (statusColorNum == "3") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
                     //profileImage?.setBackgroundColor(Color.parseColor("#FF0000"))
                     profileImage?.setBackgroundColor(Color.RED)
                     Log.d("STATUS", " busy!!!!")
@@ -349,7 +343,6 @@ class whatever : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
       
         //colorStatus pic
-        val colorStatusPic = findViewById<ImageView>(R.id.profileAvailabilityColor)
         val profileImage = findViewById<ImageView>(R.id.profileProfileImage)
         mCurrentUser = FirebaseAuth.getInstance().currentUser
 
@@ -372,20 +365,17 @@ class whatever : AppCompatActivity() {
                 Log.d("STATUS NUM!!", "${statusColorNum}")
                 if (statusColorNum == "0") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_green)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_green));
                     profileImage?.setBackgroundColor(Color.parseColor("#17A42F"))
                     //Log.d("STATUS", " available!")
                 }
                 if (statusColorNum == "1") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_orange)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_yellow));
                     profileImage?.setBackgroundColor(Color.YELLOW)
 
                     //Log.d("STATUS", " awayyy!!!!")
                 }
                 if (statusColorNum == "2") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_orange));
                     //profileImage?.setBackgroundColor(Color.parseColor("#FF9800"))
                     profileImage?.setBackgroundColor(Color.parseColor("#FFA500"))
                     //Log.d("STATUS", " busy!!!!")
@@ -393,7 +383,6 @@ class whatever : AppCompatActivity() {
 
                 if (statusColorNum == "3") {
                     //colorStatusPic.setImageResource(R.drawable.availability_color_red)
-                    colorStatusPic?.setImageDrawable(getResources().getDrawable(R.drawable.availability_color_red));
                     //profileImage?.setBackgroundColor(Color.parseColor("#FF0000"))
                     profileImage?.setBackgroundColor(Color.RED)
                     Log.d("STATUS", " busy!!!!")

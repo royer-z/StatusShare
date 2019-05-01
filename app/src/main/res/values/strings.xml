@@ -23,7 +23,7 @@
     <string name="profileLocationHeading">Location</string>
     <string name="profileDestinationHeading">Destination</string>
     <string name="profileEventsHeading">Events</string>
-    <string name="editProfileHeading">Edit Profile</string>
+    <string name="editProfileHeading">Update Profile</string>
     <string name="editProfileStatus">Status</string>
     <string name="editProfileLocation">Location</string>
     <string name="editProfileLiveSwitch">Live</string>
@@ -110,7 +110,7 @@
     <string name="editEventSaveButton">Save</string>
     <string name="editEventCancelButton">Cancel</string>
 
-    <string name="notificationsHeading">Scheduled Notification</string>
+    <string name="notificationsHeading">Notify</string>
     <string name="notificationsCreateButton">+</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -129,6 +129,8 @@
 
     <string name="dialog_new_entry_title">New Event</string>
     <string name="dialog_edit_entry_title">Edit Event</string>
+    <string name="contactsContactName">Name</string>
+    <string name="contactsContactStatus">Status</string>
     <string name="pending_friend_request">Pending Friend Request</string>
     <string name="add">Add</string>
 

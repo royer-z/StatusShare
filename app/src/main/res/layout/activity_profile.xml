@@ -21,47 +21,35 @@
                     android:text="@string/profileHeading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/profileHeading"
-                    android:textAlignment="center" android:textSize="36sp"
+                    android:textAlignment="center" android:textSize="50sp"
                     android:visibility="visible"
             />
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp" android:id="@+id/profileImageLinearLayout">
-                <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/profileProfileImage"
-                        android:contentDescription="@string/profileProfileImageContentDescription"
-                        android:background="#C7BB14"
-                        android:padding="5dp"
-                        android:cropToPadding="true"
-                        tools:srcCompat="@tools:sample/avatars[0]"
-                />
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/profileAvailabilityColor"
-                        android:contentDescription="@string/profileAvailabilityColor"
-                        android:src="@android:drawable/presence_online"
-                />
-            </LinearLayout>
+            <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/profileProfileImage"
+                    android:contentDescription="@string/profileProfileImageContentDescription"
+                    android:background="#17A42F"
+                    android:padding="5dp"
+                    android:cropToPadding="true"
+                    tools:srcCompat="@tools:sample/avatars[0]"
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
             <TextView
                     android:text="@string/profileStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/profileStatus"
                     android:textAlignment="center"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="10dp" android:textSize="24sp"/>
             <TextView
                     android:text="Update Profile"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/profileUpdateProfileTextView"
-                    android:layout_gravity="center_horizontal" android:layout_marginTop="20dp" android:textSize="18sp"/>
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="10dp" android:textSize="24sp"/>
             <TextView
                     android:text="@string/profileLocationHeading"
                     android:layout_height="wrap_content" android:id="@+id/profileLocationHeading"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="40dp"
+                    android:textSize="30sp" android:layout_marginTop="20dp"
                     android:layout_width="match_parent"/>
             <FrameLayout
                     android:layout_width="match_parent"
@@ -71,14 +59,13 @@
                 <com.google.android.gms.maps.MapView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" android:id="@+id/profileLocationMapView"
-                />
+                        android:layout_marginTop="10dp"/>
             </FrameLayout>
             <TextView
                     android:text="@string/profileDestinationHeading"
-                    android:layout_width="109dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/profileDestinationHeading"
-                    android:layout_marginEnd="271dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginTop="20dp"
+                    android:textSize="30sp" android:layout_marginTop="20dp"
             />
             <FrameLayout
                     android:layout_width="match_parent"
@@ -88,14 +75,13 @@
                 <com.google.android.gms.maps.MapView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" android:id="@+id/profileDestinationMapView"
-                />
+                        android:layout_marginTop="10dp"/>
             </FrameLayout>
             <TextView
                     android:text="@string/profileEventsHeading"
-                    android:layout_width="109dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/profileEventsHeading"
-                    android:layout_marginEnd="275dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp"
+                    android:textSize="30sp"
                     android:layout_marginTop="20dp"
             />
             <android.support.v7.widget.RecyclerView android:layout_width="match_parent"

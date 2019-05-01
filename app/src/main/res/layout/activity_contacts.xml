@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textSize="36sp" android:textAlignment="center"/>
+                android:textSize="50sp" android:textAlignment="center"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -35,14 +35,14 @@
             <TextView
                     android:text="@string/contactsFamilyHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsFamilyHeading"
-                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp" android:ems="12"/>
+                    android:textSize="30sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsFamilyAddTextView"
-                    android:textSize="18sp"/>
+                    android:textSize="24sp" android:layout_marginRight="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -70,14 +70,14 @@
             <TextView
                     android:text="@string/contactsFriendsHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsFriendsHeading"
-                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp" android:ems="12"/>
+                    android:textSize="30sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsFriendsAddTextView"
-                    android:textSize="18sp"/>
+                    android:textSize="24sp" android:layout_marginRight="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -105,14 +105,14 @@
             <TextView
                     android:text="@string/contactsTeamHeading"
                     android:layout_height="wrap_content" android:id="@+id/contactsTeamHeading"
-                    android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp" android:ems="12"/>
+                    android:textSize="30sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsTeamAddTextView"
-                    android:textSize="18sp"/>
+                    android:textSize="24sp" android:layout_marginRight="20dp"/>
         </LinearLayout>
 
         <LinearLayout

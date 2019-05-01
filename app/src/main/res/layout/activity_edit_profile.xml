@@ -24,99 +24,109 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/editProfileHeading"
                     android:layout_marginTop="0dp"
-                    android:textAlignment="center" android:textSize="36sp"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp" android:id="@+id/editProfileImageLinearLayout">
-                <ImageButton
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editProfileProfileImageButton"
-                        android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
-                        android:padding="5dp"
-                        android:cropToPadding="true"
-                        tools:srcCompat="@tools:sample/avatars[0]"
-                />
-                <Spinner
-                        android:id="@+id/spinner_statuses"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:spinnerMode="dropdown"
-                />
-
-            </LinearLayout>
+                    android:textAlignment="center" android:textSize="50sp"/>
+            <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/editProfileProfileImageButton"
+                    android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
+                    android:background="#17A42F"
+                    android:padding="5dp"
+                    android:cropToPadding="true"
+                    tools:srcCompat="@tools:sample/avatars[0]"
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:id="@+id/editProfileStatus"
                     android:hint="@string/editProfileStatus" android:autofillHints="" android:inputType="text"
-                    android:layout_marginTop="20dp"/>
-            <TextView
-                    android:text="Location"
+                    android:layout_marginTop="10dp" android:textSize="24sp"/>
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileLocationHeading"
-                    android:textSize="18sp" android:layout_marginStart="30dp" android:layout_marginTop="40dp"
-            />
-            <fragment
-                    android:layout_width="match_parent" android:layout_height="250dp"
-                    android:id="@+id/editProfileLocationMap" class="com.google.android.gms.maps.SupportMapFragment">
-            </fragment>
+                    android:layout_height="wrap_content" android:id="@+id/editProfileAvailabilityColorLinearLayout"
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="20dp">
+                <TextView
+                        android:text="Availability Color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/editProfileAvailabilityColorHeading"
+                        android:textSize="30sp"
+                />
+                <Spinner
+                        android:id="@+id/spinner_statuses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown"
+                        android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileLocationLinearLayout">
-                <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/editProfileLocation" android:layout_marginTop="20dp"
-                        android:hint="@string/editProfileLocation"
-                        android:inputType="textPostalAddress"
-                />
-                <Switch
-                        android:text="Use current location"
-                        android:switchPadding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationSwitch"
-                        android:textAlignment="center"
+                    android:layout_height="match_parent" android:layout_marginTop="20dp"
+                    android:id="@+id/editProfileLocationLinearLayout">
+                <TextView
+                        android:text="Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/editProfileLocationHeading"
+                        android:textSize="30sp"
                 />
             </LinearLayout>
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/editProfileLocationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_marginTop="10dp">
+            </fragment>
+            <Switch
+                    android:text="Use current location"
+                    android:switchPadding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/editProfileLocationSwitch"
+                    android:textAlignment="center"
+                    android:layout_marginRight="10dp" android:textSize="24sp" android:layout_gravity="right"
+                    android:layout_marginTop="10dp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editProfileLocation" android:layout_marginTop="10dp"
+                    android:hint="@string/editProfileLocation"
+                    android:inputType="textPostalAddress"
+                    android:textSize="24sp"/>
             <TextView
                     android:text="Destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/editProfileDestinationHeading"
-                    android:textSize="18sp" android:layout_marginTop="40dp" android:layout_marginStart="30dp"
+                    android:textSize="30sp" android:layout_marginTop="20dp"
             />
             <fragment
                     android:layout_width="match_parent" android:layout_height="250dp"
-                    android:id="@+id/editProfileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment">
+                    android:id="@+id/editProfileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_marginTop="10dp">
             </fragment>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPostalAddress"
-                    android:ems="10"
-                    android:id="@+id/editProfileDestination" android:layout_marginTop="20dp"
+                    android:id="@+id/editProfileDestination" android:layout_marginTop="10dp"
                     android:hint="@string/editProfileDestination"
-            />
+                    android:textSize="24sp"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/editProfileEventsLinearLayout">
+                    android:layout_height="wrap_content" android:id="@+id/editProfileEventsLinearLayout"
+                    android:layout_marginTop="20dp">
                 <TextView
                         android:text="@string/editProfileEventsHeading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/editProfileEventsHeading"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginStart="30dp" android:textSize="18sp" android:ems="10"/>
+                        android:textSize="30sp" android:layout_weight="1"/>
                 <TextView
                         android:text="Add Event"
                         android:textColor="#38A1F3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editProfileAddEventTextView" android:textSize="18sp"
-                        android:layout_marginTop="40dp"/>
+                        android:id="@+id/editProfileAddEventTextView" android:textSize="24sp"
+                        android:layout_marginRight="20dp"/>
 
 
             </LinearLayout>

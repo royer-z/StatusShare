@@ -22,7 +22,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/registrationHeading"
-                    android:textSize="36sp"
+                    android:textSize="50sp"
                     android:textAlignment="center"
                     android:layout_marginTop="0dp"
             />
@@ -30,68 +30,63 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:ems="10"
                     android:id="@+id/registrationFirstName"
-                    android:layout_marginTop="40dp"
-                    android:hint="@string/registrationFirstName" android:autofillHints=""/>
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/registrationFirstName" android:autofillHints="" android:textSize="24sp"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:ems="10"
                     android:id="@+id/registrationLastName"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:hint="@string/registrationLastName"
-                    android:autofillHints=""/>
+                    android:autofillHints="" android:textSize="24sp"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:ems="10"
                     android:id="@+id/registrationEmail"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:hint="@string/registrationEmail"
-                    android:autofillHints=""/>
+                    android:autofillHints="" android:textSize="24sp"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:ems="10"
                     android:id="@+id/registrationPassword"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:hint="@string/registrationPassword"
-                    android:autofillHints=""/>
+                    android:autofillHints="" android:textSize="24sp"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:ems="10"
                     android:id="@+id/registrationConfirmPassword"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:hint="@string/registrationConfirmPassword"
-                    android:autofillHints=""/>
+                    android:autofillHints="" android:textSize="24sp"/>
             <Button
                     android:text="@string/registrationRegisterButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
                     android:id="@+id/registrationRegisterButton"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal" android:textSize="24sp"/>
             <Button
                     android:text="@string/registrationCancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/registrationCancelButton"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"/>
-            
+
 
             <Button
                     android:text="All Users"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/AllUsersButton"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"/>
 
             <Button
@@ -99,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/searchFriend"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
