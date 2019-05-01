@@ -354,8 +354,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             CustomAdapter(this@EditProfileActivity, R.layout.status_availability_spinner, countryPickerData)
         statusSpinner.setAdapter(pickerAdapter)
 
-        statusSpinner.setSelection(1)
-
+        //statusSpinner.setSelection(1)
+        mDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
