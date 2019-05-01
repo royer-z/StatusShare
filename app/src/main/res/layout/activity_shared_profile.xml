@@ -21,53 +21,65 @@
                     android:text="@string/sharedProfileHeading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileHeading"
-                    android:textAlignment="center" android:textSize="36sp"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/sharedProfileImageLinearLayout">
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sharedProfileProfileImage" android:layout_marginTop="40dp"
-                        android:layout_marginStart="142dp"
-                        android:contentDescription="@string/sharedProfileProfileImageContentDescription"
-                        tools:srcCompat="@tools:sample/avatars[0]"/>
-                <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/sharedProfileAvailabilityColor" android:layout_marginTop="80dp"
-                        android:layout_marginStart="50dp"
-                        android:contentDescription="@string/sharedProfileAvailabilityColorContentDescription"
-                        tools:srcCompat="@android:drawable/presence_online"/>
-            </LinearLayout>
+                    android:textAlignment="center" android:textSize="50sp"/>
+            <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="#17A42F"
+                    android:padding="5dp"
+                    android:cropToPadding="true"
+                    android:id="@+id/sharedProfileProfileImage" android:layout_marginTop="20dp"
+                    android:contentDescription="@string/sharedProfileProfileImageContentDescription"
+                    tools:srcCompat="@tools:sample/avatars[0]" android:layout_gravity="center_horizontal"/>
             <TextView
                     android:text="@string/sharedProfileStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileStatus"
-                    android:layout_marginTop="20dp"
-                    android:textAlignment="center"/>
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center" android:textSize="24sp"/>
             <TextView
                     android:text="@string/sharedProfileLocationHeading"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileLocationHeading"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="271dp" android:textSize="18sp"/>
+                    android:layout_marginTop="20dp"
+                    android:textSize="30sp"/>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" android:id="@+id/sharedProfileLocationFrameLayout"
+                    tools:context=".SharedProfileActivity">
+
+                <com.google.android.gms.maps.MapView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/sharedProfileLocationMapView"
+                        android:layout_marginTop="10dp"/>
+            </FrameLayout>
             <TextView
                     android:text="@string/sharedProfileDestinationHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileDestinationHeading"
-                    android:layout_marginTop="198dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="271dp" android:textSize="18sp"/>
+                    android:layout_marginTop="20dp"
+                    android:textSize="30sp"/>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" android:id="@+id/sharedProfileDestinationFrameLayout"
+                    tools:context=".SharedProfileActivity">
+
+            <com.google.android.gms.maps.MapView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/sharedProfileDestinationMapView"
+                    android:layout_marginTop="10dp"/>
+            </FrameLayout>
             <TextView
                     android:text="@string/sharedProfileEventsHeading"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileEventsHeading"
-                    android:layout_marginTop="200dp"
-                    android:layout_marginStart="30dp" android:textSize="18sp" android:layout_marginEnd="275dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="30sp"
             />
+            <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:id="@+id/sharedProfileRecyclerView2">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
