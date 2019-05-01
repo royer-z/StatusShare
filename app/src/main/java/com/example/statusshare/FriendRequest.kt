@@ -33,7 +33,7 @@ class FriendRequest : AppCompatActivity(), IFirebaseLoadDone {
     lateinit var mSearchText : EditText
     lateinit var iFirebaseLoadDone: IFirebaseLoadDone
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    var myList : MutableList<String> = ArrayList()
+
 
     private val uid =  firebaseUser?.uid.toString()
     private val currentUserReference  = FirebaseDatabase.getInstance().getReference("Registration q")
@@ -163,8 +163,8 @@ class FriendRequest : AppCompatActivity(), IFirebaseLoadDone {
 
     private fun loadFriendRequestList() {
         val query = FirebaseDatabase.getInstance().getReference("Registration q")
-            //child(Common.loggedUser.uid!!)
-            //child(Common.FRIEND_REQUEST)
+            .child(uid)
+            .child("Friend_Request")
 
         val options = FirebaseRecyclerOptions.Builder<AllUsersHelper>()
             .setQuery(query, AllUsersHelper::class.java)
@@ -191,6 +191,7 @@ class FriendRequest : AppCompatActivity(), IFirebaseLoadDone {
                     deleteFriendRequest(model,false)
                     addToAcceptList(model) //Add your friend to your friend list   GOOOOOOODDDDD
                     addUserToFriendContact(model) //Add YOU to your friend's friend list
+                    finish()
                 }
             }
 
