@@ -131,5 +131,7 @@
     <string name="dialog_edit_entry_title">Edit Event</string>
     <string name="contactsContactName">Name</string>
     <string name="contactsContactStatus">Status</string>
+    <string name="pending_friend_request">Pending Friend Request</string>
+    <string name="add">Add</string>
 
 </resources>
