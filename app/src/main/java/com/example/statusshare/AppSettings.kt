@@ -7,7 +7,14 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+
+
+
 //import androidx.fragment.app.Fragment
 
 
@@ -23,23 +30,38 @@ import android.widget.TextView
 class AppSettings : Fragment() {
     // TODO: Rename and change types of parameters
 
+    var fbAuth = FirebaseAuth.getInstance()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.app_settings, container, false)
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var logoutButton = view.findViewById<Button>(R.id.settingsLogoutButton)
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
+        logoutButton.setOnClickListener {
+            Toast.makeText(activity,"Logging out",Toast.LENGTH_SHORT).show()
+            signOut()
+        }
+
+        fbAuth.addAuthStateListener {
+            if(fbAuth.currentUser == null){
+                val i = Intent(activity, LoginActivity::class.java)
+                startActivity(i)
+            }
+        }
+
+    }
+
+    private fun signOut() {
+        fbAuth.signOut()
+    }
+
+
+
+
+
 
 
 }

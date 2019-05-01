@@ -129,5 +129,7 @@
 
     <string name="dialog_new_entry_title">New Event</string>
     <string name="dialog_edit_entry_title">Edit Event</string>
+    <string name="pending_friend_request">Pending Friend Request</string>
+    <string name="add">Add</string>
 
 </resources>

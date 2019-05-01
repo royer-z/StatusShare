@@ -1,7 +1,6 @@
 package com.example.statusshare
 
-import android.app.Notification
-import android.app.NotificationChannel
+
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -18,16 +17,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import android.widget.TextView
 import com.example.statusshare.Interface.IRecyclerItemClickListener
-import android.app.NotificationManager
-import android.content.Context
 import com.example.statusshare.Service.ViewHolders.AllViewHolder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import io.reactivex.disposables.CompositeDisposable
 
 
 
-class ActivityAllPeopleDriver : AppCompatActivity() {
+
+class TeamRequest : AppCompatActivity() {
 
     lateinit var mSearchText: EditText
     lateinit var mRecyclerView: RecyclerView
@@ -36,18 +33,13 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
     lateinit var emptyView: TextView
     lateinit var adapter: FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>
 
-    lateinit var notificationManager: NotificationManager
-    lateinit var notificationChannel: NotificationChannel
-    lateinit var builder: Notification.Builder
-    private var channelId = "com.example.statusshare.notificationExample"
-    private var description = "TEST NOTIFICATION"
 
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
     private val uid: String = firebaseUser?.uid.toString()
     private val currentUserReference = FirebaseDatabase.getInstance().getReference("Registration q")
         .child(uid)
 
-    val compositeDisposable = CompositeDisposable()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,21 +77,19 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
             }
         })
 
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
     }
 
     private fun showDialogRequest(model: AllUsersHelper) {
         val alertDialog = AlertDialog.Builder(this, R.style.MyRequestDialog)
-        alertDialog.setTitle("RequestFriend")
-        alertDialog.setMessage("Do you want to send a request friend to " + model.email)
+        alertDialog.setTitle("RequestTeam")
+        alertDialog.setMessage("Do you want to send a Team request to " + model.email)
         alertDialog.setIcon(R.drawable.ic_person_add_black_24dp)
 
         alertDialog.setNegativeButton("Cancel") { dialog: DialogInterface?, _: Int -> dialog?.dismiss() }
         alertDialog.setPositiveButton("Send") { _, _ ->
             val acceptList = FirebaseDatabase.getInstance()
                 .reference.child("Registration q")
-                .child("Accept List")
+                .child("Accept List Team")
                 .child(model.uid.toString())
                 .child("email")
 
@@ -114,11 +104,11 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
                     override fun onDataChange(p0: DataSnapshot) {
                         if (p0.value == null) {
                             //NOT FRIENDS
-                            sendFriendRequest(model)
+                            sendTeamRequest(model)
                         } else
                             Toast.makeText(
-                                this@ActivityAllPeopleDriver,
-                                "You and " + model.email + "are already friends",
+                                this@TeamRequest,
+                                "You and " + model.email + "are already in a team",
                                 Toast.LENGTH_LONG
                             ).show()
                     }
@@ -131,7 +121,7 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
 
     }
 
-    private fun sendFriendRequest(model: AllUsersHelper) {
+    private fun sendTeamRequest(model: AllUsersHelper) {
         val tokens = FirebaseDatabase.getInstance().getReference("Tokens")
 
         tokens.orderByKey().equalTo(model.uid)
@@ -152,22 +142,15 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
 
 
                             //Pending Friend Request
-                            val friend_request = FirebaseDatabase.getInstance()
+                            val team_request = FirebaseDatabase.getInstance()
                                 .getReference("Registration q")
                                 .child(model.uid.toString())
                                 .child("Request")
 
 
-                            friend_request.child(uid).setValue(userInformation)
-                            Toast.makeText(this@ActivityAllPeopleDriver, "Request sent", Toast.LENGTH_LONG).show()
+                            team_request.child(uid).setValue(userInformation)
+                            Toast.makeText(this@TeamRequest, "Request sent", Toast.LENGTH_LONG).show()
 
-                            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                notificationChannel =
-                                    NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
-                                notificationChannel.enableLights(true)
-                                notificationChannel.enableVibration(true)
-                                notificationManager.createNotificationChannel(notificationChannel)
-                            }*/
                             finish()
 
                         }
@@ -202,7 +185,7 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
 
                     holder.setClick(object : IRecyclerItemClickListener {
                         override fun onItemClickListener(view: View, position: Int) {
-                            Toast.makeText(this@ActivityAllPeopleDriver, "Button clicked", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@TeamRequest, "Button clicked", Toast.LENGTH_SHORT).show()
                             showDialogRequest(model)
                         }
 
@@ -221,7 +204,6 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
     override fun onStop() {
         if (adapter != null)
             adapter.startListening()
-        compositeDisposable.clear()
         super.onStop()
 
     }
