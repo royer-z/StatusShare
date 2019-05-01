@@ -14,7 +14,7 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:id="@+id/contactsLinearLayout">
         <TextView
@@ -38,7 +38,7 @@
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
                     android:layout_marginStart="30dp" android:ems="12"/>
             <TextView
-                    android:text="Add"
+                    android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsFamilyAddTextView"
@@ -56,7 +56,6 @@
                 <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/all_users_display_layout"
                         android:id="@+id/recycler_family_list">
                 </android.support.v7.widget.RecyclerView>
             </ScrollView>
@@ -74,7 +73,7 @@
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
                     android:layout_marginStart="30dp" android:ems="12"/>
             <TextView
-                    android:text="Add"
+                    android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsFriendsAddTextView"
@@ -92,7 +91,6 @@
                 <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/all_users_display_layout"
                         android:id="@+id/recycler_friend_list">
                 </android.support.v7.widget.RecyclerView>
             </ScrollView>
@@ -110,7 +108,7 @@
                     android:textSize="18sp" android:textAlignment="viewStart" android:layout_width="wrap_content"
                     android:layout_marginStart="30dp" android:ems="12"/>
             <TextView
-                    android:text="Add"
+                    android:text="@string/add"
                     android:textColor="#38A1F3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/contactsTeamAddTextView"
@@ -128,12 +126,18 @@
                 <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/all_users_display_layout"
                         android:id="@+id/recycler_team_list">
                 </android.support.v7.widget.RecyclerView>
             </ScrollView>
 
         </LinearLayout>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pending_friend_request"
+                android:padding="100dp"
+                android:id="@+id/pendingFriendRequestsButton"/>
     </LinearLayout>
 </ScrollView>
 </android.support.constraint.ConstraintLayout>
