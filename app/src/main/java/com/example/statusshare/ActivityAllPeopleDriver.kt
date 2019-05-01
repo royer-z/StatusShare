@@ -31,13 +31,17 @@ import io.reactivex.schedulers.Schedulers
 
 
 class ActivityAllPeopleDriver : AppCompatActivity() {
-    lateinit var mSearchText : EditText
-    lateinit var mRecyclerView : RecyclerView
-    lateinit var mDatabase : DatabaseReference
-    lateinit var searchEmailButton : ImageButton
-    lateinit var emptyView : TextView
-    lateinit  var adapter : FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>
+    lateinit var mSearchText: EditText
+    lateinit var mRecyclerView: RecyclerView
+    lateinit var mDatabase: DatabaseReference
+    lateinit var searchEmailButton: ImageButton
+    lateinit var emptyView: TextView
+    lateinit var adapter: FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>
+
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
+    private val uid: String = firebaseUser?.uid.toString()
+    private val currentUserReference = FirebaseDatabase.getInstance().getReference("Registration q")
+        .child(uid)
 
     val compositeDisposable = CompositeDisposable()
 
@@ -58,7 +62,7 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
         //mRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL, false)
         mRecyclerView.setLayoutManager(LinearLayoutManager(this))
 
-        mSearchText.addTextChangedListener(object : TextWatcher{
+        mSearchText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -80,31 +84,37 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
     }
 
     private fun showDialogRequest(model: AllUsersHelper) {
-        val alertDialog = AlertDialog.Builder(this,R.style.MyRequestDialog)
+        val alertDialog = AlertDialog.Builder(this, R.style.MyRequestDialog)
         alertDialog.setTitle("RequestFriend")
         alertDialog.setMessage("Do you want to send a request friend to " + model.email)
         alertDialog.setIcon(R.drawable.ic_person_add_black_24dp)
 
-        alertDialog.setNegativeButton("Cancel") { dialog: DialogInterface?, _: Int ->  dialog?.dismiss() }
+        alertDialog.setNegativeButton("Cancel") { dialog: DialogInterface?, _: Int -> dialog?.dismiss() }
         alertDialog.setPositiveButton("Send") { _, _ ->
             val acceptList = FirebaseDatabase.getInstance()
-                .reference.child("Registration q").child("email")
+                .reference.child("Registration q")
+                .child("Accept List")
+                .child(model.uid.toString())
+                .child("email")
 
             //Check user friend list to make sure they are not already friends
 
             acceptList.orderByKey().equalTo(model.email)
-                .addListenerForSingleValueEvent(object:ValueEventListener{
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
 
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        if(p0.value == null) {
-                                //NOT FRIENDS
-                                sendFriendRequest(model)
-                            }
-                        else
-                            Toast.makeText(this@ActivityAllPeopleDriver,"You and " + model.email+"are already friends",Toast.LENGTH_LONG).show()
+                        if (p0.value == null) {
+                            //NOT FRIENDS
+                            sendFriendRequest(model)
+                        } else
+                            Toast.makeText(
+                                this@ActivityAllPeopleDriver,
+                                "You and " + model.email + "are already friends",
+                                Toast.LENGTH_LONG
+                            ).show()
                     }
 
                 })
@@ -119,83 +129,88 @@ class ActivityAllPeopleDriver : AppCompatActivity() {
         val tokens = FirebaseDatabase.getInstance().getReference("Tokens")
 
         tokens.orderByKey().equalTo(model.uid)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
+                    val request = Request()
+                    val dataSend = HashMap<String, String>()
+                    dataSend["FROM_UID"] = firebaseUser?.uid!!
+                    dataSend["FROM_EMAIL"] = firebaseUser.email!! //Your email
+                    dataSend["TO_UID"] = model.uid!!
+                    dataSend["TO_EMAIL"] = model.email!!  //Friend's email
 
-                    if(p0.value == null) //NO available Token
-                        Toast.makeText(this@ActivityAllPeopleDriver,"Token error",Toast.LENGTH_SHORT).show()
+                    //Set request
+                    request.to = p0.child(model.uid!!).getValue(String::class.java)!!
+                    request.data = dataSend
 
-                    else{
-                        val request = Request()
-                        val dataSend = HashMap<String,String>()
-                        dataSend["FROM_UID"] = firebaseUser?.uid!!
-                        dataSend["FROM_EMAIL"] = firebaseUser.email!!
-                        dataSend["TO_UID"] = model.uid!!
-                        dataSend["TO_EMAIL"] = model.email!!  //Friend's email
+                    currentUserReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
 
-                        //Set request
-                        request.to = p0.child(model.uid!!).getValue(String::class.java)!!
-                        request.data = dataSend
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val userInformation = p0.getValue(AllUsersHelper::class.java)
 
 
+                            //Pending Friend Request
+                            val friend_request = FirebaseDatabase.getInstance()
+                                .getReference("Registration q")
+                                .child(model.uid.toString())
+                                .child("Friend_Request")
 
-                        //Send
-                        compositeDisposable.add(Common.fcmService.sendFriendRequestToUser(request)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe ({ t: MyResponse? ->
-                                if(t!!.success == 1)
-                                    Toast.makeText(this@ActivityAllPeopleDriver,"Request Sent " + dataSend.toString(),Toast.LENGTH_LONG).show()
-                            }, {t : Throwable? ->
-                                Toast.makeText(this@ActivityAllPeopleDriver,t!!.message,Toast.LENGTH_SHORT).show()
-                            }))
-                    }
+
+                            friend_request.child(uid).setValue(userInformation)
+                            Toast.makeText(this@ActivityAllPeopleDriver, "Request sent", Toast.LENGTH_LONG).show()
+                            finish()
+                        }
+                    })
                 }
             })
     }
 
-    private fun loadFirebaseData(searchText : String) {
-            if(searchText.isEmpty()){
-                mRecyclerView.adapter = adapter
-            }else {
-                val query = mDatabase.orderByChild("email").startAt(searchText).endAt(searchText + "\uf8ff")
-                val options = FirebaseRecyclerOptions.Builder<AllUsersHelper>()
-                    .setQuery(query, AllUsersHelper::class.java)
-                    .build()
+    private fun loadFirebaseData(searchText: String) {
+        if (searchText.isEmpty()) {
+            mRecyclerView.adapter = adapter
+        } else {
+            val query = mDatabase.orderByChild("email").startAt(searchText).endAt(searchText + "\uf8ff")
+            val options = FirebaseRecyclerOptions.Builder<AllUsersHelper>()
+                .setQuery(query, AllUsersHelper::class.java)
+                .build()
 
-                adapter = object : FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>(options) {
-                    override fun onCreateViewHolder(parent: ViewGroup, position: Int): AllViewHolder {
-                        val itemView = LayoutInflater.from(parent.context)
-                            .inflate(R.layout.all_users_display_layout, parent, false)
-                        return AllViewHolder(itemView)
-                    }
-                    override fun onBindViewHolder(holder: AllViewHolder, position: Int, model: AllUsersHelper) {
-                        holder.user_name.text = model.firstName
-                        holder.user_status.text = model.lastName
-                        holder.email_field.text = model.email
-                        holder.setClick(object:IRecyclerItemClickListener{
-                            override fun onItemClickListener(view: View, position: Int) {
-                                Toast.makeText(this@ActivityAllPeopleDriver,"Button clicked",Toast.LENGTH_SHORT).show()
-                                showDialogRequest(model)
-                            }
+            adapter = object : FirebaseRecyclerAdapter<AllUsersHelper, AllViewHolder>(options) {
+                override fun onCreateViewHolder(parent: ViewGroup, position: Int): AllViewHolder {
+                    val itemView = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.all_users_display_layout, parent, false)
+                    return AllViewHolder(itemView)
+                }
 
-                        })
+                override fun onBindViewHolder(holder: AllViewHolder, position: Int, model: AllUsersHelper) {
+                    holder.user_name.text = model.firstName
+                    holder.user_status.text = model.lastName
+                    holder.email_field.text = model.email
 
-                    }
+                    holder.setClick(object : IRecyclerItemClickListener {
+                        override fun onItemClickListener(view: View, position: Int) {
+                            Toast.makeText(this@ActivityAllPeopleDriver, "Button clicked", Toast.LENGTH_SHORT).show()
+                            showDialogRequest(model)
+                        }
+
+                    })
 
                 }
 
-                mRecyclerView.adapter = adapter
-
             }
+
+            mRecyclerView.adapter = adapter
+
+        }
     }
 
     override fun onStop() {
-        if(adapter != null)
+        if (adapter != null)
             adapter.startListening()
         compositeDisposable.clear()
         super.onStop()

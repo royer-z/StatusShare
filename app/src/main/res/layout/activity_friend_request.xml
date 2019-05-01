@@ -9,16 +9,8 @@
         android:orientation="vertical"
         android:padding="8dp">
     
-    
-  <!--  <com.mancj.materialsearchbar.MaterialSearchBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/material_search_bar"
-            app:mt_hint="@string/EmailHint"
-            app:mt_maxSuggestionsCount="50">
 
-    </com.mancj.materialsearchbar.MaterialSearchBar>-->
-    
+
     <View android:layout_width="match_parent"
           android:layout_height="1dp"/>
 
