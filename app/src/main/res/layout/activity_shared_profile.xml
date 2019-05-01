@@ -43,32 +43,22 @@
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileLocationHeading"
                     android:layout_marginTop="20dp"
                     android:textSize="30sp"/>
-            <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp" android:id="@+id/sharedProfileLocationFrameLayout"
-                    tools:context=".SharedProfileActivity">
-
-                <com.google.android.gms.maps.MapView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:id="@+id/sharedProfileLocationMapView"
-                        android:layout_marginTop="10dp"/>
-            </FrameLayout>
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/sharedProfileLocationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_marginTop="10dp">
+            </fragment>
             <TextView
                     android:text="@string/sharedProfileDestinationHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/sharedProfileDestinationHeading"
                     android:layout_marginTop="20dp"
                     android:textSize="30sp"/>
-            <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp" android:id="@+id/sharedProfileDestinationFrameLayout"
-                    tools:context=".SharedProfileActivity">
-
-            <com.google.android.gms.maps.MapView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/sharedProfileDestinationMapView"
-                    android:layout_marginTop="10dp"/>
-            </FrameLayout>
+            <fragment
+                    android:layout_width="match_parent" android:layout_height="250dp"
+                    android:id="@+id/sharedProfileDestinationMap" class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_marginTop="10dp">
+            </fragment>
             <TextView
                     android:text="@string/sharedProfileEventsHeading"
                     android:layout_width="match_parent"
