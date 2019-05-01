@@ -306,7 +306,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                     currentUserData.child("liveLocation").setValue(liveLocation)
                 }
                 else {
-                    toast("Location permission was denied. Please allow location permission.")
+                    toast("Location permission was denied. Please allow location permission through app settings.")
                     locationSwitch.isChecked = false
                     checkPermission()
                 }

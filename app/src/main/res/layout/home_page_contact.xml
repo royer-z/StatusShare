@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/homePageContactLinearLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/contactsContactProfileImage"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            tools:src="@tools:sample/avatars[0]"
+            app:civ_border_width="4dp"
+            app:civ_border_color="#17A42F"
+            android:layout_height="96dp"
+            android:layout_width="96dp"
+    />
+</LinearLayout>

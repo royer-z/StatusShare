@@ -17,35 +17,42 @@
                 android:text="@string/loginHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/loginHeading" android:textAlignment="center"
-                android:textSize="36sp" android:layout_marginTop="0dp"/>
+                android:textSize="50sp" android:layout_marginTop="0dp"/>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:background="#ECF0F1">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/status_share_logo"
+                    android:id="@+id/imageView3" android:layout_margin="25dp"/>
+        </FrameLayout>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:ems="10"
                 android:id="@+id/loginEmail" android:autofillHints=""
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:hint="@string/loginEmail"
-        />
+                android:textSize="24sp"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/loginPassword" android:layout_marginTop="20dp"
-                android:hint="@string/loginPassword" android:autofillHints=""/>
+                android:id="@+id/loginPassword" android:layout_marginTop="10dp"
+                android:hint="@string/loginPassword" android:autofillHints="" android:textSize="24sp"/>
         <Button
                 android:text="@string/loginLoginButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
                 android:id="@+id/loginLoginButton"
-                android:layout_marginTop="40dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal" android:textSize="24sp"/>
         <TextView
                 android:text="Register"
                 android:textColor="#38A1F3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/loginRegisterTextView" android:textSize="18sp"
-                android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+                android:layout_height="wrap_content" android:id="@+id/loginRegisterTextView" android:textSize="24sp"
+                android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
