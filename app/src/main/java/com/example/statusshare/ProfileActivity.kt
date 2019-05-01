@@ -28,6 +28,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso.*
 import java.io.IOException
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,7 +53,7 @@ class ProfileActivity : Fragment() {
     private lateinit var userLiveLocation : LatLng
     private var userCustomLocation : Any? = null
     private var userCustomDestination : Any? = null
-
+    private var adapter: FirebaseRecyclerAdapter<EventItemModel, EventViewHolder>? = null
     lateinit var profileView : View
 
     // TODO: Rename and change types of parameters
@@ -164,16 +166,6 @@ class ProfileActivity : Fragment() {
             }
         })
 
-        val events = ArrayList<Event>()
-        events.add(Event("Kitty Party", "Home", "today", "2:00", "zxcz"))
-        events.add(Event("LOLI Party", "Home", "today", "6:00", "dixzcsc"))
-        events.add(Event("Zoo Party", "Work Office", "today", "12:00", "zxc"))
-        events.add(Event("Sleep Over", "NJIT", "today", "9:00", "disc"))
-
-        recyclerView1.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = eventAdapter(events)
-        }
 
         val colorStatusPic = getView()?.findViewById<ImageView>(R.id.profileAvailabilityColor)
         val profileImage = getView()?.findViewById<ImageView>(R.id.profileProfileImage)
@@ -190,7 +182,7 @@ class ProfileActivity : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var user_status = dataSnapshot!!.child("status").value
 
-                profileStatus.text = user_status.toString()
+                profileStatus?.text = user_status.toString()
 
                 val statusColorNum = dataSnapshot!!.child("colorStatus").value.toString()
 
@@ -273,6 +265,45 @@ class ProfileActivity : Fragment() {
             destinationMap = it
             setUpDestinationMap()
         })
+
+
+        recyclerView1.layoutManager = LinearLayoutManager(activity)
+        loadEvents()
+        adapter?.startListening()
+    }
+    private fun loadEvents() {
+//            val query = FirebaseDatabase.getInstance().getReference("Registration q")
+//                .child(userID)
+//                .child("Accept List")
+        var userID = mCurrentUser!!.uid
+        mDatabase = FirebaseDatabase.getInstance().reference.child("Registration q").child(userID).child("events")
+        val mQuery = mDatabase!!.orderByKey()
+        val options = FirebaseRecyclerOptions.Builder<EventItemModel>()
+            .setQuery(mQuery, EventItemModel::class.java)
+            .build()
+
+
+        adapter = object : FirebaseRecyclerAdapter<EventItemModel, EventViewHolder>(options){
+
+            override fun onCreateViewHolder(p0: ViewGroup, p1: Int): EventViewHolder {
+                val itemView = LayoutInflater.from(p0.context)
+                    .inflate(R.layout.event_row_list, p0, false)
+                return EventViewHolder(itemView)
+            }
+            override fun onBindViewHolder(holder: EventViewHolder, position: Int, model: EventItemModel) {
+                holder.setModel(model)
+            }
+        }
+
+        recyclerView1.adapter = adapter
+    }
+
+
+    override fun onStop() {
+        if(adapter != null)
+            adapter?.startListening()
+        super.onStop()
+
     }
 
     /*override fun onStart () {
