@@ -8,6 +8,7 @@ class AllUsersHelper{
     var uid: String? = null
     var email: String? = null
     var status : String? = null
+    var colorStatus : Int? = null
     var acceptList:HashMap<String, AllUsersHelper>? = null
 
 

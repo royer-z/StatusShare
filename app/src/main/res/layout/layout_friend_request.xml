@@ -21,6 +21,7 @@
 
                 <ImageView
                         android:src="@drawable/default_profile_image"
+                        android:contentDescription="@string/profile_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"/>
                 <TextView

@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -354,6 +355,8 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             CustomAdapter(this@EditProfileActivity, R.layout.status_availability_spinner, countryPickerData)
         statusSpinner.setAdapter(pickerAdapter)
 
+        val profileImage = findViewById<ImageView>(R.id.editProfileProfileImageButton)
+
         //statusSpinner.setSelection(1)
         mDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -362,20 +365,26 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 if (statusColorNum == "0") {
                     statusSpinner.setSelection(0)
                     status_name_code = countryPickerData.get(0).statusWord!!
+                    profileImage?.setBackgroundColor(Color.parseColor("#17A42F"))
                 }
                 if (statusColorNum == "1") {
                     statusSpinner.setSelection(1)
                     status_name_code = countryPickerData.get(1).statusWord!!
+                    profileImage?.setBackgroundColor(Color.YELLOW)
+
 
                 }
                 if (statusColorNum == "2") {
                     statusSpinner.setSelection(2)
                     status_name_code = countryPickerData.get(2).statusWord!!
+                    profileImage?.setBackgroundColor(Color.parseColor("#FFA500"))
+
                 }
 
                 if (statusColorNum == "3") {
                     statusSpinner.setSelection(3)
                     status_name_code = countryPickerData.get(3).statusWord!!
+                    profileImage?.setBackgroundColor(Color.RED)
                 }
             }
 

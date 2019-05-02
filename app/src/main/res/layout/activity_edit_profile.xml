@@ -30,7 +30,6 @@
                     android:layout_height="150dp"
                     android:id="@+id/editProfileProfileImageButton"
                     android:contentDescription="@string/editProfileProfileImageButtonContentDescription"
-                    android:background="#17A42F"
                     android:padding="5dp"
                     android:cropToPadding="true"
                     tools:srcCompat="@tools:sample/avatars[0]"

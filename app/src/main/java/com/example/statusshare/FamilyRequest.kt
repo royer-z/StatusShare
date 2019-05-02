@@ -78,7 +78,7 @@ class FriendRequest : AppCompatActivity() {
                 holder.accept_btn.setOnClickListener {
                     //Accept friend request
                     deleteFriendRequest(model,false)
-                    addToFriendAcceptList(model) //Add your friend to your friend list   GOOOOOOODDDDD
+                    addToFriendAcceptList(model) //Add your friend to your friend list
                     addUserToFriendContact(model) //Add YOU to your friend's friend list
                     finish()
                 }

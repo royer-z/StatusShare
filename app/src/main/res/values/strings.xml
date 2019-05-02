@@ -133,5 +133,6 @@
     <string name="contactsContactStatus">Status</string>
     <string name="pending_friend_request">Pending Friend Request</string>
     <string name="add">Add</string>
+    <string name="profile_image">Profile Image</string>
 
 </resources>

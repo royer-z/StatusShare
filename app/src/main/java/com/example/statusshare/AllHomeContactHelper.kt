@@ -5,6 +5,7 @@ class AllHomeContactHelper {
     var firstName : String? = null
     var lastName : String? = null
     var status : String? = null
+    var statusColor : Int? = null
 
     constructor()
 

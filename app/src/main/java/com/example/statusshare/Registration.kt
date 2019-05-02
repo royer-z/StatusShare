@@ -46,7 +46,7 @@ class Registration: AppCompatActivity(){
     private lateinit var passwordView: EditText
     private lateinit var confirmPasswordView: EditText
     private lateinit var registrationButton: Button
-    private lateinit var cancelButton: Button
+
 
 
 
@@ -62,23 +62,6 @@ class Registration: AppCompatActivity(){
         setContentView(R.layout.activity_registration)
          initialise()
 
-        val allUserButton= findViewById<Button>(R.id.AllUsersButton)
-
-        allUserButton.setOnClickListener {
-
-            val intent = Intent(this, AllUsers::class.java)
-            startActivity(intent)
-        }
-
-        val searchFriend= findViewById<Button>(R.id.searchFriend)
-
-        searchFriend.setOnClickListener {
-
-            val intent = Intent(this, ActivityAllPeopleDriver::class.java)
-            startActivity(intent)
-        }
-
-
 
     }
 
@@ -90,14 +73,13 @@ class Registration: AppCompatActivity(){
         confirmPasswordView = findViewById<View>(R.id.registrationConfirmPassword) as EditText
 
         registrationButton = findViewById<View>(R.id.registrationRegisterButton) as Button
-        cancelButton = findViewById<View>(R.id.registrationCancelButton) as Button
 
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Registration q")
         mAuth = FirebaseAuth.getInstance()
 
         registrationButton.setOnClickListener { addRegistrationToTable() }
-        cancelButton.setOnClickListener { clearButton() }
+
 
     }
 
@@ -146,7 +128,7 @@ class Registration: AppCompatActivity(){
                         currentUserDb.child("customDestination").setValue("Newark, New Jersey")
                         currentUserDb.child("uid").setValue(userId)
 
-                        updateToken(firebaseUser)
+                        //updateToken(firebaseUser)
                         updateUserInfoAndUI()
 
                     } else {

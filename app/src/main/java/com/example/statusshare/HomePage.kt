@@ -2,6 +2,7 @@ package com.example.statusshare
 
 
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -13,12 +14,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.statusshare.Service.ViewHolders.HomepageViewHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.contacts_contact.*
 import kotlinx.android.synthetic.main.home_page.*
 
 //import androidx.fragment.app.Fragment
@@ -89,6 +92,8 @@ class HomePage : Fragment() {
         recycler_home_page.layoutManager = LinearLayoutManager(activity)
 
 
+
+
         loadFriendRequestList()
         homeAdapter.startListening()
 
@@ -115,7 +120,8 @@ class HomePage : Fragment() {
                 holder.name.text = name
                 holder.status.text = model.status
 
-                Toast.makeText(activity,model.firstName +  " "  + model.lastName,Toast.LENGTH_SHORT).show()
+
+
             }
 
 
