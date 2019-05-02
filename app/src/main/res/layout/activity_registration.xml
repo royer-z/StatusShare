@@ -19,6 +19,7 @@
                 android:id="@+id/registrationLinearLayout" android:orientation="vertical">
             <TextView
                     android:text="@string/registrationHeading"
+                    android:textColor="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/registrationHeading"
@@ -67,6 +68,7 @@
                     android:autofillHints="" android:textSize="24sp"/>
             <Button
                     android:text="@string/registrationRegisterButton"
+                    android:textColor="@color/link"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:id="@+id/registrationRegisterButton"
