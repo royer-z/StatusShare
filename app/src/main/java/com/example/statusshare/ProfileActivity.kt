@@ -226,13 +226,7 @@ class ProfileActivity : Fragment() {
             }
         })
 
-//        profileUpdateProfileTextView.setOnClickListener {
-//            var intent = Intent(this, EditProfileActivity::class.java)
-//            intent.putExtra("status", profileStatus.text.toString())
-//            intent.putExtra("location", profileLocationHeading.text.toString())
-//            intent.putExtra("destination", profileDestinationHeading.text.toString())
-//            startActivity(intent)
-//        }
+
 
         val updateProfileTextView: View = view.findViewById(R.id.profileUpdateProfileTextView)
 
@@ -266,9 +260,7 @@ class ProfileActivity : Fragment() {
         adapter?.startListening()
     }
     private fun loadEvents() {
-//            val query = FirebaseDatabase.getInstance().getReference("Registration q")
-//                .child(userID)
-//                .child("Accept List")
+
         var userID = mCurrentUser!!.uid
         mDatabase = FirebaseDatabase.getInstance().reference.child("Registration q").child(userID).child("events")
         val mQuery = mDatabase!!.orderByKey()
@@ -300,35 +292,6 @@ class ProfileActivity : Fragment() {
 
     }
 
-    /*override fun onStart () {
-        super.onStart()
-        locationMapView?.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        locationMapView?.onResume()
-    }
-    override fun onPause() {
-        super.onPause()
-        locationMapView?.onPause()
-    }
-    override fun onStop() {
-        super.onStop()
-        locationMapView?.onStop()
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        locationMapView?.onDestroy()
-    }
-    override fun onSaveInstanceState(outState : Bundle) {
-        super.onSaveInstanceState(outState)
-        locationMapView?.onSaveInstanceState(outState)
-    }
-    override fun onLowMemory() {
-        super.onLowMemory()
-        locationMapView?.onLowMemory()
-    }*/
 }
 
 

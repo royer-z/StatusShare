@@ -389,8 +389,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             var oldDestination = intent.extras.get("destination")
 
             editProfileStatus.setText(oldStatus.toString())
-//            editProfileLocation.setText(oldLocation.toString())
-//            editProfileDestination.setText(oldDestination.toString())
+
         }
 
         editProfileFAB.setOnClickListener {
@@ -661,6 +660,9 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 updateObj.put("image", downloadUriOrgiinal)
                                 updateObj.put("thumb_image", downloadUriThumb)
 
+
+                                var userId = mCurrentUser!!.uid
+                                mDatabase = FirebaseDatabase.getInstance().reference.child("Registration q").child(userId)
 
                                 mDatabase!!.updateChildren(updateObj)
                                     .addOnCompleteListener {
