@@ -13,10 +13,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.statusshare.Service.ViewHolders.HomepageViewHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.home_page.*
 
 //import androidx.fragment.app.Fragment
 
@@ -35,10 +38,9 @@ private const val ARG_PARAM2 = "param2"
 class HomePage : Fragment() {
 
     lateinit var homeAdapter: FirebaseRecyclerAdapter<AllHomeContactHelper, HomepageViewHolder>
-    lateinit var mRecyclerView: RecyclerView
-    lateinit var mDatabase: DatabaseReference
-    internal var items:MutableList<AllHomeContactHelper> = ArrayList()
 
+    private val firebaseUser = FirebaseAuth.getInstance().currentUser
+    private val uid: String = firebaseUser?.uid.toString()
 
 
     companion object {
@@ -54,12 +56,23 @@ class HomePage : Fragment() {
 
         fun checkPermission() {
             // Permissions check
-            if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            if (ContextCompat.checkSelfPermission(
+                    context!!,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_DENIED
+            ) {
                 // Permission NOT granted
                 // Request permission
-                ActivityCompat.requestPermissions(activity!!, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), HomePage.LOCATION_PERMISSION_REQUEST_CODE)
-            }
-            else if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    activity!!,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    HomePage.LOCATION_PERMISSION_REQUEST_CODE
+                )
+            } else if (ContextCompat.checkSelfPermission(
+                    context!!,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 // Permission IS granted
             }
         }
@@ -70,68 +83,50 @@ class HomePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Registration q")
-        mRecyclerView = view.findViewById(R.id.recycler_home_page)
-
         //init view
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.setLayoutManager(LinearLayoutManager(context))
+        recycler_home_page.layoutManager = LinearLayoutManager(activity)
 
 
-        loadContactList()
-        setContactList()
-
+        loadFriendRequestList()
+        homeAdapter.startListening()
 
 
     }
 
-    private fun setContactList() {
+    private fun loadFriendRequestList() {
+        val query = FirebaseDatabase.getInstance().getReference("Registration q")
+            .child(uid)
+            .child("Accept List Family")
 
-        val query = FirebaseDatabase.getInstance().reference.child("Registration q").child("Accept List Family")
         val options = FirebaseRecyclerOptions.Builder<AllHomeContactHelper>()
-            .setQuery(query,AllHomeContactHelper::class.java)
+            .setQuery(query, AllHomeContactHelper::class.java)
             .build()
+        homeAdapter = object : FirebaseRecyclerAdapter<AllHomeContactHelper, HomepageViewHolder>(options){
 
-        homeAdapter = object:FirebaseRecyclerAdapter<AllHomeContactHelper, HomepageViewHolder>(options)
-        {
-            override fun onCreateViewHolder(parent: ViewGroup, p1: Int): HomepageViewHolder {
-                val itemView = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.contacts_contact,parent,false)
+            override fun onCreateViewHolder(p0: ViewGroup, p1: Int): HomepageViewHolder {
+                val itemView = LayoutInflater.from(p0.context)
+                    .inflate(R.layout.contacts_contact, p0, false)
                 return HomepageViewHolder(itemView)
             }
-
             override fun onBindViewHolder(holder: HomepageViewHolder, position: Int, model: AllHomeContactHelper) {
                 val name = model.firstName + " " + model.lastName
                 holder.name.text = name
                 holder.status.text = model.status
+
+                Toast.makeText(activity,model.firstName +  " "  + model.lastName,Toast.LENGTH_SHORT).show()
             }
+
+
         }
 
-        mRecyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        mRecyclerView.adapter = homeAdapter
-
+       recycler_home_page.adapter = homeAdapter
     }
 
-    private fun loadContactList() {
-        val db = FirebaseDatabase.getInstance().reference.child("Registration q").child("Accept List Family")
-        db.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Log.d("Error",p0.message)
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                for(itemInView in p0.children){
-                    val item = itemInView.getValue(AllHomeContactHelper::class.java)
-                    items.add(item!!)
-                }
-            }
-        })
-    }
-
-    override fun onStart() {
+    override fun onStop() {
         if(homeAdapter != null)
             homeAdapter.startListening()
-        super.onStart()
+        super.onStop()
     }
+
 
 }
