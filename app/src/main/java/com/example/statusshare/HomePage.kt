@@ -78,6 +78,8 @@ class HomePage : Fragment() {
         }
 
         checkPermission()
+
+        // TODO: Implement onClick listeners on contacts. Pass their uid when switching to a new class
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
