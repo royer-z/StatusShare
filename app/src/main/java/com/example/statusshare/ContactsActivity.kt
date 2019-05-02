@@ -127,8 +127,6 @@ class ContactActivity : Fragment() {
                 holder.user_name.text = model.firstName
                 holder.user_status.text = model.lastName
                 holder.email_field.text = model.email
-
-
             }
         }
 
