@@ -15,6 +15,7 @@
 
         <TextView
                 android:text="@string/loginHeading"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/loginHeading" android:textAlignment="center"
                 android:textSize="50sp" android:layout_marginTop="0dp"/>
@@ -43,6 +44,8 @@
                 android:hint="@string/loginPassword" android:autofillHints="" android:textSize="24sp"/>
         <Button
                 android:text="@string/loginLoginButton"
+                android:background="@color/colorRed"
+                android:textColor="@color/colorGray"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:id="@+id/loginLoginButton"
@@ -50,7 +53,7 @@
                 android:layout_gravity="center_horizontal" android:textSize="24sp"/>
         <TextView
                 android:text="Register"
-                android:textColor="#38A1F3"
+                android:textColor="@color/link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/loginRegisterTextView" android:textSize="24sp"
                 android:layout_gravity="center_horizontal" android:layout_marginTop="10dp"/>
